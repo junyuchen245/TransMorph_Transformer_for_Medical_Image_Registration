@@ -11,7 +11,8 @@ VoxelMorph-diff |1x2x160x192x224   | 0.30      |91.71         |
 VoxelMoprh-huge |1x2x160x192x224   | 63.25     |3656.19       |
 BSplineNet      |1x2x160x192x224   | 0.27      |47.38         |
 ICNet           |1x2x160x192x224   | 1.11      |215.12        |
-PVTNet          |1x2x160x192x224   | 7.24      |195.98        |
+PVTNet-V0       |1x2x160x192x224   | 7.24      |195.98        |
+PVTNet-V1       |1x2x160x192x224   | 61.84     |246.67        |
 CoTr            |1x2x160x192x224   | 38.74     |2275.16       |
 ViT-V-Net       |1x2x160x192x224   | 110.62    |406.44        |
 SwinNet-v0      |1x2x160x192x224   | 63.63     |686.75        |
