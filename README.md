@@ -1,4 +1,14 @@
 # TransMorph: Transformer for Medical Image Registration
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a> [![arXiv](https://img.shields.io/badge/arXiv-2104.06468-b31b1b.svg)](https://arxiv.org/abs/2104.06468)
+
+keywords: Vision Transformer, Swin Transformer, convolutional neural networks, image registration
+
+This is a **PyTorch** implementation of my paper:
+
+<a href="https://arxiv.org/abs/2104.06468">Chen, Junyu, et al. "TransMorph: Transformer for Medical Image Registratio. " arXiv, 2021.</a>
+
+## Model Architecture:
+<img src="https://github.com/junyuchen245/ViT-V-Net_for_3D_Image_Registration/blob/main/figures/net_arch.jpg" width="700"/>
 
 
 ## Flops counting for JHU MRI:
