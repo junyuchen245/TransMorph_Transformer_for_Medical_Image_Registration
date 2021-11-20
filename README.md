@@ -33,4 +33,10 @@ There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransM
 ### XCAT-to-CT:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/ct_dsc.jpg" width="900"/>
 
+## Reference:
+<a href="https://github.com/microsoft/Swin-Transformer">Swin Transformer</a>
+
+<a href="https://github.com/uncbiag/easyreg">easyreg</a>
+
+<a href="https://github.com/qiuhuaqi/midir">MIDIR</a>
 ### <a href="https://junyuchen245.github.io"> About Me</a>
