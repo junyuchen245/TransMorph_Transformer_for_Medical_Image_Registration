@@ -6,8 +6,17 @@ keywords: Vision Transformer, Swin Transformer, convolutional neural networks, i
 This is a **PyTorch** implementation of my paper:
 
 <a href="https://arxiv.org/abs/2104.06468">Chen, Junyu, et al. "TransMorph: Transformer for Medical Image Registratio. " arXiv, 2021.</a>
+## TransMorph Variants:
+There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransMorph-bspl*, and *TransMorph-Bayes*.
 
-Code will be released soon!
+1. ***TransMorph:*** A hybrid Transformer-ConvNet network for image registration.
+2. ***TransMorph-diff:*** A probabilistic TransMorph that ensures a diffeomorphism.
+3. ***TransMorph-bspl:*** A B-spline TransMorph that ensures a diffeomorphism.
+4. ***TransMorph-Bayes:*** A Bayesian uncerntainty TransMorph that produces registration uncertainty estimate.
+
+***train_xxx.py*** and ***infer_xxx.py*** are the training and inference scripts for TransMorph variants.
+
+***model:*** This folder contains all the models.
 
 ***Dataset:*** Due to restrictions, we cannot distribute our brain MRI data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: Brain MRI preprocessing and subcortical segmentation using FreeSurfer.
 
