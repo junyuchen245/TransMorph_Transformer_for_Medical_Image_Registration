@@ -5,7 +5,7 @@ keywords: Vision Transformer, Swin Transformer, convolutional neural networks, i
 
 This is a **PyTorch** implementation of my paper:
 
-<a href="https://arxiv.org/abs/2104.06468">Chen, Junyu, et al. "TransMorph: Transformer for Medical Image Registratio. " arXiv, 2021.</a>
+<a href="https://arxiv.org/abs/2104.06468">Chen, Junyu, et al. "TransMorph: Transformer for Medical Image Registration. " arXiv, 2021.</a>
 
 ## TransMorph
 ### TransMorph DIR Variants:
@@ -43,6 +43,18 @@ The scripts for training and applying these baseline models will be released in 
 ### Dataset:
 Due to restrictions, we cannot distribute our brain MRI data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
 
+### Citation:
+If you find this code is useful in your research, please consider to cite:
+    
+    @misc{chen2021transmorph,
+    title={TransMorph: Transformer for Medical Image Registration}, 
+    author={Junyu Chen and Yufan He and Eric C. Frey and Ye Li and Yong Du},
+    year={2021},
+    eprint={2104.06468},
+    archivePrefix={arXiv},
+    primaryClass={eess.IV}
+    }
+    
 ## TransMorph Architecture:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/architecture.jpg" width="800"/>
 
