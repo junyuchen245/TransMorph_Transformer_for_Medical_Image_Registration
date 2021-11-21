@@ -19,6 +19,8 @@ They are located in the `TransMorph/` folder. Specifically, the models are conta
 ### TransMorph Affine Model:
 The scripts for TransMorph affine model are in `TransMorph_affine/` folder.
 
+`train_xxx.py` and `infer_xxx.py` are the training and inference scripts for TransMorph models.
+
 ### Baseline Models:
 We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.\
 *Baseline registration methods:*
@@ -38,15 +40,18 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 
 The scripts for training and applying these baseline models will be released in the near future.
 
-***train_xxx.py*** and ***infer_xxx.py*** are the training and inference scripts for TransMorph models.
-
-***Dataset:*** Due to restrictions, we cannot distribute our brain MRI data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
+### Dataset:
+Due to restrictions, we cannot distribute our brain MRI data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
 
 ## TransMorph Architecture:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/architecture.jpg" width="800"/>
 
 ## Example Results:
+### Qualitative comparisons:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/Results.jpg" width="1000"/>
+
+### Uncertainty Estimate by TransMorph-Bayes:
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/Brain_uncertainty.jpg" width="700"/>
 
 ## Quantitative Results:
 ### Inter-patient Brain MRI:
