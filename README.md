@@ -6,21 +6,43 @@ keywords: Vision Transformer, Swin Transformer, convolutional neural networks, i
 This is a **PyTorch** implementation of my paper:
 
 <a href="https://arxiv.org/abs/2104.06468">Chen, Junyu, et al. "TransMorph: Transformer for Medical Image Registratio. " arXiv, 2021.</a>
-## TransMorph Variants:
-There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransMorph-bspl*, and *TransMorph-Bayes*.
 
+## TransMorph
+### TransMorph DIR Variants:
+There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransMorph-bspl*, and *TransMorph-Bayes*. \
+They are located in the `TransMorph/` folder. Specifically, the models are contained in `TransMorph/model/`.
 1. ***TransMorph:*** A hybrid Transformer-ConvNet network for image registration.
 2. ***TransMorph-diff:*** A probabilistic TransMorph that ensures a diffeomorphism.
 3. ***TransMorph-bspl:*** A B-spline TransMorph that ensures a diffeomorphism.
 4. ***TransMorph-Bayes:*** A Bayesian uncerntainty TransMorph that produces registration uncertainty estimate.
 
-***train_xxx.py*** and ***infer_xxx.py*** are the training and inference scripts for TransMorph variants.
+### TransMorph Affine Model:
+The scripts for TransMorph affine model are in `TransMorph_affine/` folder.
 
-***model:*** This folder contains all the models.
+### Baseline Models:
+We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.\
+*Baseline registration methods:*
+1. <a href="https://github.com/ANTsX/ANTsPy">SyN (ATNsPy)</a>
+2. <a href="http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg">NiftyReg</a>
+3. <a href="https://github.com/brianlee324/torch-lddmm">LDDMM</a>
+4. <a href="https://github.com/mattiaspaul/deedsBCV">deedsBCV</a>
+5. <a href="https://github.com/voxelmorph/voxelmorph">VoxelMorph-1 & -2</a>
+6. <a href="https://github.com/boahK/MEDIA_CycleMorph">CycleMorph</a>
+7. <a href="https://github.com/qiuhuaqi/midir">MIDIR</a>
+
+*Baseline Transformer architectures:*
+1. <a href="https://github.com/whai362/PVT">PVT</a>
+2. <a href="https://github.com/282857341/nnFormer">nnFormer</a>
+3. <a href="https://github.com/YtongXie/CoTr">CoTr</a>
+4. <a href="https://github.com/junyuchen245/ViT-V-Net_for_3D_Image_Registration_Pytorch">ViT-V-Net</a>
+
+The scripts for training and applying these baseline models will be released in the near future.
+
+***train_xxx.py*** and ***infer_xxx.py*** are the training and inference scripts for TransMorph models.
 
 ***Dataset:*** Due to restrictions, we cannot distribute our brain MRI data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
 
-## Model Architecture:
+## TransMorph Architecture:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/architecture.jpg" width="800"/>
 
 ## Example Results:
