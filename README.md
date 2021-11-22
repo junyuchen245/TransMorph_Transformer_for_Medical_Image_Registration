@@ -10,7 +10,7 @@ This is a **PyTorch** implementation of my paper:
 ## TransMorph
 ### TransMorph DIR Variants:
 There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransMorph-bspl*, and *TransMorph-Bayes*. \
-They are located in the `TransMorph/` folder. Specifically, the models are contained in `TransMorph/model/`.
+They are located in the `TransMorph/` folder, and the models are contained in `TransMorph/model/`.
 1. ***TransMorph:*** A hybrid Transformer-ConvNet network for image registration.
 2. ***TransMorph-diff:*** A probabilistic TransMorph that ensures a diffeomorphism.
 3. ***TransMorph-bspl:*** A B-spline TransMorph that ensures a diffeomorphism.
