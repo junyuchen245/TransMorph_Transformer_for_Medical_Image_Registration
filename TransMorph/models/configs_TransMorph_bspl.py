@@ -32,7 +32,7 @@ out_indices (tuple(int)): Indices of Transformer blocks to output features. Defa
 img_size (int | tuple(int)): Input image size, e.g., (160, 192, 224)
 -------------------------- Unique Parameters to TransMorph-bspl --------------------------
 cps (tuple(int)): Control point spacing for B-spline lattice. Default: (3, 3, 3)
-resize_channels (tuple(int)): Channel number for last convolutional layer. Default: (32, 32)
+resize_channels (tuple(int)): Channel number for the last two convolutional layers. Default: (32, 32)
 '''
 def get_TransMorphBspl_config():
     '''
