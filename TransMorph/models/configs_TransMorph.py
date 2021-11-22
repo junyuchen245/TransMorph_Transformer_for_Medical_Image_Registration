@@ -34,7 +34,7 @@ img_size (int | tuple(int)): Input image size, e.g., (160, 192, 224)
 '''
 def get_3DTransMorph_config():
     '''
-    Trainable params: 15,201,579
+    TransMorph
     '''
     config = ml_collections.ConfigDict()
     config.if_transskip = True
