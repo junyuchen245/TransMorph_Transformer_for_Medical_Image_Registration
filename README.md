@@ -10,14 +10,14 @@ This is a **PyTorch** implementation of my paper:
 ## TransMorph
 ### TransMorph DIR Variants:
 There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransMorph-bspl*, and *TransMorph-Bayes*. \
-They are located in the `TransMorph/` folder, and the models are contained in `TransMorph/model/`.
+Training and inference scripts are in `TransMorph/`, and the models are contained in `TransMorph/model/`.
 1. ***TransMorph:*** A hybrid Transformer-ConvNet network for image registration.
 2. ***TransMorph-diff:*** A probabilistic TransMorph that ensures a diffeomorphism.
 3. ***TransMorph-bspl:*** A B-spline TransMorph that ensures a diffeomorphism.
 4. ***TransMorph-Bayes:*** A Bayesian uncerntainty TransMorph that produces registration uncertainty estimate.
 
 ### TransMorph Affine Model:
-The scripts for TransMorph affine model are in `TransMorph_affine/` folder.
+The scripts for ***TransMorph affine*** model are in `TransMorph_affine/` folder.
 
 `train_xxx.py` and `infer_xxx.py` are the training and inference scripts for TransMorph models.
 
@@ -38,7 +38,7 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 3. <a href="https://github.com/YtongXie/CoTr">CoTr</a>
 4. <a href="https://github.com/junyuchen245/ViT-V-Net_for_3D_Image_Registration_Pytorch">ViT-V-Net</a>
 
-***Scripts for training and applying the baseline models will be released in the near future!***
+***Training and inference scripts for the baseline models will be available in the near future!***
 
 ### Dataset:
 Due to restrictions, we cannot distribute our brain MRI data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
