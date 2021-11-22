@@ -36,7 +36,7 @@ MC_drop (float): Monte Carlo dropout rate. Default: 0.15
 '''
 def get_3DTransMorphBayes_config():
     '''
-    Trainable params: 15,201,579
+    TransMorph-Bayes
     '''
     config = ml_collections.ConfigDict()
     config.if_transskip = True
