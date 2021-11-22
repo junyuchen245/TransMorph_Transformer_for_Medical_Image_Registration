@@ -38,7 +38,7 @@ prior_lambda_mean (float): Weight for precision terms in the loss
 '''
 def get_TransMorphDiff_config():
     '''
-    Trainable params: 15,201,579
+    TransMorph-diff
     '''
     config = ml_collections.ConfigDict()
     config.if_transskip = True
