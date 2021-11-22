@@ -520,10 +520,6 @@ class KL_MSE(torch.nn.Module):
         return MSE + KLD
 
 class MIND_loss(torch.nn.Module):
-    """
-        Local (over window) normalized cross correlation loss.
-        """
-
     def __init__(self, win=None):
         super(MIND_loss, self).__init__()
         self.win = win
