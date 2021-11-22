@@ -1,3 +1,9 @@
+'''
+Junyu Chen
+Johns Hopkins Unversity
+jchen245@jhmi.edu
+'''
+
 import math
 import numpy as np
 import torch.nn.functional as F
