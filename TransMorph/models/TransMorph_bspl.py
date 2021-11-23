@@ -5,7 +5,7 @@ Paper:
 Chen, J., Du, Y., He, Y., Segars, P. W., Li, Y., & Frey, E. C. (2021). 
 TransMorph: Transformer for Unsupervised Medical Image Registration. arXiv preprint.
 
-Base code for B-Spline registration obtained from: https://github.com/qiuhuaqi/midir
+Base code for B-Spline registration was obtained from: https://github.com/qiuhuaqi/midir
 
 Original paper for learning-based B-Spline registration:
 Qiu, H., Qin, C., Schuh, A., Hammernik, K., & Rueckert, D. (2021, February). 
