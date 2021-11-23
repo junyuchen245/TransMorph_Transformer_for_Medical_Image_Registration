@@ -581,7 +581,7 @@ class SwinTransformer(nn.Module):
             self.absolute_pos_embed = nn.Parameter(
                 torch.zeros(1, embed_dim, patches_resolution[0], patches_resolution[1], patches_resolution[2]))
             trunc_normal_(self.absolute_pos_embed, std=.02)
-        self.pos_embd = SinPositionalEncoding3D(96).cuda()
+        self.pos_embd = SinPositionalEncoding3D(embed_dim).cuda()
         self.pos_drop = nn.Dropout(p=drop_rate)
 
         # stochastic depth
