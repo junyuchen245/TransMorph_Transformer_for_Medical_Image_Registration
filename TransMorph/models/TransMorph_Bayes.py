@@ -1,16 +1,16 @@
 '''
-B-Spline TransMorph with Diffeomorphism
+TransMorph-Bayes that produces registration uncertainty
 
 Paper:
 Chen, J., Du, Y., He, Y., Segars, P. W., Li, Y., & Frey, E. C. (2021). 
 TransMorph: Transformer for Unsupervised Medical Image Registration. arXiv preprint.
 
-Base code for B-Spline registration obtained from: https://github.com/qiuhuaqi/midir
+Base code for Swin Transformer was obtained from: https://github.com/microsoft/Swin-Transformer
 
 Original paper for learning-based B-Spline registration:
-Qiu, H., Qin, C., Schuh, A., Hammernik, K., & Rueckert, D. (2021, February). 
-Learning Diffeomorphic and Modality-invariant Registration using B-splines. 
-In Medical Imaging with Deep Learning.
+Liu, Z., Lin, Y., Cao, Y., Hu, H., Wei, Y., Zhang, Z., ... & Guo, B. (2021). 
+Swin transformer: Hierarchical vision transformer using shifted windows.
+arXiv preprint arXiv:2103.14030.
 
 Modified and tested by:
 Junyu Chen
