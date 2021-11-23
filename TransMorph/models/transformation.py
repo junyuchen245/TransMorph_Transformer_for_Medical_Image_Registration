@@ -9,7 +9,6 @@ Qiu, H., Qin, C., Schuh, A., Hammernik, K., & Rueckert, D. (2021, February).
 Learning Diffeomorphic and Modality-invariant Registration using B-splines.
 In Medical Imaging with Deep Learning.
 
-Modified and tested by:
 Junyu Chen
 jchen245@jhmi.edu
 Johns Hopkins University
