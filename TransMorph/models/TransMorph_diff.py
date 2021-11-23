@@ -12,7 +12,6 @@ Dalca, A. V., Balakrishnan, G., Guttag, J., & Sabuncu, M. R. (2019).
 Unsupervised learning of probabilistic diffeomorphic registration for images and surfaces.
 Medical image analysis, 57, 226-236.
 
-Modified and tested by:
 Junyu Chen
 jchen245@jhmi.edu
 Johns Hopkins University
