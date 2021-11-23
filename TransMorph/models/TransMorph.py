@@ -577,7 +577,7 @@ class SwinTransformer(nn.Module):
             trunc_normal_(self.absolute_pos_embed, std=.02)
             #self.pos_embd = SinPositionalEncoding3D(96).cuda()#SinusoidalPositionEmbedding().cuda()
         elif self.spe:
-            self.pos_embd = SinPositionalEncoding3D(96).cuda()
+            self.pos_embd = SinPositionalEncoding3D(embed_dim).cuda()
             #self.pos_embd = SinusoidalPositionEmbedding().cuda()
         self.pos_drop = nn.Dropout(p=drop_rate)
 
