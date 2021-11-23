@@ -5,7 +5,7 @@ Paper:
 Chen, J., Du, Y., He, Y., Segars, P. W., Li, Y., & Frey, E. C. (2021). 
 TransMorph: Transformer for Unsupervised Medical Image Registration. arXiv preprint.
 
-Base code for probabilistic registration obtained from: https://github.com/uncbiag/easyreg
+Base code for probabilistic registration was obtained from: https://github.com/uncbiag/easyreg
 
 Original paper for learning-based probabilistic registration:
 Dalca, A. V., Balakrishnan, G., Guttag, J., & Sabuncu, M. R. (2019).
