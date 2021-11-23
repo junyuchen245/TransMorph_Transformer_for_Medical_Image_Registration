@@ -1,11 +1,11 @@
-# TransMorph: Transformer for Medical Image Registration
+# TransMorph: Transformer for Unsupervised Medical Image Registration
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a> [![arXiv](https://img.shields.io/badge/arXiv-2111.10480-b31b1b.svg)](https://arxiv.org/abs/2111.10480)
 
 keywords: Vision Transformer, Swin Transformer, convolutional neural networks, image registration
 
 This is a **PyTorch** implementation of my paper:
 
-<a href="https://arxiv.org/abs/2111.10480">Chen, Junyu, et al. "TransMorph: Transformer for Medical Image Registration. " arXiv, 2021.</a>
+<a href="https://arxiv.org/abs/2111.10480">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " arXiv, 2021.</a>
 
 ## TransMorph
 ### TransMorph DIR Variants:
