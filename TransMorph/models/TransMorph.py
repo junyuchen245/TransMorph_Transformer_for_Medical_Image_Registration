@@ -1,10 +1,14 @@
 '''
 TransMorph model
 
-Swin-Transformer code retrieved from:
+Paper:
+Chen, J., Du, Y., He, Y., Segars, P. W., Li, Y., & Frey, E. C. (2021). 
+TransMorph: Transformer for Unsupervised Medical Image Registration. arXiv preprint.
+
+Swin-Transformer code was retrieved from:
 https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation
 
-Original paper:
+Original Swin-Transformer paper:
 Liu, Z., Lin, Y., Cao, Y., Hu, H., Wei, Y., Zhang, Z., ... & Guo, B. (2021).
 Swin transformer: Hierarchical vision transformer using shifted windows.
 arXiv preprint arXiv:2103.14030.
