@@ -7,7 +7,7 @@ TransMorph: Transformer for Unsupervised Medical Image Registration. arXiv prepr
 
 Base code for Swin Transformer was obtained from: https://github.com/microsoft/Swin-Transformer
 
-Original paper for learning-based B-Spline registration:
+Original paper for Swin Transformer:
 Liu, Z., Lin, Y., Cao, Y., Hu, H., Wei, Y., Zhang, Z., ... & Guo, B. (2021). 
 Swin transformer: Hierarchical vision transformer using shifted windows.
 arXiv preprint arXiv:2103.14030.
