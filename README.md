@@ -34,7 +34,7 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 7. <a href="https://github.com/qiuhuaqi/midir">MIDIR</a>
 
 ***Baseline Transformer architectures:***\
-*Training and inference scripts are in `Baseline_Transformers/`*
+*Training and inference scripts are in* `Baseline_Transformers/`
 1. <a href="https://github.com/whai362/PVT">PVT</a>
 2. <a href="https://github.com/282857341/nnFormer">nnFormer</a>
 3. <a href="https://github.com/YtongXie/CoTr">CoTr</a>
