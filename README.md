@@ -23,7 +23,7 @@ The scripts for ***TransMorph affine*** model are in `TransMorph_affine/` folder
 
 ### Baseline Models:
 We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.\
-*Baseline registration methods:*\
+***Baseline registration methods:***\
 *Training and inference scripts for the baseline registration models will be available in the near future!*
 1. <a href="https://github.com/ANTsX/ANTsPy">SyN (ATNsPy)</a>
 2. <a href="http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg">NiftyReg</a>
@@ -33,7 +33,7 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 6. <a href="https://github.com/boahK/MEDIA_CycleMorph">CycleMorph</a>
 7. <a href="https://github.com/qiuhuaqi/midir">MIDIR</a>
 
-*Baseline Transformer architectures:*\
+***Baseline Transformer architectures:***\
 *Training and inference scripts are in `Baseline_Transformers/`*
 1. <a href="https://github.com/whai362/PVT">PVT</a>
 2. <a href="https://github.com/282857341/nnFormer">nnFormer</a>
