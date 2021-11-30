@@ -135,7 +135,7 @@ def get_3DTransMorphNoConvSkip_config():
     config.qkv_bias = False
     config.drop_rate = 0
     config.drop_path_rate = 0.3
-    config.ape = True
+    config.ape = False
     config.spe = False
     config.patch_norm = True
     config.use_checkpoint = False
@@ -166,7 +166,7 @@ def get_3DTransMorphNoTransSkip_config():
     config.qkv_bias = False
     config.drop_rate = 0
     config.drop_path_rate = 0.3
-    config.ape = True
+    config.ape = False
     config.spe = False
     config.patch_norm = True
     config.use_checkpoint = False
@@ -196,7 +196,7 @@ def get_3DTransMorphNoSkip_config():
     config.qkv_bias = False
     config.drop_rate = 0
     config.drop_path_rate = 0.3
-    config.ape = True
+    config.ape = False
     config.spe = False
     config.patch_norm = True
     config.use_checkpoint = False
@@ -223,7 +223,7 @@ def get_3DTransMorphLarge_config():
     config.qkv_bias = False
     config.drop_rate = 0
     config.drop_path_rate = 0.3
-    config.ape = True
+    config.ape = False
     config.spe = False
     config.patch_norm = True
     config.use_checkpoint = False
@@ -250,7 +250,7 @@ def get_3DTransMorphSmall_config():
     config.qkv_bias = False
     config.drop_rate = 0
     config.drop_path_rate = 0.3
-    config.ape = True
+    config.ape = False
     config.spe = False
     config.patch_norm = True
     config.use_checkpoint = False
@@ -277,7 +277,7 @@ def get_3DTransMorphTiny_config():
     config.qkv_bias = False
     config.drop_rate = 0
     config.drop_path_rate = 0.3
-    config.ape = True
+    config.ape = False
     config.spe = False
     config.patch_norm = True
     config.use_checkpoint = False
