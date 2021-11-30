@@ -43,11 +43,11 @@ def main():
     '''
     Initialize spatial transformation function
     '''
-    reg_model = Bilinear(zero_boundary=True, mode='bilinear').cuda()
+    reg_model = Bilinear(zero_boundary=True, mode='nearest').cuda()
     for param in reg_model.parameters():
         param.requires_grad = False
         param.volatile = True
-    reg_model_bilin = Bilinear(zero_boundary=True, mode='nearest').cuda()
+    reg_model_bilin = Bilinear(zero_boundary=True, mode='bilinear').cuda()
     for param in reg_model_bilin.parameters():
         param.requires_grad = False
         param.volatile = True
@@ -150,8 +150,8 @@ def main():
                 y_seg = data[3]
                 grid_img = mk_grid_img(8, 1, config.img_size)
                 _, flow = model((x, y))
-                def_out = reg_model_bilin(x_seg.float(), flow)
-                def_grid = reg_model(grid_img.float(), flow)
+                def_out = reg_model(x_seg.float(), flow)
+                def_grid = reg_model_bilin(grid_img.float(), flow)
                 dsc = utils.dice_val(def_out.long(), y_seg.long(), 46)
                 eval_dsc.update(dsc.item(), x.size(0))
                 print(eval_dsc.avg)
