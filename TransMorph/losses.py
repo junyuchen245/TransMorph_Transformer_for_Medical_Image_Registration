@@ -547,7 +547,7 @@ class Grad3d(torch.nn.Module):
             grad *= self.loss_mult
         return grad
 
-class Grad3DiTV(torch.nn.Module):
+class AnIsoGrad3D(torch.nn.Module):
     """
     N-D gradient loss.
     """
@@ -569,6 +569,13 @@ class Grad3DiTV(torch.nn.Module):
 
 class DisplacementRegularizer(torch.nn.Module):
     def __init__(self, energy_type):
+        '''
+        This regularizer was implemented based on a TF code 
+        obtained from: https://github.com/YipengHu/label-reg/blob/master/labelreg/losses.py
+        
+        Junyu Chen
+        jchen245@jhmi.edu
+        '''
         super().__init__()
         self.energy_type = energy_type
 
