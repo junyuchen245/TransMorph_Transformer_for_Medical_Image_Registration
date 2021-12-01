@@ -147,126 +147,6 @@ def ssim3D(img1, img2, window_size=11, size_average=True):
 
     return _ssim_3D(img1, img2, window, window_size, channel, size_average)
 
-
-class Grad(torch.nn.Module):
-    """
-    N-D gradient loss.
-    """
-
-    def __init__(self, penalty='l1', loss_mult=None):
-        super(Grad, self).__init__()
-        self.penalty = penalty
-        self.loss_mult = loss_mult
-
-    def forward(self, y_pred, y_true):
-        dy = torch.abs(y_pred[:, :, 1:, :] - y_pred[:, :, :-1, :])
-        dx = torch.abs(y_pred[:, :, :, 1:] - y_pred[:, :, :, :-1])
-
-        if self.penalty == 'l2':
-            dy = dy * dy
-            dx = dx * dx
-
-        d = torch.mean(dx) + torch.mean(dy)
-        grad = d / 2.0
-
-        if self.loss_mult is not None:
-            grad *= self.loss_mult
-        return grad
-
-class Grad3d(torch.nn.Module):
-    """
-    N-D gradient loss.
-    """
-
-    def __init__(self, penalty='l1', loss_mult=None):
-        super(Grad3d, self).__init__()
-        self.penalty = penalty
-        self.loss_mult = loss_mult
-
-    def forward(self, y_pred, y_true):
-        dy = torch.abs(y_pred[:, :, 1:, :, :] - y_pred[:, :, :-1, :, :])
-        dx = torch.abs(y_pred[:, :, :, 1:, :] - y_pred[:, :, :, :-1, :])
-        dz = torch.abs(y_pred[:, :, :, :, 1:] - y_pred[:, :, :, :, :-1])
-
-        if self.penalty == 'l2':
-            dy = dy * dy
-            dx = dx * dx
-            dz = dz * dz
-
-        d = torch.mean(dx) + torch.mean(dy) + torch.mean(dz)
-        grad = d / 3.0
-
-        if self.loss_mult is not None:
-            grad *= self.loss_mult
-        return grad
-
-class Grad3DiTV(torch.nn.Module):
-    """
-    N-D gradient loss.
-    """
-
-    def __init__(self):
-        super(Grad3DiTV, self).__init__()
-        a = 1
-
-    def forward(self, y_pred, y_true):
-        dy = torch.abs(y_pred[:, :, 1:, 1:, 1:] - y_pred[:, :, :-1, 1:, 1:])
-        dx = torch.abs(y_pred[:, :, 1:, 1:, 1:] - y_pred[:, :, 1:, :-1, 1:])
-        dz = torch.abs(y_pred[:, :, 1:, 1:, 1:] - y_pred[:, :, 1:, 1:, :-1])
-        dy = dy * dy
-        dx = dx * dx
-        dz = dz * dz
-        d = torch.mean(torch.sqrt(dx+dy+dz+1e-6))
-        grad = d / 3.0
-        return grad
-
-class DisplacementRegularizer(torch.nn.Module):
-    def __init__(self, energy_type):
-        super().__init__()
-        self.energy_type = energy_type
-
-    def gradient_dx(self, fv): return (fv[:, 2:, 1:-1, 1:-1] - fv[:, :-2, 1:-1, 1:-1]) / 2
-
-    def gradient_dy(self, fv): return (fv[:, 1:-1, 2:, 1:-1] - fv[:, 1:-1, :-2, 1:-1]) / 2
-
-    def gradient_dz(self, fv): return (fv[:, 1:-1, 1:-1, 2:] - fv[:, 1:-1, 1:-1, :-2]) / 2
-
-    def gradient_txyz(self, Txyz, fn):
-        return torch.stack([fn(Txyz[:,i,...]) for i in [0, 1, 2]], dim=1)
-
-    def compute_gradient_norm(self, displacement, flag_l1=False):
-        dTdx = self.gradient_txyz(displacement, self.gradient_dx)
-        dTdy = self.gradient_txyz(displacement, self.gradient_dy)
-        dTdz = self.gradient_txyz(displacement, self.gradient_dz)
-        if flag_l1:
-            norms = torch.abs(dTdx) + torch.abs(dTdy) + torch.abs(dTdz)
-        else:
-            norms = dTdx**2 + dTdy**2 + dTdz**2
-        return torch.mean(norms)/3.0
-
-    def compute_bending_energy(self, displacement):
-        dTdx = self.gradient_txyz(displacement, self.gradient_dx)
-        dTdy = self.gradient_txyz(displacement, self.gradient_dy)
-        dTdz = self.gradient_txyz(displacement, self.gradient_dz)
-        dTdxx = self.gradient_txyz(dTdx, self.gradient_dx)
-        dTdyy = self.gradient_txyz(dTdy, self.gradient_dy)
-        dTdzz = self.gradient_txyz(dTdz, self.gradient_dz)
-        dTdxy = self.gradient_txyz(dTdx, self.gradient_dy)
-        dTdyz = self.gradient_txyz(dTdy, self.gradient_dz)
-        dTdxz = self.gradient_txyz(dTdx, self.gradient_dz)
-        return torch.mean(dTdxx**2 + dTdyy**2 + dTdzz**2 + 2*dTdxy**2 + 2*dTdxz**2 + 2*dTdyz**2)
-
-    def forward(self, disp, _):
-        if self.energy_type == 'bending':
-            energy = self.compute_bending_energy(disp)
-        elif self.energy_type == 'gradient-l2':
-            energy = self.compute_gradient_norm(disp)
-        elif self.energy_type == 'gradient-l1':
-            energy = self.compute_gradient_norm(disp, flag_l1=True)
-        else:
-            raise Exception('Not recognised local regulariser!')
-        return energy
-
 class NCC(torch.nn.Module):
     """
     Local (over window) normalized cross correlation loss.
@@ -611,3 +491,125 @@ class localMutualInformation(torch.nn.Module):
 
     def forward(self, y_true, y_pred):
         return -self.local_mi(y_true, y_pred)
+
+'''
+Regularizers
+'''
+class Grad(torch.nn.Module):
+    """
+    N-D gradient loss.
+    """
+
+    def __init__(self, penalty='l1', loss_mult=None):
+        super(Grad, self).__init__()
+        self.penalty = penalty
+        self.loss_mult = loss_mult
+
+    def forward(self, y_pred, y_true):
+        dy = torch.abs(y_pred[:, :, 1:, :] - y_pred[:, :, :-1, :])
+        dx = torch.abs(y_pred[:, :, :, 1:] - y_pred[:, :, :, :-1])
+
+        if self.penalty == 'l2':
+            dy = dy * dy
+            dx = dx * dx
+
+        d = torch.mean(dx) + torch.mean(dy)
+        grad = d / 2.0
+
+        if self.loss_mult is not None:
+            grad *= self.loss_mult
+        return grad
+
+class Grad3d(torch.nn.Module):
+    """
+    N-D gradient loss.
+    """
+
+    def __init__(self, penalty='l1', loss_mult=None):
+        super(Grad3d, self).__init__()
+        self.penalty = penalty
+        self.loss_mult = loss_mult
+
+    def forward(self, y_pred, y_true):
+        dy = torch.abs(y_pred[:, :, 1:, :, :] - y_pred[:, :, :-1, :, :])
+        dx = torch.abs(y_pred[:, :, :, 1:, :] - y_pred[:, :, :, :-1, :])
+        dz = torch.abs(y_pred[:, :, :, :, 1:] - y_pred[:, :, :, :, :-1])
+
+        if self.penalty == 'l2':
+            dy = dy * dy
+            dx = dx * dx
+            dz = dz * dz
+
+        d = torch.mean(dx) + torch.mean(dy) + torch.mean(dz)
+        grad = d / 3.0
+
+        if self.loss_mult is not None:
+            grad *= self.loss_mult
+        return grad
+
+class Grad3DiTV(torch.nn.Module):
+    """
+    N-D gradient loss.
+    """
+
+    def __init__(self):
+        super(Grad3DiTV, self).__init__()
+        a = 1
+
+    def forward(self, y_pred, y_true):
+        dy = torch.abs(y_pred[:, :, 1:, 1:, 1:] - y_pred[:, :, :-1, 1:, 1:])
+        dx = torch.abs(y_pred[:, :, 1:, 1:, 1:] - y_pred[:, :, 1:, :-1, 1:])
+        dz = torch.abs(y_pred[:, :, 1:, 1:, 1:] - y_pred[:, :, 1:, 1:, :-1])
+        dy = dy * dy
+        dx = dx * dx
+        dz = dz * dz
+        d = torch.mean(torch.sqrt(dx+dy+dz+1e-6))
+        grad = d / 3.0
+        return grad
+
+class DisplacementRegularizer(torch.nn.Module):
+    def __init__(self, energy_type):
+        super().__init__()
+        self.energy_type = energy_type
+
+    def gradient_dx(self, fv): return (fv[:, 2:, 1:-1, 1:-1] - fv[:, :-2, 1:-1, 1:-1]) / 2
+
+    def gradient_dy(self, fv): return (fv[:, 1:-1, 2:, 1:-1] - fv[:, 1:-1, :-2, 1:-1]) / 2
+
+    def gradient_dz(self, fv): return (fv[:, 1:-1, 1:-1, 2:] - fv[:, 1:-1, 1:-1, :-2]) / 2
+
+    def gradient_txyz(self, Txyz, fn):
+        return torch.stack([fn(Txyz[:,i,...]) for i in [0, 1, 2]], dim=1)
+
+    def compute_gradient_norm(self, displacement, flag_l1=False):
+        dTdx = self.gradient_txyz(displacement, self.gradient_dx)
+        dTdy = self.gradient_txyz(displacement, self.gradient_dy)
+        dTdz = self.gradient_txyz(displacement, self.gradient_dz)
+        if flag_l1:
+            norms = torch.abs(dTdx) + torch.abs(dTdy) + torch.abs(dTdz)
+        else:
+            norms = dTdx**2 + dTdy**2 + dTdz**2
+        return torch.mean(norms)/3.0
+
+    def compute_bending_energy(self, displacement):
+        dTdx = self.gradient_txyz(displacement, self.gradient_dx)
+        dTdy = self.gradient_txyz(displacement, self.gradient_dy)
+        dTdz = self.gradient_txyz(displacement, self.gradient_dz)
+        dTdxx = self.gradient_txyz(dTdx, self.gradient_dx)
+        dTdyy = self.gradient_txyz(dTdy, self.gradient_dy)
+        dTdzz = self.gradient_txyz(dTdz, self.gradient_dz)
+        dTdxy = self.gradient_txyz(dTdx, self.gradient_dy)
+        dTdyz = self.gradient_txyz(dTdy, self.gradient_dz)
+        dTdxz = self.gradient_txyz(dTdx, self.gradient_dz)
+        return torch.mean(dTdxx**2 + dTdyy**2 + dTdzz**2 + 2*dTdxy**2 + 2*dTdxz**2 + 2*dTdyz**2)
+
+    def forward(self, disp, _):
+        if self.energy_type == 'bending':
+            energy = self.compute_bending_energy(disp)
+        elif self.energy_type == 'gradient-l2':
+            energy = self.compute_gradient_norm(disp)
+        elif self.energy_type == 'gradient-l1':
+            energy = self.compute_gradient_norm(disp, flag_l1=True)
+        else:
+            raise Exception('Not recognised local regulariser!')
+        return energy
