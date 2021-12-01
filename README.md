@@ -20,6 +20,15 @@ The scripts for ***TransMorph affine*** model are in `TransMorph_affine/` folder
 
 `train_xxx.py` and `infer_xxx.py` are the training and inference scripts for TransMorph models.
 
+## Loss Functions:
+TransMorph supports both mono- and multi-modal registration. We provided the following loss functions for image similarity measurements:
+1. Mean squared error ([MSE](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html))
+2. Normalized cross correlation ([NCC](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/205b09e8852ee4e415c36613413bc0bf3990f1f1/TransMorph/losses.py#L211))
+3. Structural similarity index ([SSIM](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/f85635578d76e6076a262cd746a37d39c363a58d/TransMorph/losses.py#L103))
+4. Mutual information ([MI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/205b09e8852ee4e415c36613413bc0bf3990f1f1/TransMorph/losses.py#L338))
+5. Local mutual information ([LMI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/205b09e8852ee4e415c36613413bc0bf3990f1f1/TransMorph/losses.py#L396))
+6. Modality independent neighbourhood descriptor with self-similarity context ([MIND-SSC](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/205b09e8852ee4e415c36613413bc0bf3990f1f1/TransMorph/losses.py#L287))
+
 ## Baseline Models:
 We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.
 
