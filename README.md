@@ -21,7 +21,7 @@ The scripts for ***TransMorph affine*** model are in `TransMorph_affine/` folder
 `train_xxx.py` and `infer_xxx.py` are the training and inference scripts for TransMorph models.
 
 ## Loss Functions:
-TransMorph supports both mono- and multi-modal registration. We provided the following loss functions for **image similarity** measurements (the links will take you directly to the code):
+TransMorph supports both **mono-** and **multi-modal** registration. We provided the following loss functions for **image similarity** measurements (the links will take you directly to the code):
 1. Mean squared error ([MSE](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html))
 2. Normalized cross correlation ([NCC](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/205b09e8852ee4e415c36613413bc0bf3990f1f1/TransMorph/losses.py#L211))
 3. Structural similarity index ([SSIM](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/f85635578d76e6076a262cd746a37d39c363a58d/TransMorph/losses.py#L103))
@@ -57,6 +57,8 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 
 ## Dataset:
 Due to restrictions, we cannot distribute our brain MRI and CT data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
+
+:exclamation: 12/01/2021 - We are currently testing TransMorph and the baseline models on [IXI dataset](https://brain-development.org/ixi-dataset/) for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset publicly available under the Creative Commons [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/legalcode). If you use the data, please acknowledge this repository (https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration) and the source of the IXI data (https://brain-development.org/ixi-dataset/).
 
 ## Citation:
 If you find this code is useful in your research, please consider to cite:
