@@ -28,8 +28,7 @@ def main():
     batch_size = 1
     train_dir = 'D:/DATA/JHUBrain/Train/'
     val_dir = 'D:/DATA/JHUBrain/Val/'
-    weights = [1, 0.02]
-    save_dir = 'TransMorphDiff_mse_{}_diffusion_{}/'.format(weights[0], weights[1])
+    save_dir = 'TransMorphDiff/'
     if not os.path.exists('experiments/'+save_dir):
         os.makedirs('experiments/'+save_dir)
     if not os.path.exists('logs/' + save_dir):
