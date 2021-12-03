@@ -148,7 +148,7 @@ def main():
                 x_seg = data[2]
                 y_seg = data[3]
                 grid_img = mk_grid_img(8, 1, config.img_size)
-                _, flow = model((x, y))
+                _, flow, _ = model((x, y))
                 def_out = reg_model(x_seg.float(), flow)
                 def_grid = reg_model_bilin(grid_img.float(), flow)
                 dsc = utils.dice_val(def_out.long(), y_seg.long(), 46)
