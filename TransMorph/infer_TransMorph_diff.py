@@ -13,8 +13,7 @@ from models.TransMorph_diff import CONFIGS as CONFIGS_TM
 def main():
     test_dir = 'D:/DATA/JHUBrain/Test/'
     model_idx = -1
-    weights = [1, 0.02]
-    model_folder = 'TransMorphDiff_mse_{}_diffusion_{}/'.format(weights[0], weights[1])
+    model_folder = 'TransMorphDiff/'
     model_dir = 'experiments/' + model_folder
     dict = utils.process_label()
     if os.path.exists('experiments/'+model_folder[:-1]+'.csv'):
