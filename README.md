@@ -40,7 +40,7 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 
 ***Baseline registration methods:***\
 *Training and inference scripts are in* `Baseline_registration_models/`
-1. <a href="https://github.com/ANTsX/ANTsPy">SyN (ATNsPy)</a>
+1. <a href="https://github.com/ANTsX/ANTsPy">SyN (ANTsPy)</a>
 2. <a href="http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg">NiftyReg</a>
 3. <a href="https://github.com/brianlee324/torch-lddmm">LDDMM</a>
 4. <a href="https://github.com/mattiaspaul/deedsBCV">deedsBCV</a>
