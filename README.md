@@ -63,12 +63,12 @@ Due to restrictions, we cannot distribute our brain MRI and CT data. However, se
 ## Citation:
 If you find this code is useful in your research, please consider to cite:
     
-  @article{chen2021transmorph,
-  title={TransMorph: Transformer for unsupervised medical image registration},
-  author={Chen, Junyu and Du, Yong and He, Yufan and Segars, William P and Li, Ye and Frey, Eric C},
-  journal={arXiv preprint arXiv:2111.10480},
-  year={2021}
-  }
+    @article{chen2021transmorph,
+    title={TransMorph: Transformer for unsupervised medical image registration},
+    author={Chen, Junyu and Du, Yong and He, Yufan and Segars, William P and Li, Ye and Frey, Eric C},
+    journal={arXiv preprint arXiv:2111.10480},
+    year={2021}
+    }
     
 ## TransMorph Architecture:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/architecture.jpg" width="800"/>
