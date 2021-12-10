@@ -58,6 +58,8 @@ We compared TransMorph with **eight** baseline registration methods + **four** T
 ## Dataset:
 Due to restrictions, we cannot distribute our brain MRI and CT data. However, several brain MRI datasets are publicly available online: IXI, ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
 
+**You may find our preprocessed IXI dataset in the next section.**
+
 ## Reproducible Results on IXI Dataset:
 :exclamation: 12/01/2021 - We are currently testing TransMorph and the baseline models on [IXI dataset](https://brain-development.org/ixi-dataset/) for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset publicly available under the Creative Commons [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/legalcode). If you use the data, please acknowledge this repository (https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration) and the source of the IXI data (https://brain-development.org/ixi-dataset/).
 
