@@ -1,7 +1,7 @@
 # TransMorph on IXI dataset
 This is a short description of applying TransMorph varaints and the baseline models on [IXI dataset](https://brain-development.org/ixi-dataset/) for **atlas-to-patient registration**.
 
-All training and inference scripts mentioned in this page are in [`IXI/`]().
+All training and inference scripts mentioned in this page are in [`IXI/ (Currently Not Available)`]().
 
 ## IXI Dataset:
 :exclamation: We will release the pre-processed dataset once we finish all the experiments.\
@@ -16,7 +16,7 @@ All training and inference scripts mentioned in this page are in [`IXI/`]().
 
 and acknowledge the source of the IXI data: https://brain-development.org/ixi-dataset/ 
 
-- Click on the link to start downloading the pre-processed dataset: [preprocessed IXI dataset (Not available)]()
+- Click on the link to start downloading the pre-processed dataset: [preprocessed IXI dataset (Currently Not Available)]()
 
 - There are **576** brain MRI volumes in total. We split the dataset into a ratio of 7:1:2, where 403 for training (`IXI_data/Train/`), 58 for validation (`IXI_data/Val/`), and 115 for testing (`IXI_data/Test/`).
 - There is an atlas image volume and the corresponding subcortical segmentation (`IXI_data/altas.pkl`). This atlas volume was obtained from [CycleMorph](https://github.com/boahK/MEDIA_CycleMorph).
