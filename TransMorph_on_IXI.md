@@ -5,7 +5,16 @@ All training and inference scripts mentioned in this page are in [`IXI/`]().
 
 ## IXI Dataset:
 :exclamation: We will release the pre-processed dataset once we finish all the experiments.\
-:exclamation: 12/10/2021 - We are currently testing TransMorph and the baseline models on [IXI dataset](https://brain-development.org/ixi-dataset/) for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset publicly available under the Creative Commons [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/legalcode). If you use the data, please acknowledge the TransMorph paper and the source of the IXI data (https://brain-development.org/ixi-dataset/). 
+:exclamation: 12/10/2021 - We are currently testing TransMorph and the baseline models on IXI dataset for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset publicly available under the Creative Commons [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/legalcode). If you use the data, you should acknowledge the TransMorph paper:
+
+    @article{chen2021transmorph,
+    title={TransMorph: Transformer for unsupervised medical image registration},
+    author={Chen, Junyu and Du, Yong and He, Yufan and Segars, William P and Li, Ye and Frey, Eric C},
+    journal={arXiv preprint arXiv:2111.10480},
+    year={2021}
+    }
+
+and acknowledge the source of the IXI data: https://brain-development.org/ixi-dataset/ 
 
 - Click on the link to start downloading the pre-processed dataset: [preprocessed IXI dataset (Not available)]()
 
@@ -21,15 +30,15 @@ def pkload(fname):
 image, label = pkload("image.pkl")
 ```
 
-## TransMorph Variants:
+## Pre-trained Weights
 Click on the links to start downloading the pre-trained weights.
+### TransMorph Variants:
 1. [TransMorph](https://drive.google.com/uc?export=download&id=1SDWj2ppvmkXMn1qw8jFkAeQqW3B8VZcu)
 2. [TransMorph-Bayes](https://drive.google.com/uc?export=download&id=1TxCFeUokywV5kff_A1EjrCY6QjH_jFgb)
 3. [TransMorph-diff](https://drive.google.com/uc?export=download&id=1K_6-CS_x7tkgYQWXGMhGIhksk83pCBu4)
 4. [TransMorph-bspl](https://drive.google.com/uc?export=download&id=1ZLNM9KUP8KtCXBLwXRc9dx3OdWft6eMY)
 
-## Baseline Models:
-Click on the links to start downloading the pre-trained weights.\
+### Baseline Models:
 ***Pre-trained baseline registration models:***
 1. [VoxelMorph-1](https://drive.google.com/uc?export=download&id=1pjujL0PTELYy3TS_nj0BFnJjBF7OUqqm)
 2. [VoxelMorph-2](https://drive.google.com/uc?export=download&id=1awrgjTWCykjpMlBVUbvILBVpZTzBXd4V)
