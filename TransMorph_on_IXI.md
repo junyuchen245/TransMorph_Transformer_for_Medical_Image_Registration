@@ -30,19 +30,22 @@ image, label = pkload("image.pkl")
 ```
 
 ## Pre-trained Model Weights
-Click on the links to start downloading the pre-trained weights.
+Click on the `Model Weights` to start downloading the pre-trained weights.\
+We also provided the Tensorboard training log for each model. To visualize loss and validation curves, run: \
+```Tensorboard --logdir=*training log file name*``` in terminal. *Note: Requires Tensorboard installation (`pip install tensorboard`).*
 ### TransMorph Variants:
-1. TransMorph ([Model Weights](https://drive.google.com/uc?export=download&id=1SDWj2ppvmkXMn1qw8jFkAeQqW3B8VZcu) | [Tensorboard Traning Log](https://drive.google.com/uc?export=download&id=1tFCODnHGY08mEON2Oy9P54tK0coyIrw8))
-2. TransMorph-Bayes ([Model Weights](https://drive.google.com/uc?export=download&id=1TxCFeUokywV5kff_A1EjrCY6QjH_jFgb) | [Tensorboard Traning Log](https://drive.google.com/uc?export=download&id=1G3XOSBgyjdBWp_Dbz8urKtn-zoKwZtd8))
-3. TransMorph-diff ([Model Weights](https://drive.google.com/uc?export=download&id=1K_6-CS_x7tkgYQWXGMhGIhksk83pCBu4) | [Tensorboard Traning Log](https://drive.google.com/file/d/1TZU6pIDn3KLZzoNitcOTs-O6dOEKWJWu/view?usp=sharing))
-4. TransMorph-bspl ([Model Weights](https://drive.google.com/uc?export=download&id=1ZLNM9KUP8KtCXBLwXRc9dx3OdWft6eMY) | [Tensorboard Traning Log](https://drive.google.com/uc?export=download&id=1ZJvyVRghLsEapMJZQlR-osvriywk56ed))
+1. TransMorph ([Model Weights](https://drive.google.com/uc?export=download&id=1SDWj2ppvmkXMn1qw8jFkAeQqW3B8VZcu) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1tFCODnHGY08mEON2Oy9P54tK0coyIrw8))
+2. TransMorph-Bayes ([Model Weights](https://drive.google.com/uc?export=download&id=1TxCFeUokywV5kff_A1EjrCY6QjH_jFgb) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1G3XOSBgyjdBWp_Dbz8urKtn-zoKwZtd8))
+3. TransMorph-diff ([Model Weights](https://drive.google.com/uc?export=download&id=1K_6-CS_x7tkgYQWXGMhGIhksk83pCBu4) | [Tensorboard Training Log](https://drive.google.com/file/d/1TZU6pIDn3KLZzoNitcOTs-O6dOEKWJWu/view?usp=sharing))
+4. TransMorph-bspl ([Model Weights](https://drive.google.com/uc?export=download&id=1ZLNM9KUP8KtCXBLwXRc9dx3OdWft6eMY) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1ZJvyVRghLsEapMJZQlR-osvriywk56ed))
 
 ### Baseline Models:
 ***Pre-trained baseline registration models:***
-1. [VoxelMorph-1](https://drive.google.com/uc?export=download&id=1pjujL0PTELYy3TS_nj0BFnJjBF7OUqqm)
-2. [VoxelMorph-2](https://drive.google.com/uc?export=download&id=1awrgjTWCykjpMlBVUbvILBVpZTzBXd4V)
-3. CycleMorph (Under testing)
-4. MIDIR ([Model Weights](https://drive.google.com/uc?export=download&id=1JWCF1pqmF2FE8mc0MVP31y3KKQ08M-fM) | [Tensorboard Traning Log](https://drive.google.com/uc?export=download&id=1nFq8XchhqJPipT1fIuE9pkUYSMSlozzU))
+1. VoxelMorph-1 ([Model Weights](https://drive.google.com/uc?export=download&id=1pjujL0PTELYy3TS_nj0BFnJjBF7OUqqm) | [Tensorboard Training Log]())
+2. VoxelMorph-2 ([Model Weights](https://drive.google.com/uc?export=download&id=1awrgjTWCykjpMlBVUbvILBVpZTzBXd4V) | [Tensorboard Training Log]())
+3. VoxelMorph-diff ([Model Weights](https://drive.google.com/uc?export=download&id=1Dv6Z1MK_JU6dveGHu6jkY3VRUuiXRFG8) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1n6RnPW9WQzA-uzKq3HGZoUHVterJMccS))
+4. CycleMorph (Under testing)
+5. MIDIR ([Model Weights](https://drive.google.com/uc?export=download&id=1JWCF1pqmF2FE8mc0MVP31y3KKQ08M-fM) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1nFq8XchhqJPipT1fIuE9pkUYSMSlozzU))
 
 ***Pre-trained baseline Transformer-based registration models:***
 1. PVT (Under testing)
