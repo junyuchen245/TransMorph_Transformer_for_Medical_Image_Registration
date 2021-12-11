@@ -37,7 +37,7 @@ and the following **deformation regularizers**:
 
 ## Baseline Models:
 We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.\
-The links will take you directly to their official repositories.
+The links will take you to their official repositories.
 
 ***Baseline registration methods:***\
 *Training and inference scripts are in* `Baseline_registration_models/`
