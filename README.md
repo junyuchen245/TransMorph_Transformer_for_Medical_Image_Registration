@@ -36,7 +36,8 @@ and the following **deformation regularizers**:
 4. [Bending energy](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/205b09e8852ee4e415c36613413bc0bf3990f1f1/TransMorph/losses.py#L570)
 
 ## Baseline Models:
-We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.
+We compared TransMorph with **eight** baseline registration methods + **four** Transformer architectures.\
+The links will take you directly to their official repositories.
 
 ***Baseline registration methods:***\
 *Training and inference scripts are in* `Baseline_registration_models/`
