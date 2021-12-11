@@ -1,5 +1,5 @@
 # TransMorph on IXI dataset
-This is a short description of applying TransMorph varaints and the baseline models on [IXI dataset](https://brain-development.org/ixi-dataset/) for **atlas-to-patient registration**.
+This page contains a brief description of using TransMorph variants and the baseline models on the [IXI dataset](https://brain-development.org/ixi-dataset/) for **atlas-to-patient registration**.
 
 All training and inference scripts mentioned in this page are in [`IXI/ (Currently Not Available)`]().
 
@@ -16,11 +16,10 @@ All training and inference scripts mentioned in this page are in [`IXI/ (Current
 
 and acknowledge the source of the IXI data: https://brain-development.org/ixi-dataset/ 
 
-- Click on the link to start downloading the pre-processed dataset: [preprocessed IXI dataset (Currently Not Available)]()
-
-- There are **576** brain MRI volumes in total. We split the dataset into a ratio of 7:1:2, where 403 for training (`IXI_data/Train/`), 58 for validation (`IXI_data/Val/`), and 115 for testing (`IXI_data/Test/`).
-- There is an atlas image volume and the corresponding subcortical segmentation (`IXI_data/altas.pkl`). This atlas volume was obtained from [CycleMorph](https://github.com/boahK/MEDIA_CycleMorph).
-- Each `.pkl` file contains a T1 weighted brain MRI and its corresponding subcortical segmentation. You can read `.pkl` file in python by doing:
+- ***Download:*** Click on the link to start downloading the pre-processed dataset: [preprocessed IXI dataset (Currently Not Available)]()
+- ***Train-Val-Test split:*** There are **576** brain MRI volumes in total. We split the dataset into a ratio of **7:1:2**, where **403** for training (`IXI_data/Train/`), **58** for validation (`IXI_data/Val/`), and **115** for testing (`IXI_data/Test/`).
+- ***Atlas image:*** Additionally, there is an atlas image volume and the corresponding subcortical segmentation (`IXI_data/altas.pkl`). This atlas volume was obtained from [CycleMorph](https://github.com/boahK/MEDIA_CycleMorph).
+- ***File format:*** Each `.pkl` file contains a T1 weighted brain MRI and its corresponding subcortical segmentation. You can read `.pkl` file in python by doing:
 ```python
 import pickle
 def pkload(fname):
@@ -30,7 +29,7 @@ def pkload(fname):
 image, label = pkload("image.pkl")
 ```
 
-## Pre-trained Weights
+## Pre-trained Model Weights
 Click on the links to start downloading the pre-trained weights.
 ### TransMorph Variants:
 1. [TransMorph](https://drive.google.com/uc?export=download&id=1SDWj2ppvmkXMn1qw8jFkAeQqW3B8VZcu)
@@ -51,3 +50,7 @@ Click on the links to start downloading the pre-trained weights.
 3. CoTr (Under testing)
 4. ViT-V-Net (Under testing)
 
+## Instructions on Applying Pre-trained Models
+Coming soon...
+## Instructions on Reproducing Quantitative Results in The Paper
+Coming soon...
