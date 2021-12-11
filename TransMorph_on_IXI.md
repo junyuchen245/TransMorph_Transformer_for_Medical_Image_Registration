@@ -16,9 +16,9 @@ All training and inference scripts mentioned in this page are in [`IXI/ (Current
 
 and acknowledge the source of the IXI data: https://brain-development.org/ixi-dataset/ 
 
-- ***Download:*** Click on the link to start downloading the pre-processed dataset: [preprocessed IXI dataset (Currently Not Available)]()
+- ***Download:*** Click on the link to start downloading the pre-processed dataset - [Preprocessed IXI Dataset (Currently Not Available)]()
 - ***Train-Val-Test split:*** There are **576** brain MRI volumes in total. We split the dataset into a ratio of **7:1:2**, where **403** for training (`IXI_data/Train/`), **58** for validation (`IXI_data/Val/`), and **115** for testing (`IXI_data/Test/`).
-- ***Atlas image:*** Additionally, there is an atlas image volume and the corresponding subcortical segmentation (`IXI_data/altas.pkl`). This atlas volume was obtained from [CycleMorph](https://github.com/boahK/MEDIA_CycleMorph).
+- ***Atlas image:*** Additionally, there is an atlas MRI volume and the corresponding subcortical segmentation (`IXI_data/altas.pkl`). This atlas volume was obtained from [CycleMorph](https://github.com/boahK/MEDIA_CycleMorph).
 - ***File format:*** Each `.pkl` file contains a T1 weighted brain MRI and its corresponding subcortical segmentation. You can read `.pkl` file in python by doing:
 ```python
 import pickle
