@@ -41,8 +41,8 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 
 ### Baseline Models:
 ***Pre-trained baseline registration models:***
-1. VoxelMorph-1 ([Model Weights](https://drive.google.com/uc?export=download&id=1pjujL0PTELYy3TS_nj0BFnJjBF7OUqqm) | [Tensorboard Training Log]())
-2. VoxelMorph-2 ([Model Weights](https://drive.google.com/uc?export=download&id=1awrgjTWCykjpMlBVUbvILBVpZTzBXd4V) | [Tensorboard Training Log]())
+1. VoxelMorph-1 ([Model Weights](https://drive.google.com/uc?export=download&id=1pjujL0PTELYy3TS_nj0BFnJjBF7OUqqm) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1Io7MvpaUlMfH1A2ZuWX4Mbc0uJaAhl-Q))
+2. VoxelMorph-2 ([Model Weights](https://drive.google.com/uc?export=download&id=1awrgjTWCykjpMlBVUbvILBVpZTzBXd4V) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1-yU4-XMbStHW1FGWkiOYIc0kNEToByy0))
 3. VoxelMorph-diff ([Model Weights](https://drive.google.com/uc?export=download&id=1Dv6Z1MK_JU6dveGHu6jkY3VRUuiXRFG8) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1n6RnPW9WQzA-uzKq3HGZoUHVterJMccS))
 4. CycleMorph (Under testing)
 5. MIDIR ([Model Weights](https://drive.google.com/uc?export=download&id=1JWCF1pqmF2FE8mc0MVP31y3KKQ08M-fM) | [Tensorboard Training Log](https://drive.google.com/uc?export=download&id=1nFq8XchhqJPipT1fIuE9pkUYSMSlozzU))
