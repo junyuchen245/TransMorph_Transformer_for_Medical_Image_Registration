@@ -41,20 +41,20 @@ The links will take you to their official repositories.
 
 ***Baseline registration methods:***\
 *Training and inference scripts are in* `Baseline_registration_models/`
-1. <a href="https://github.com/ANTsX/ANTsPy">SyN (ANTsPy)</a>
-2. <a href="http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg">NiftyReg</a>
-3. <a href="https://github.com/brianlee324/torch-lddmm">LDDMM</a>
-4. <a href="https://github.com/mattiaspaul/deedsBCV">deedsBCV</a>
-5. <a href="https://github.com/voxelmorph/voxelmorph">VoxelMorph-1 & -2</a>
-6. <a href="https://github.com/boahK/MEDIA_CycleMorph">CycleMorph</a>
-7. <a href="https://github.com/qiuhuaqi/midir">MIDIR</a>
+1. SyN/ANTsPy ([Official Website](https://github.com/ANTsX/ANTsPy))
+2. NiftyReg ([Official Website](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg))
+3. LDDMM ([Official Website](https://github.com/brianlee324/torch-lddmm))
+4. deedsBCV ([Official Website](https://github.com/mattiaspaul/deedsBCV))
+5. VoxelMorph-1 & -2 ([Official Website](https://github.com/voxelmorph/voxelmorph))
+6. CycleMorph ([Official Website](https://github.com/boahK/MEDIA_CycleMorph))
+7. MIDIR ([Official Website](https://github.com/qiuhuaqi/midir))
 
 ***Baseline Transformer architectures:***\
 *Training and inference scripts are in* `Baseline_Transformers/`
-1. <a href="https://github.com/whai362/PVT">PVT</a>
-2. <a href="https://github.com/282857341/nnFormer">nnFormer</a>
-3. <a href="https://github.com/YtongXie/CoTr">CoTr</a>
-4. <a href="https://github.com/junyuchen245/ViT-V-Net_for_3D_Image_Registration_Pytorch">ViT-V-Net</a>
+1. PVT ([Official Website](https://github.com/whai362/PVT))
+2. nnFormer ([Official Website](https://github.com/282857341/nnFormer))
+3. CoTr ([Official Website](https://github.com/YtongXie/CoTr))
+4. ViT-V-Net ([Official Website](https://github.com/junyuchen245/ViT-V-Net_for_3D_Image_Registration_Pytorch))
 
 ## JHU Brain MRI & Duke CT Dataset:
 Due to restrictions, we cannot distribute our brain MRI and CT data. However, several brain MRI datasets are publicly available online: ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
