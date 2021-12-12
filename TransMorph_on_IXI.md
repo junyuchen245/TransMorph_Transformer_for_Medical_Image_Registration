@@ -59,3 +59,25 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 Coming soon...
 ## Instructions on Reproducing Quantitative Results in The Paper
 Coming soon...
+## Quantitative Results
+Coming soon...
+|Model |Dice|% of \|J\|<=0|
+|---|---|---|
+|Affine|||
+|SyN|||
+|NiftyReg|||
+|LDDMM|||
+|deedsBCV|||
+|VoxelMorph-1|||
+|VoxelMorph-2|||
+|VoxelMorph-diff|||
+|CycleMorph|||
+|MIDIR|||
+|ViT-V-Net|||
+|CoTr|||
+|PVT|||
+|nnFormer|||
+|TransMorph|||
+|TransMorph-Bayes|||
+|TransMorph-bspl|||
+|TransMorph-diff|||
