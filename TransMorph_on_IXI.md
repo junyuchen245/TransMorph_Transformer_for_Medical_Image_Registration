@@ -29,7 +29,7 @@ def pkload(fname):
 image, label = pkload("image.pkl")
 ```
 - ***Image size:*** Each image and label map has a size of `160 x 192 x 224`.
-- <img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/download_gif.gif" width="90px"> [Download Dataset (Currently Not Available)]()
+- <img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/download_gif.gif" width="100px"> [Download Dataset (Currently Not Available)]()
 
 ## Pre-trained Model Weights
 Click on the `Model Weights` to start downloading the pre-trained weights.\
