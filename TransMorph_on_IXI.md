@@ -38,7 +38,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ### TransMorph Variants:
 1. TransMorph ([Model Weights (0.8G)](https://drive.google.com/uc?export=download&id=1SDWj2ppvmkXMn1qw8jFkAeQqW3B8VZcu) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1tFCODnHGY08mEON2Oy9P54tK0coyIrw8))
 2. TransMorph-Bayes ([Model Weights (0.9G)](https://drive.google.com/uc?export=download&id=1TxCFeUokywV5kff_A1EjrCY6QjH_jFgb) | [Tensorboard Training Log (1.9G)](https://drive.google.com/uc?export=download&id=1G3XOSBgyjdBWp_Dbz8urKtn-zoKwZtd8))
-3. TransMorph-diff ([Model Weights (0.5G)](https://drive.google.com/uc?export=download&id=1K_6-CS_x7tkgYQWXGMhGIhksk83pCBu4) | [Tensorboard Training Log (1.9G)](https://drive.google.com/file/d/1TZU6pIDn3KLZzoNitcOTs-O6dOEKWJWu/view?usp=sharing))
+3. TransMorph-diff ([Model Weights (0.5G)](https://drive.google.com/uc?export=download&id=1K_6-CS_x7tkgYQWXGMhGIhksk83pCBu4) | [Tensorboard Training Log (1.9G)](https://drive.google.com/uc?export=download&id=1TZU6pIDn3KLZzoNitcOTs-O6dOEKWJWu))
 4. TransMorph-bspl ([Model Weights (0.7G)](https://drive.google.com/uc?export=download&id=1ZLNM9KUP8KtCXBLwXRc9dx3OdWft6eMY) | [Tensorboard Training Log (1.6G)](https://drive.google.com/uc?export=download&id=1ZJvyVRghLsEapMJZQlR-osvriywk56ed))
 
 ### Baseline Models:
@@ -46,7 +46,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 1. VoxelMorph-1 ([Model Weights (83M)](https://drive.google.com/uc?export=download&id=1pjujL0PTELYy3TS_nj0BFnJjBF7OUqqm) | [Tensorboard Training Log (1.6G)](https://drive.google.com/uc?export=download&id=1Io7MvpaUlMfH1A2ZuWX4Mbc0uJaAhl-Q))
 2. VoxelMorph-2 ([Model Weights (83.4M)](https://drive.google.com/uc?export=download&id=1awrgjTWCykjpMlBVUbvILBVpZTzBXd4V) | [Tensorboard Training Log (1.6G)](https://drive.google.com/uc?export=download&id=1-yU4-XMbStHW1FGWkiOYIc0kNEToByy0))
 3. VoxelMorph-diff ([Model Weights (3.5M)](https://drive.google.com/uc?export=download&id=1Dv6Z1MK_JU6dveGHu6jkY3VRUuiXRFG8) | [Tensorboard Training Log (1.8G)](https://drive.google.com/uc?export=download&id=1n6RnPW9WQzA-uzKq3HGZoUHVterJMccS))
-4. CycleMorph (Under testing)
+4. CycleMorph ([Model Weights (1.4M)](https://drive.google.com/uc?export=download&id=1Fzs9pGKmlYtozCNfKTYnN3_yx34t61x8) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1N44XcmftAg62uFmb7LamJvmphu2DKMql))
 5. MIDIR ([Model Weights (4.1M)](https://drive.google.com/uc?export=download&id=1JWCF1pqmF2FE8mc0MVP31y3KKQ08M-fM) | [Tensorboard Training Log (1.6G)](https://drive.google.com/uc?export=download&id=1nFq8XchhqJPipT1fIuE9pkUYSMSlozzU))
 
 ***Pre-trained baseline Transformer-based registration models:***
