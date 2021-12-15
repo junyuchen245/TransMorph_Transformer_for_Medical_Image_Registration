@@ -7,6 +7,10 @@ This is a **PyTorch** implementation of my paper:
 
 <a href="https://arxiv.org/abs/2111.10480">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " arXiv, 2021.</a>
 
+
+:exclamation: 12/10/2021 - We are currently testing TransMorph and the baseline models on the IXI dataset for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset and the pre-trained models publicly available.\
+**<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30px"> Check out this page for the pre-trained models on the IXI dataset. The preprocessed dataset is also available: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/TransMorph_on_IXI.md)**
+
 ## TransMorph DIR Variants:
 There are **four** TransMorph variants: *TransMorph*, *TransMorph-diff*, *TransMorph-bspl*, and *TransMorph-Bayes*. \
 Training and inference scripts are in `TransMorph/`, and the models are contained in `TransMorph/model/`.
