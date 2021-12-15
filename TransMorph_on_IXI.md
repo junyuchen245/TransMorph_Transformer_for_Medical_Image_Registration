@@ -35,7 +35,7 @@ image, label = pkload("image.pkl")
 ## Pre-trained Model Weights
 Click on the `Model Weights` to start downloading the pre-trained weights.\
 We also provided the Tensorboard training log for each model. To visualize loss and validation curves, run: \
-```Tensorboard --logdir=*training log file name*``` in terminal. *Note: Requires Tensorboard installation (`pip install tensorboard`).*
+```Tensorboard --logdir=*training log file name*``` in terminal. *Note: This requires Tensorboard installation (`pip install tensorboard`).*
 ### TransMorph Variants:
 1. TransMorph ([Model Weights (0.8G)](https://drive.google.com/uc?export=download&id=1SDWj2ppvmkXMn1qw8jFkAeQqW3B8VZcu) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1tFCODnHGY08mEON2Oy9P54tK0coyIrw8))
 2. TransMorph-Bayes ([Model Weights (0.9G)](https://drive.google.com/uc?export=download&id=1TxCFeUokywV5kff_A1EjrCY6QjH_jFgb) | [Tensorboard Training Log (1.9G)](https://drive.google.com/uc?export=download&id=1G3XOSBgyjdBWp_Dbz8urKtn-zoKwZtd8))
