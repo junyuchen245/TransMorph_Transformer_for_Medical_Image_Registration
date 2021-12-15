@@ -4,7 +4,7 @@
 
 ## IXI Dataset:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dataset.jpg" width="1000"/>\
-:exclamation: 12/10/2021 - We are currently testing TransMorph and the baseline models on the IXI dataset for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset publicly available\
+:exclamation: 12/10/2021 - We are currently testing TransMorph and the baseline models on the IXI dataset for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset and the pre-trained models publicly available.\
 :exclamation: Our preprocessed IXI dataset is made available under the Creative Commons [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/legalcode). If you use this dataset, you should acknowledge the TransMorph paper:
 
     @article{chen2021transmorph,
