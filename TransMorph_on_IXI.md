@@ -52,7 +52,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 
 ***Pre-trained baseline Transformer-based registration models:***
 1. PVT (Under testing)
-2. nnFormer (Under testing)
+2. nnFormer ([Model Weights (0.7G)](https://drive.google.com/uc?export=download&id=1doB6-qia1WnPy2UV1g95LDM7GjYsJV4n) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1nC2eKgCD5aX2G7rZJdw3UukOsd6dR29I))
 3. CoTr (Under testing)
 4. ViT-V-Net (Under testing)
 
