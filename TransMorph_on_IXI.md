@@ -51,7 +51,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 5. MIDIR ([Model Weights (4.1M)](https://drive.google.com/uc?export=download&id=1JWCF1pqmF2FE8mc0MVP31y3KKQ08M-fM) | [Tensorboard Training Log (1.6G)](https://drive.google.com/uc?export=download&id=1nFq8XchhqJPipT1fIuE9pkUYSMSlozzU))
 
 ***Pre-trained baseline Transformer-based registration models:***
-1. PVT (Under testing)
+1. PVT ([Model Weights (1.0G)](https://drive.google.com/uc?export=download&id=1AlfgG9zStsz5n4mzJvGDtyQaKtHkmp6b) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1KvkehhNnDpS2gsRv5fdiyaHXyzWsALV5))
 2. nnFormer ([Model Weights (0.7G)](https://drive.google.com/uc?export=download&id=1doB6-qia1WnPy2UV1g95LDM7GjYsJV4n) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1nC2eKgCD5aX2G7rZJdw3UukOsd6dR29I))
 3. CoTr (Under testing)
 4. ViT-V-Net (Under testing)
