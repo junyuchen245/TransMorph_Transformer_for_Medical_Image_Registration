@@ -53,7 +53,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ***Pre-trained baseline Transformer-based registration models:***
 1. PVT ([Model Weights (1.0G)](https://drive.google.com/uc?export=download&id=1AlfgG9zStsz5n4mzJvGDtyQaKtHkmp6b) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1KvkehhNnDpS2gsRv5fdiyaHXyzWsALV5))
 2. nnFormer ([Model Weights (0.7G)](https://drive.google.com/uc?export=download&id=1doB6-qia1WnPy2UV1g95LDM7GjYsJV4n) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1nC2eKgCD5aX2G7rZJdw3UukOsd6dR29I))
-3. CoTr (Under testing)
+3. CoTr ([Model Weights (670M)](https://drive.google.com/uc?export=download&id=1aSZ9oN6Fn7iZYlk-o0UBJ_Mf70cUHgP3) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1pZ7qPjQBxjMTQJemIzap-bBJE170ZSdC))
 4. ViT-V-Net ([Model Weights (561M)](https://drive.google.com/uc?export=download&id=1VBL2nlB3iWcDBQbOr4FxhR-xrG_quIbT) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1cfuTBUaJYhpcalU5-aMULl3JjCaV0H3H))
 ## Instructions on Applying Pre-trained Models
 Coming soon...
