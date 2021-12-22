@@ -81,3 +81,6 @@ Coming soon...
 |TransMorph-Bayes|||
 |TransMorph-bspl|||
 |TransMorph-diff|||
+
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dsc_conventional.jpg" width="900"/>
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dsc_transformer.jpg" width="900"/>
