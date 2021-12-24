@@ -58,7 +58,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 
 ***Validation Dice Scores During Training***
 
-<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/val_dices_IXI.jpg" width="600"/>
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/validation_dice_IXI.jpg" width="600"/>
 
 ## Instructions on Applying Pre-trained Models
 Coming soon...
