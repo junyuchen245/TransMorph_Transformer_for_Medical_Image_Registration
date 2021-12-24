@@ -55,6 +55,11 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 2. nnFormer ([Model Weights (0.7G)](https://drive.google.com/uc?export=download&id=1doB6-qia1WnPy2UV1g95LDM7GjYsJV4n) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1nC2eKgCD5aX2G7rZJdw3UukOsd6dR29I))
 3. CoTr ([Model Weights (670M)](https://drive.google.com/uc?export=download&id=1aSZ9oN6Fn7iZYlk-o0UBJ_Mf70cUHgP3) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1pZ7qPjQBxjMTQJemIzap-bBJE170ZSdC))
 4. ViT-V-Net ([Model Weights (561M)](https://drive.google.com/uc?export=download&id=1VBL2nlB3iWcDBQbOr4FxhR-xrG_quIbT) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=1cfuTBUaJYhpcalU5-aMULl3JjCaV0H3H))
+
+***Validation Dice Scores During Training***
+
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/val_dice_IXI.jpg" width="600"/>
+
 ## Instructions on Applying Pre-trained Models
 Coming soon...
 ## Instructions on Reproducing Quantitative Results in the Paper
