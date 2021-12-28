@@ -30,7 +30,7 @@ and acknowledge the source of the IXI data: https://brain-development.org/ixi-da
     image, label = pkload("image.pkl")
     ```
 - ***Image size:*** Each image and label map has a size of `160 x 192 x 224`.
-- ***Download:*** [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">]()
+## Download Dataset: [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">]()
 [Download Dataset (Currently Not Available)]()
 
 ## Pre-trained Model Weights
