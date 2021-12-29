@@ -62,7 +62,66 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/validation_dice_IXI.jpg" width="600"/>
 
 ## Instructions on Applying Pre-trained Models
-Coming soon...
+### Step 1
+Place the pretrained models into the corresponding folders:
+```bash
+IXI/TransMorph/experiments/------
+            TransMorph_ncc_1_diffusion_1/
+            TransMorphBayes_ncc_1_diffusion_1/
+            TransMorphDiff/
+            TransMorphBSpline_ncc_1_diffusion_1/
+
+IXI/Baseline_Transformers/experiments/------
+            CoTr_ncc_1_diffusion_1/
+            PVT_ncc_1_diffusion_1/
+            ViTVNet_ncc_1_diffusion_1/
+            nnFormer_ncc_1_diffusion_1/
+
+IXI/Baseline_registration_methods/------
+            CycleMorph/experiments/CycleMorph/
+            MIDIR/experiments/MIDIR_ncc_1_diffusion_1/
+            VoxelMorph/experiments/------
+                        Vxm_1_ncc_1_diffusion_1/
+                        Vxm_2_ncc_1_diffusion_1/
+            VoxelMorph-diff/experiments/VxmDiff/
+```
+### Step 2
+Change the directories in the inference scripts (`infer_xxx.py`) to the IXI dataset folder:
+```python
+atlas_dir = 'Path_to_IXI_data/atlas.pkl'
+test_dir = 'Path_to_IXI_data/Val/'
+```
+The inference scripts are located in:
+```bash
+IXI/TransMorph/------
+            infer_TransMorph.py
+            infer_TransMorph_Bayes.py
+            infer_TransMorph_bspl.py
+            infer_TransMorph_diff.py
+
+IXI/Baseline_Transformers/------
+            infer_CoTr.py
+            infer_nnFormer.py
+            infer_PVT.py
+            infer_nnFormer.py
+
+IXI/Baseline_registration_methods/------
+            CycleMorph/infer.py
+            MIDIR/infer.py
+            VoxelMorph/infer.py
+            VoxelMorph-diff/infer.py
+```
+### Step 3
+Specify the desired GPU in the inference scripts to perform evaluation:
+```python
+'''
+GPU configuration
+'''
+GPU_iden = 0
+GPU_num = torch.cuda.device_count()
+```
+### Step 4
+In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py` and the results (a .txt file contains Dice scores for the brain structures) will be created in a sub-folder called `IXI/Path_to_Model/Quantitative_Results/`.
 ## Instructions on Reproducing Quantitative Results in the Paper
 Coming soon...
 ## Quantitative Results
