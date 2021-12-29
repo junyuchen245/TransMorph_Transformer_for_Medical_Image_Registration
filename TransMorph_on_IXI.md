@@ -63,19 +63,19 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 
 ## Instructions on Applying Pre-trained Models
 ### Step 1
-Place the pretrained models into the corresponding folders:
+Create the following directories. Then, place the pretrained models into the corresponding directories:
 ```bash
-IXI/TransMorph/experiments/------
-            TransMorph_ncc_1_diffusion_1/
-            TransMorphBayes_ncc_1_diffusion_1/
-            TransMorphDiff/
-            TransMorphBSpline_ncc_1_diffusion_1/
+IXI/TransMorph/------
+            experiments/TransMorph_ncc_1_diffusion_1/
+            experiments/TransMorphBayes_ncc_1_diffusion_1/
+            experiments/TransMorphDiff/
+            experiments/TransMorphBSpline_ncc_1_diffusion_1/
 
-IXI/Baseline_Transformers/experiments/------
-            CoTr_ncc_1_diffusion_1/
-            PVT_ncc_1_diffusion_1/
-            ViTVNet_ncc_1_diffusion_1/
-            nnFormer_ncc_1_diffusion_1/
+IXI/Baseline_Transformers/------
+            experiments/CoTr_ncc_1_diffusion_1/
+            experiments/PVT_ncc_1_diffusion_1/
+            experiments/ViTVNet_ncc_1_diffusion_1/
+            experiments/nnFormer_ncc_1_diffusion_1/
 
 IXI/Baseline_registration_methods/------
             CycleMorph/experiments/CycleMorph/
