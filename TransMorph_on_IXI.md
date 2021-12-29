@@ -83,7 +83,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 
 ## Instructions on Applying Pre-trained Models
 ### Step 1
-Create the following directories. Then, place the pretrained models into the corresponding directories:
+Create the directories shown below. After that, put the pretrained models in the corresponding directories:
 ```bash
 IXI/TransMorph/------
             experiments/TransMorph_ncc_1_diffusion_1/
@@ -132,7 +132,7 @@ IXI/Baseline_registration_methods/------
             VoxelMorph-diff/infer.py
 ```
 ### Step 3
-Specify the desired GPU on the bottom of the inference scripts to perform evaluation:
+At the bottom of the inference scripts, specify the GPU to be used for evaluation:
 ```python
 '''
 GPU configuration
