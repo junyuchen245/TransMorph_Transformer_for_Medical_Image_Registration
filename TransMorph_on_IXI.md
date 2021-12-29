@@ -1,6 +1,6 @@
 # TransMorph on IXI dataset
 - This page provides a brief description of applying TransMorph variants and the baseline models on the [IXI dataset](https://brain-development.org/ixi-dataset/) for **atlas-to-patient registration**.
-- All training and inference scripts mentioned on this page are in [`IXI/ (Currently Not Available)`]().
+- All training and inference scripts mentioned on this page are in [`IXI/`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/IXI).
 
 ## IXI Dataset:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dataset.jpg" width="1000"/>\
@@ -10,7 +10,7 @@
 
     @article{chen2021transmorph,
     title={TransMorph: Transformer for unsupervised medical image registration},
-    author={Chen, Junyu and Du, Yong and He, Yufan and Segars, William P and Li, Ye and Frey, Eric C},
+    author={Chen, Junyu and He, Yufan and Segars, William P and Li, Ye and Frey, Eric C and Du, Yong},
     journal={arXiv preprint arXiv:2111.10480},
     year={2021}
     }
