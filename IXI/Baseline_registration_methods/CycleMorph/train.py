@@ -53,8 +53,7 @@ def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
     train_dir = 'Path_to_IXI_data/Train/'
     val_dir = 'Path_to_IXI_data/Val/'
-    weights = [1, 1]
-    save_dir = 'CycleMorph_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
+    save_dir = 'CycleMorph/'
 
     if not os.path.exists('experiments/'+save_dir):
         os.makedirs('experiments/'+save_dir)
