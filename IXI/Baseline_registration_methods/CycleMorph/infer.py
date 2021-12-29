@@ -50,8 +50,7 @@ def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
     test_dir = 'Path_to_IXI_data/Val/'
     model_idx = -1
-    weights = [1, 1]
-    model_folder = 'CycleMorph_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
+    model_folder = 'CycleMorph/'
     model_dir = 'experiments/' + model_folder
     dict = utils.process_label()
     if not os.path.exists('Quantitative_Results/'):
