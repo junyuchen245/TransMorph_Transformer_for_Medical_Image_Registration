@@ -10,7 +10,7 @@
 
     @article{chen2021transmorph,
     title={TransMorph: Transformer for unsupervised medical image registration},
-    author={Chen, Junyu and He, Yufan and Segars, William P and Li, Ye and Frey, Eric C and Du, Yong},
+    author={Chen, Junyu and Frey, Eric C and He, Yufan and Segars, William P and Li, Ye and Du, Yong},
     journal={arXiv preprint arXiv:2111.10480},
     year={2021}
     }
