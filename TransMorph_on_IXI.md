@@ -121,15 +121,15 @@ GPU_iden = 0
 GPU_num = torch.cuda.device_count()
 ```
 ### Step 4
-Make sure that the folder that contains the pre-trained model matches what is used in the inference scripts. For example, for [TransMorph](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/78d90ec01f463c4f07607b3567c844eed9d04c07/IXI/TransMorph/infer_TransMorph.py#L17-L19):
+Make sure that the folder containing the pre-trained model corresponds to the one used in the inference scripts. For example, for [TransMorph](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/78d90ec01f463c4f07607b3567c844eed9d04c07/IXI/TransMorph/infer_TransMorph.py#L17-L19):
 ```python
 weights = [1, 1]
 model_folder = 'TransMorph_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
 model_dir = 'experiments/' + model_folder
 ```
-In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py` and the results (a `.csv` file contains Dice scores for the brain structures) will be created in a sub-folder called `IXI/Path_to_Model/Quantitative_Results/`.
+In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py`. The results (a `.csv` file with the name of the model that contains Dice scores) will be saved in a sub-folder called `IXI/Path_to_Model/Quantitative_Results/`.
 ## Instructions on Reproducing Quantitative Results in the Paper
-- After done running the evaluation scripts, copy the output `.csv` files to `IXI/Results/` for generating mean and std. Dice scores, % of non-pos. Jecobian determinant, and boxplots.
+- Once the evaluation scripts have been run, copy the result '.csv' files to 'IXI/Results/' for producing mean and std. Dice scores, percentage of non-pos. Jecobian determinants, and boxplots for subcortical segmentations.
 - Our results (i.e., the `.csv` files) are provided in `IXI/Results/`. To visualize boxplots, simply run `python -u IXI/analysis.py` and `python -u IXI/analysis_trans.py`.
 - To plot your own results, simply replace the files in `IXI/Results/`. If the file names are different, you will need to modify the names used in [`IXI/analysis.py`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/12ea90a8129fc167af22eafb5c0272bdc4141b41/IXI/analysis.py#L17) and [`IXI/analysis_trans.py`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/12ea90a8129fc167af22eafb5c0272bdc4141b41/IXI/analysis_trans.py#L17).
 ## Quantitative Results
