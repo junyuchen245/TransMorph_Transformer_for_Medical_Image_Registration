@@ -48,7 +48,7 @@ and acknowledge the source of the IXI data: https://brain-development.org/ixi-da
             subject_1.pkl
             subject_3.pkl
             .......
-    IXI/Test/atlas.pkl      <--- Atlas image and its label map
+    IXI/atlas.pkl      <--- Atlas image and its label map
     ```
 ## Download Dataset: [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">]()
 [Download Dataset from Google Drive (Currently Not Available)]()
