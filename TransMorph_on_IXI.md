@@ -111,7 +111,7 @@ Change the directories in the inference scripts (`infer_xxx.py`) to the IXI data
 atlas_dir = 'Path_to_IXI_data/atlas.pkl'
 test_dir = 'Path_to_IXI_data/Val/'
 ```
-The inference scripts are located in:
+The inference scripts are located at:
 ```bash
 IXI/TransMorph/------
             infer_TransMorph.py
