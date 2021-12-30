@@ -36,19 +36,19 @@ and acknowledge the source of the IXI data: https://brain-development.org/ixi-da
 - ***Normalization:*** The intensity values of each image volume are normalized into a range `[0,1]`.
 - ***Dataset structure:***
     ```bash
-    IXI/Train/------
+    IXI_data/Train/------
             subject_0.pkl   <--- a T1 brain MR image and its label map
             subject_4.pkl
             .......
-    IXI/Val/------
+    IXI_data/Val/------
             subject_2.pkl
             subject_5.pkl
             .......
-    IXI/Test/------
+    IXI_data/Test/------
             subject_1.pkl
             subject_3.pkl
             .......
-    IXI/atlas.pkl      <--- Atlas image and its label map
+    IXI_data/atlas.pkl      <--- Atlas image and its label map
     ```
 ## Download Dataset: [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">](https://drive.google.com/uc?export=download&id=1-VQewCVNj5eTtc3eQGhTM2yXBQmgm8Ol)
 [Download Dataset from Google Drive (1.44G)](https://drive.google.com/uc?export=download&id=1-VQewCVNj5eTtc3eQGhTM2yXBQmgm8Ol)
