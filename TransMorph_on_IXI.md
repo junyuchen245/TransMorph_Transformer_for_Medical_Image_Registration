@@ -5,7 +5,7 @@
 ## IXI Dataset:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dataset.jpg" width="1000"/>\
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>\
-:exclamation: 12/10/2021 - We are currently testing TransMorph and the baseline models on the IXI dataset for atlas-to-patient registration. Once we finish testing, we will make our preprocessed IXI dataset and the pre-trained models publicly available.\
+:exclamation: 12/29/2021 - Our preprocessed IXI dataset and the pre-trained models are now publicly available!\
 :exclamation: Our preprocessed IXI dataset is made available under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. If you use this dataset, you should acknowledge the TransMorph paper:
 
     @article{chen2021transmorph,
@@ -51,7 +51,7 @@ and acknowledge the source of the IXI data: https://brain-development.org/ixi-da
     IXI/atlas.pkl      <--- Atlas image and its label map
     ```
 ## Download Dataset: [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">]()
-[Download Dataset from Google Drive (Currently Not Available)]()
+[Download Dataset from Google Drive (1.44G)](https://drive.google.com/uc?export=download&id=1-VQewCVNj5eTtc3eQGhTM2yXBQmgm8Ol)
 
 ## Pre-trained Model Weights
 Click on the `Model Weights` to start downloading the pre-trained weights.\
