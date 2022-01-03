@@ -1,18 +1,15 @@
 '''
 TransMorph model
 
-Paper:
-Chen, J., Du, Y., He, Y., Segars, P. W., Li, Y., & Frey, E. C. (2021). 
-TransMorph: Transformer for Unsupervised Medical Image Registration. arXiv preprint.
-
-Swin-Transformer code was retrieved from:
+Swin-Transformer code retrieved from:
 https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation
 
-Original Swin-Transformer paper:
+Original paper:
 Liu, Z., Lin, Y., Cao, Y., Hu, H., Wei, Y., Zhang, Z., ... & Guo, B. (2021).
 Swin transformer: Hierarchical vision transformer using shifted windows.
 arXiv preprint arXiv:2103.14030.
 
+Modified and tested by:
 Junyu Chen
 jchen245@jhmi.edu
 Johns Hopkins University
@@ -90,7 +87,7 @@ class WindowAttention(nn.Module):
         proj_drop (float, optional): Dropout ratio of output. Default: 0.0
     """
 
-    def __init__(self, dim, window_size, num_heads, qkv_bias=True, qk_scale=None, attn_drop=0., proj_drop=0.):
+    def __init__(self, dim, window_size, num_heads, qkv_bias=True, qk_scale=None, rpe=True, attn_drop=0., proj_drop=0.):
 
         super().__init__()
         self.dim = dim
@@ -109,15 +106,17 @@ class WindowAttention(nn.Module):
         coords_t = torch.arange(self.window_size[2])
         coords = torch.stack(torch.meshgrid([coords_h, coords_w, coords_t]))  # 3, Wh, Ww, Wt
         coords_flatten = torch.flatten(coords, 1)  # 3, Wh*Ww*Wt
-        relative_coords = coords_flatten[:, :, None] - coords_flatten[:, None, :]  # 3, Wh*Ww*Wt, Wh*Ww*Wt
-        relative_coords = relative_coords.permute(1, 2, 0).contiguous()  # Wh*Ww*Wt, Wh*Ww*Wt, 3
-        relative_coords[:, :, 0] += self.window_size[0] - 1  # shift to start from 0
-        relative_coords[:, :, 1] += self.window_size[1] - 1
-        relative_coords[:, :, 2] += self.window_size[2] - 1
-        relative_coords[:, :, 0] *= (2 * self.window_size[1] - 1) * (2 * self.window_size[2] - 1)
-        relative_coords[:, :, 1] *= 2 * self.window_size[2] - 1
-        relative_position_index = relative_coords.sum(-1)  # Wh*Ww*Wt, Wh*Ww*Wt
-        self.register_buffer("relative_position_index", relative_position_index)
+        self.rpe = rpe
+        if self.rpe:
+            relative_coords = coords_flatten[:, :, None] - coords_flatten[:, None, :]  # 3, Wh*Ww*Wt, Wh*Ww*Wt
+            relative_coords = relative_coords.permute(1, 2, 0).contiguous()  # Wh*Ww*Wt, Wh*Ww*Wt, 3
+            relative_coords[:, :, 0] += self.window_size[0] - 1  # shift to start from 0
+            relative_coords[:, :, 1] += self.window_size[1] - 1
+            relative_coords[:, :, 2] += self.window_size[2] - 1
+            relative_coords[:, :, 0] *= (2 * self.window_size[1] - 1) * (2 * self.window_size[2] - 1)
+            relative_coords[:, :, 1] *= 2 * self.window_size[2] - 1
+            relative_position_index = relative_coords.sum(-1)  # Wh*Ww*Wt, Wh*Ww*Wt
+            self.register_buffer("relative_position_index", relative_position_index)
 
         self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
         self.attn_drop = nn.Dropout(attn_drop)
@@ -138,11 +137,12 @@ class WindowAttention(nn.Module):
 
         q = q * self.scale
         attn = (q @ k.transpose(-2, -1))
-        relative_position_bias = self.relative_position_bias_table[self.relative_position_index.view(-1)].view(
-            self.window_size[0] * self.window_size[1] * self.window_size[2],
-            self.window_size[0] * self.window_size[1] * self.window_size[2], -1)  # Wh*Ww*Wt,Wh*Ww*Wt,nH
-        relative_position_bias = relative_position_bias.permute(2, 0, 1).contiguous()  # nH, Wh*Ww*Wt, Wh*Ww*Wt
-        attn = attn + relative_position_bias.unsqueeze(0)
+        if self.rpe:
+            relative_position_bias = self.relative_position_bias_table[self.relative_position_index.view(-1)].view(
+                self.window_size[0] * self.window_size[1] * self.window_size[2],
+                self.window_size[0] * self.window_size[1] * self.window_size[2], -1)  # Wh*Ww*Wt,Wh*Ww*Wt,nH
+            relative_position_bias = relative_position_bias.permute(2, 0, 1).contiguous()  # nH, Wh*Ww*Wt, Wh*Ww*Wt
+            attn = attn + relative_position_bias.unsqueeze(0)
 
         if mask is not None:
             nW = mask.shape[0]
@@ -177,7 +177,7 @@ class SwinTransformerBlock(nn.Module):
     """
 
     def __init__(self, dim, num_heads, window_size=(7, 7, 7), shift_size=(0, 0, 0),
-                 mlp_ratio=4., qkv_bias=True, qk_scale=None, drop=0., attn_drop=0., drop_path=0.,
+                 mlp_ratio=4., qkv_bias=True, qk_scale=None, rpe=True, drop=0., attn_drop=0., drop_path=0.,
                  act_layer=nn.GELU, norm_layer=nn.LayerNorm):
         super().__init__()
         self.dim = dim
@@ -190,7 +190,7 @@ class SwinTransformerBlock(nn.Module):
         self.norm1 = norm_layer(dim)
         self.attn = WindowAttention(
             dim, window_size=self.window_size, num_heads=num_heads,
-            qkv_bias=qkv_bias, qk_scale=qk_scale, attn_drop=attn_drop, proj_drop=drop)
+            qkv_bias=qkv_bias, qk_scale=qk_scale, rpe=rpe, attn_drop=attn_drop, proj_drop=drop)
 
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.norm2 = norm_layer(dim)
@@ -326,6 +326,7 @@ class BasicLayer(nn.Module):
                  mlp_ratio=4.,
                  qkv_bias=True,
                  qk_scale=None,
+                 rpe=True,
                  drop=0.,
                  attn_drop=0.,
                  drop_path=0.,
@@ -349,6 +350,7 @@ class BasicLayer(nn.Module):
                 mlp_ratio=mlp_ratio,
                 qkv_bias=qkv_bias,
                 qk_scale=qk_scale,
+                rpe=rpe,
                 drop=drop,
                 attn_drop=attn_drop,
                 drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
@@ -547,6 +549,7 @@ class SwinTransformer(nn.Module):
                  norm_layer=nn.LayerNorm,
                  ape=False,
                  spe=False,
+                 rpe=True,
                  patch_norm=True,
                  out_indices=(0, 1, 2, 3),
                  frozen_stages=-1,
@@ -558,6 +561,7 @@ class SwinTransformer(nn.Module):
         self.embed_dim = embed_dim
         self.ape = ape
         self.spe = spe
+        self.rpe = rpe
         self.patch_norm = patch_norm
         self.out_indices = out_indices
         self.frozen_stages = frozen_stages
@@ -575,7 +579,6 @@ class SwinTransformer(nn.Module):
             self.absolute_pos_embed = nn.Parameter(
                 torch.zeros(1, embed_dim, patches_resolution[0], patches_resolution[1], patches_resolution[2]))
             trunc_normal_(self.absolute_pos_embed, std=.02)
-            #self.pos_embd = SinPositionalEncoding3D(96).cuda()#SinusoidalPositionEmbedding().cuda()
         elif self.spe:
             self.pos_embd = SinPositionalEncoding3D(embed_dim).cuda()
             #self.pos_embd = SinusoidalPositionEmbedding().cuda()
@@ -593,6 +596,7 @@ class SwinTransformer(nn.Module):
                                 window_size=window_size,
                                 mlp_ratio=mlp_ratio,
                                 qkv_bias=qkv_bias,
+                                rpe = rpe,
                                 qk_scale=qk_scale,
                                 drop=drop_rate,
                                 attn_drop=attn_drop_rate,
@@ -822,6 +826,7 @@ class TransMorph(nn.Module):
                                            drop_path_rate=config.drop_path_rate,
                                            ape=config.ape,
                                            spe=config.spe,
+                                           rpe=config.rpe,
                                            patch_norm=config.patch_norm,
                                            use_checkpoint=config.use_checkpoint,
                                            out_indices=config.out_indices,
@@ -892,6 +897,7 @@ class TransMorphML(nn.Module):
                                            drop_path_rate=config.drop_path_rate,
                                            ape=config.ape,
                                            spe=config.spe,
+                                           rpe=config.rpe,
                                            patch_norm=config.patch_norm,
                                            use_checkpoint=config.use_checkpoint,
                                            out_indices=config.out_indices,
@@ -955,6 +961,7 @@ CONFIGS = {
     'TransMorph-No-Skip': configs.get_3DTransMorphNoSkip_config(),
     'TransMorph-Lrn': configs.get_3DTransMorphLrn_config(),
     'TransMorph-Sin': configs.get_3DTransMorphSin_config(),
+    'TransMorph-No-RelPosEmbed': configs.get_3DTransMorphNoRelativePosEmbd_config(),
     'TransMorph-Large': configs.get_3DTransMorphLarge_config(),
     'TransMorph-Small': configs.get_3DTransMorphSmall_config(),
     'TransMorph-Tiny': configs.get_3DTransMorphTiny_config(),
