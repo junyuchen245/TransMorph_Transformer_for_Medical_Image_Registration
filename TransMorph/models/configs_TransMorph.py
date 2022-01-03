@@ -25,6 +25,7 @@ drop_rate (float): Dropout rate. Default: 0
 drop_path_rate (float): Stochastic depth rate. Default: 0.1
 ape (bool): Enable learnable position embedding. Default: False
 spe (bool): Enable sinusoidal position embedding. Default: False
+rpe (bool): Enable relative position embedding. Default: True
 patch_norm (bool): If True, add normalization after patch embedding. Default: True
 use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False 
                        (Carried over from Swin Transformer, it is not needed)
@@ -34,7 +35,7 @@ img_size (int | tuple(int)): Input image size, e.g., (160, 192, 224)
 '''
 def get_3DTransMorph_config():
     '''
-    TransMorph
+    Trainable params: 15,201,579
     '''
     config = ml_collections.ConfigDict()
     config.if_transskip = True
@@ -44,7 +45,7 @@ def get_3DTransMorph_config():
     config.embed_dim = 96
     config.depths = (2, 2, 4, 2)
     config.num_heads = (4, 4, 8, 8)
-    config.window_size = (5, 6, 7)
+    config.window_size = (5, 6, 7, 7)
     config.mlp_ratio = 4
     config.pat_merg_rf = 4
     config.qkv_bias = False
@@ -52,6 +53,35 @@ def get_3DTransMorph_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
+    config.patch_norm = True
+    config.use_checkpoint = False
+    config.out_indices = (0, 1, 2, 3)
+    config.reg_head_chan = 16
+    config.img_size = (160, 192, 224)
+    return config
+
+def get_3DTransMorphNoRelativePosEmbd_config():
+    '''
+    Trainable params: 15,201,579
+    '''
+    config = ml_collections.ConfigDict()
+    config.if_transskip = True
+    config.if_convskip = True
+    config.patch_size = 4
+    config.in_chans = 2
+    config.embed_dim = 96
+    config.depths = (2, 2, 4, 2)
+    config.num_heads = (4, 4, 8, 8)
+    config.window_size = (5, 6, 7, 7)
+    config.mlp_ratio = 4
+    config.pat_merg_rf = 4
+    config.qkv_bias = False
+    config.drop_rate = 0
+    config.drop_path_rate = 0.3
+    config.ape = False
+    config.spe = False
+    config.rpe = False
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -71,7 +101,7 @@ def get_3DTransMorphSin_config():
     config.embed_dim = 96
     config.depths = (2, 2, 4, 2)
     config.num_heads = (4, 4, 8, 8)
-    config.window_size = (5, 6, 7)
+    config.window_size = (5, 6, 7, 7)
     config.mlp_ratio = 4
     config.pat_merg_rf = 4
     config.qkv_bias = False
@@ -79,6 +109,7 @@ def get_3DTransMorphSin_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = True
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -107,6 +138,7 @@ def get_3DTransMorphLrn_config():
     config.drop_path_rate = 0.3
     config.ape = True
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -137,6 +169,7 @@ def get_3DTransMorphNoConvSkip_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -168,6 +201,7 @@ def get_3DTransMorphNoTransSkip_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -198,6 +232,7 @@ def get_3DTransMorphNoSkip_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -225,6 +260,7 @@ def get_3DTransMorphLarge_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -252,6 +288,7 @@ def get_3DTransMorphSmall_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
@@ -279,6 +316,7 @@ def get_3DTransMorphTiny_config():
     config.drop_path_rate = 0.3
     config.ape = False
     config.spe = False
+    config.rpe = True
     config.patch_norm = True
     config.use_checkpoint = False
     config.out_indices = (0, 1, 2, 3)
