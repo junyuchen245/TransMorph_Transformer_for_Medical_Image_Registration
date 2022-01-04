@@ -21,7 +21,6 @@ ape (bool): Enable learnable position embedding. Default: False
 spe (bool): Enable sinusoidal position embedding. Default: False
 patch_norm (bool): If True, add normalization after patch embedding. Default: True
 use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False 
-                       (Carried over from Swin Transformer, it is not needed)
 out_indices (tuple(int)): Indices of Transformer blocks to output features. Default: (0, 1, 2, 3)
 reg_head_chan (int): Number of channels in the registration head (i.e., the final convolutional layer) 
 img_size (int | tuple(int)): Input image size, e.g., (160, 192, 224)
