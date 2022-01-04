@@ -109,7 +109,7 @@ IXI/Baseline_registration_methods/------
 Change the directories in the inference scripts (`infer_xxx.py`) to the IXI dataset folder:
 ```python
 atlas_dir = 'Path_to_IXI_data/atlas.pkl'
-test_dir = 'Path_to_IXI_data/Val/'
+test_dir = 'Path_to_IXI_data/Test/'
 ```
 The inference scripts are located at:
 ```bash
