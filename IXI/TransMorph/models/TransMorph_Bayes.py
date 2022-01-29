@@ -1,9 +1,22 @@
-# --------------------------------------------------------
-# Swin Transformer
-# Copyright (c) 2021 Microsoft
-# Licensed under The MIT License [see LICENSE for details]
-# Written by Ze Liu
-# --------------------------------------------------------
+'''
+TransMorph model with Monte Carlo Dropout
+Chen, J., Du, Y., He, Y., Segars, W. P., Li, Y., & Frey, E. C. (2021). 
+TransMorph: Transformer for unsupervised medical image registration. 
+arXiv preprint arXiv:2111.10480.
+
+Swin-Transformer code retrieved from:
+https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation
+
+Original paper:
+Liu, Z., Lin, Y., Cao, Y., Hu, H., Wei, Y., Zhang, Z., ... & Guo, B. (2021).
+Swin transformer: Hierarchical vision transformer using shifted windows.
+arXiv preprint arXiv:2103.14030.
+
+Modified and tested by:
+Junyu Chen
+jchen245@jhmi.edu
+Johns Hopkins University
+'''
 
 import torch
 import torch.nn as nn
