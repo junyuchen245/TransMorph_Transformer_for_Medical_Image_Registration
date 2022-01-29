@@ -171,7 +171,7 @@ In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py`. The results (a `.c
 |nnFormer|0.740±0.134|1.595±0.358|
 |TransMorph|0.746±0.128|1.579±0.328|
 |TransMorph-Bayes|0.746±0.123|1.560±0.333|
-|TransMorph-bspl|0.752±0.128|<0.0001|
+|TransMorph-bspl|0.753±0.122|<0.0001|
 |TransMorph-diff|0.599±0.156|<0.0001|
 
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dsc_conventional.jpg" width="900"/>
