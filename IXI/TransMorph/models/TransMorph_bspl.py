@@ -1,5 +1,8 @@
 '''
 BSpline TransMorph
+Chen, J., Du, Y., He, Y., Segars, W. P., Li, Y., & Frey, E. C. (2021). 
+TransMorph: Transformer for unsupervised medical image registration. 
+arXiv preprint arXiv:2111.10480.
 
 Junyu Chen
 jchen245@jhmi.edu
