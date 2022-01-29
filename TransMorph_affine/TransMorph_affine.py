@@ -73,7 +73,7 @@ def window_reverse(windows, window_size, H, W, L):
     """
     B = int(windows.shape[0] / (H * W * L / window_size[0] / window_size[1] / window_size[2]))
     x = windows.view(B, H // window_size[0], W // window_size[1], L // window_size[2], window_size[0], window_size[1], window_size[2], -1)
-    x = x.permute(0, 1, 3, 5, 2, 4, 6, 7).contiguous().view(B, H, W, L, -1)
+    x = x.permute(0, 1, 4, 2, 5, 3, 6, 7).contiguous().view(B, H, W, L, -1)
     return x
 
 class WindowAttention(nn.Module):
@@ -151,7 +151,6 @@ class WindowAttention(nn.Module):
             attn = self.softmax(attn)
         else:
             attn = self.softmax(attn)
-        # TODO: output attention score
         attn = self.attn_drop(attn)
 
         x = (attn @ v).transpose(1, 2).reshape(B_, N, C)
