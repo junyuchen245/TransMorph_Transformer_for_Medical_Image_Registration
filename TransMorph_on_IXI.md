@@ -169,7 +169,7 @@ In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py`. The results (a `.c
 |CoTr|0.721±0.128|1.858±0.314|
 |PVT|0.729±0.135|1.292±0.342|
 |nnFormer|0.740±0.134|1.595±0.358|
-|TransMorph|0.746±0.128|1.579±0.328|
+|TransMorph|0.746±0.125|1.579±0.328|
 |TransMorph-Bayes|0.746±0.123|1.560±0.333|
 |TransMorph-bspl|0.753±0.122|<0.0001|
 |TransMorph-diff|0.599±0.156|<0.0001|
