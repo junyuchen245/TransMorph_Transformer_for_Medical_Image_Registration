@@ -59,7 +59,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ```Tensorboard --logdir=*training log file name*``` in terminal. *Note: This requires Tensorboard installation (`pip install tensorboard`).*
 ### TransMorph Variants:
 1. TransMorph ([Model Weights (0.8G)](https://drive.google.com/uc?export=download&id=1NdCeF3mMZQcIQkkX1CXLFKF8V2Zpxqc5) | [Tensorboard Training Log (1.7G)](https://drive.google.com/uc?export=download&id=19xuZcdQQz8KzAQsM8ndaiWJms2eWV-fu))
-2. TransMorph-Bayes ([Model Weights (0.9G)](https://drive.google.com/uc?export=download&id=1QmA5ZhxGLWMkAnQ3umD8N0T54TxPRC81) | [Tensorboard Training Log (1.9G)](https://drive.google.com/uc?export=download&id=1G3XOSBgyjdBWp_Dbz8urKtn-zoKwZtd8))
+2. TransMorph-Bayes ([Model Weights (0.9G)](https://drive.google.com/uc?export=download&id=1PIOR7cq9e4-0aWdONkD-MC54eiBIYnRV) | [Tensorboard Training Log (1.9G)](https://drive.google.com/uc?export=download&id=1G3XOSBgyjdBWp_Dbz8urKtn-zoKwZtd8))
 3. TransMorph-diff ([Model Weights (0.5G)](https://drive.google.com/uc?export=download&id=1K_6-CS_x7tkgYQWXGMhGIhksk83pCBu4) | [Tensorboard Training Log (1.9G)](https://drive.google.com/uc?export=download&id=1TZU6pIDn3KLZzoNitcOTs-O6dOEKWJWu))
 4. TransMorph-bspl ([Model Weights (0.7G)](https://drive.google.com/uc?export=download&id=1-EHVCM7ayuQk-2katQDgGoDdRZE0YLD2) | [Tensorboard Training Log (1.6G)](https://drive.google.com/uc?export=download&id=1SRa5Ib3YI-r-YjsjuFNfQUgmLWPXKyQS))
 
