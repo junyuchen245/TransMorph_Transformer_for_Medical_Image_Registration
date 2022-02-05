@@ -190,6 +190,7 @@ class SwinTransformerBlock(nn.Module):
         drop_path (float, optional): Stochastic depth rate. Default: 0.0
         act_layer (nn.Module, optional): Activation layer. Default: nn.GELU
         norm_layer (nn.Module, optional): Normalization layer.  Default: nn.LayerNorm
+        MC_drop (float): Ratio for MC dropout layers. Default: 0.15
     """
 
     def __init__(self, dim, num_heads, window_size=(7, 7, 7), shift_size=(0, 0, 0),
