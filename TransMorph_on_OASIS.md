@@ -1,6 +1,8 @@
 # TransMorph on OASIS dataset @ [MICCAI 2021 Learn2Reg Challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)
 
 TransMorph ranked ***1st*** on the validation set of task03 (***Validation dataset was NOT used during training***)
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/L2R_task03_ep350.jpg" width="600"/>
+
 - This page provides a brief description of applying TransMorph model on the [OASIS dataset](https://github.com/adalca/medical-datasets/blob/master/neurite-oasis.md) ([MICCAI 2021 Learn2Reg Challenge task03](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)).
 - All training and inference scripts mentioned on this page are in [`OASIS/`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/OASIS).
 - The OASIS dataset in `.pkl` format is provided in this page.
@@ -29,5 +31,3 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ### TransMorph:
 1. TransMorph-Large ([Val. Dice: 0.8623, 1st ranking](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)) ([Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77) | Tensorboard Training Log (N/A))
 
-## 02/18/2022 TransMorph-Large at epoch 350
-<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/L2R_task03_ep350.jpg" width="800"/>
