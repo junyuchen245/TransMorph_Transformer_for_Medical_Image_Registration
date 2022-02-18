@@ -9,8 +9,7 @@ TransMorph ranked ***1st*** on the validation set of task03 (***Validation datas
 
 ## [OASIS dataset](https://github.com/adalca/medical-datasets/blob/master/neurite-oasis.md)
 This dataset was made available by [Andrew Hoopes](https://www.nmr.mgh.harvard.edu/user/3935749) and [Adrian V. Dalca](http://www.mit.edu/~adalca/) for the following HyperMorph paper.  
-If you use this collection please cite the following and refer to the 
-[OASIS Data Use Agreement](http://oasis-brains.org/#access).
+If you use this dataset please cite the following and refer to the [OASIS Data Use Agreement](http://oasis-brains.org/#access).
 
  - [HyperMorph: Amortized Hyperparameter Learning for Image Registration](https://arxiv.org/abs/2101.01035).  
    Hoopes A, Hoffmann M, Fischl B, Guttag J, Dalca AV.   
