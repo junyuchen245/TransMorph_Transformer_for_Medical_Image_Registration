@@ -30,7 +30,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ### TransMorph:
 1. TransMorph-Large ([Val. Dice: 0.8623, 1st ranking](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)) ([Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77) | Tensorboard Training Log (N/A))
 
-## Citation:
+## Citation
 If you find this code is useful in your research, please consider to cite:
     
     @article{chen2021transmorph,
