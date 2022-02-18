@@ -31,3 +31,12 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ### TransMorph:
 1. TransMorph-Large ([Val. Dice: 0.8623, 1st ranking](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)) ([Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77) | Tensorboard Training Log (N/A))
 
+## Citation:
+If you find this code is useful in your research, please consider to cite:
+    
+    @article{chen2021transmorph,
+    title={TransMorph: Transformer for unsupervised medical image registration},
+    author={Chen, Junyu and Frey, Eric C and He, Yufan and Segars, William P and Li, Ye and Du, Yong},
+    journal={arXiv preprint arXiv:2111.10480},
+    year={2021}
+    }
