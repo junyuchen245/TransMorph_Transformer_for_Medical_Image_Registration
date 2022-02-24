@@ -27,9 +27,11 @@ You can download the data here: [<img src="https://github.com/junyuchen245/junyu
 Click on the `Model Weights` to start downloading the pre-trained weights.\
 We also provided the Tensorboard training log for each model. To visualize loss and validation curves, run: \
 ```Tensorboard --logdir=*training log file name*``` in terminal. *Note: This requires Tensorboard installation (`pip install tensorboard`).*
-### TransMorph:
-1. TransMorph-Large ([Val. Dice: 0.8623, 1st ranking](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)) ([Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77) | Tensorboard Training Log (N/A))
 
+|Ranking|Model|Dice|SDlogJ|HdDist95|Pretrained Weights|Tensorboard Log|
+|---|---|---|---|---|---|---|
+|[1](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)|TransMorph-Large|0.8623 ± 0.0144|0.1276|1.4315|[Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77)| [Tensorboard Training Log (1.52G)](https://drive.google.com/uc?export=download&id=197glDrMjiyhE1AMV3-YKzwlO2CS1UmCC)|
+|3|TransMorph|0.8575 ± 0.0145|0.1253|1.4594|[Model Weights (0.8G)](https://drive.google.com/uc?export=download&id=1FRDmfDreHBsvuYdCeUwauU80CWGsiUb7)| [Tensorboard Training Log (1.52G)](https://drive.google.com/uc?export=download&id=16CF85KNIXOHc27uG4l34dWjfWW8aost-)|
 ## Citation
 If you find this code is useful in your research, please consider to cite:
     
