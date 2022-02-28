@@ -68,7 +68,7 @@ vec1 = all_dsc[-3]
 idx = 0
 for i in file_name:
     vec2 = all_dsc[idx]
-    rank, pval = ttest_ind(list(vec1), list(vec2))
+    rank, pval = ttest_rel(list(vec1), list(vec2))
     print('{}, p-vale: {:.20f}'.format(i, pval))
     idx += 1
 
