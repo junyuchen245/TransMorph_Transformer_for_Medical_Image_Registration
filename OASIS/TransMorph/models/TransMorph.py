@@ -216,7 +216,7 @@ class SwinTransformerBlock(nn.Module):
         pad_r = (self.window_size[0] - H % self.window_size[0]) % self.window_size[0]
         pad_b = (self.window_size[1] - W % self.window_size[1]) % self.window_size[1]
         pad_h = (self.window_size[2] - T % self.window_size[2]) % self.window_size[2]
-        x = nnf.pad(x, (0, 0, pad_l, pad_r, pad_t, pad_b, pad_f, pad_h))
+        x = nnf.pad(x, (0, 0, pad_f, pad_h, pad_t, pad_b, pad_l, pad_r))
         _, Hp, Wp, Tp, _ = x.shape
 
         # cyclic shift
@@ -282,7 +282,7 @@ class PatchMerging(nn.Module):
         # padding
         pad_input = (H % 2 == 1) or (W % 2 == 1) or (T % 2 == 1)
         if pad_input:
-            x = nnf.pad(x, (0, 0, 0, W % 2, 0, H % 2, 0, T % 2))
+            x = nnf.pad(x, (0, 0, 0, T % 2, 0, W % 2, 0, H % 2))
 
         x0 = x[:, 0::2, 0::2, 0::2, :]  # B H/2 W/2 T/2 C
         x1 = x[:, 1::2, 0::2, 0::2, :]  # B H/2 W/2 T/2 C
@@ -437,12 +437,12 @@ class PatchEmbed(nn.Module):
         """Forward function."""
         # padding
         _, _, H, W, T = x.size()
+        if T % self.patch_size[2] != 0:
+            x = nnf.pad(x, (0, self.patch_size[2] - T % self.patch_size[2]))
         if W % self.patch_size[1] != 0:
-            x = nnf.pad(x, (0, self.patch_size[1] - W % self.patch_size[1]))
+            x = nnf.pad(x, (0, 0, 0, self.patch_size[1] - W % self.patch_size[1]))
         if H % self.patch_size[0] != 0:
-            x = nnf.pad(x, (0, 0, 0, self.patch_size[0] - H % self.patch_size[0]))
-        if T % self.patch_size[0] != 0:
-            x = nnf.pad(x, (0, 0, 0, 0, 0, self.patch_size[0] - T % self.patch_size[0]))
+            x = nnf.pad(x, (0, 0, 0, 0, 0, self.patch_size[0] - H % self.patch_size[0]))
 
         x = self.proj(x)  # B C Wh Ww Wt
         if self.norm is not None:
