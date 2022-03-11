@@ -32,6 +32,15 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 |---|---|---|---|---|---|---|
 |[1](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)|TransMorph-Large|0.8623 ± 0.0144|0.1276|1.4315|[Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77)| [Tensorboard Training Log (1.52G)](https://drive.google.com/uc?export=download&id=197glDrMjiyhE1AMV3-YKzwlO2CS1UmCC)|
 |3|TransMorph|0.8575 ± 0.0145|0.1253|1.4594|[Model Weights (0.8G)](https://drive.google.com/uc?export=download&id=1FRDmfDreHBsvuYdCeUwauU80CWGsiUb7)| [Tensorboard Training Log (1.52G)](https://drive.google.com/uc?export=download&id=16CF85KNIXOHc27uG4l34dWjfWW8aost-)|
+
+## Instructions on Applying Pre-trained Models
+### Step 1
+Create the directories shown below. After that, put the pretrained models in the corresponding directories:
+```bash
+OASIS/TransMorph/------
+            experiments/TransMorph_ncc_1_dsc_1_diffusion_1/
+            experiments/TransMorphLarge_ncc_1_dsc_1_diffusion_1/
+```
 ## Citation
 If you find this code is useful in your research, please consider to cite:
     
