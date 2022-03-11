@@ -317,7 +317,6 @@ class BasicLayer(nn.Module):
         downsample (nn.Module | None, optional): Downsample layer at the end of the layer. Default: None
         use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False.
     """
-
     def __init__(self,
                  dim,
                  depth,
@@ -366,10 +365,9 @@ class BasicLayer(nn.Module):
     def forward(self, x, H, W, T):
         """ Forward function.
         Args:
-            x: Input feature, tensor size (B, H*W, C).
+            x: Input feature, tensor size (B, H*W*T, C).
             H, W: Spatial resolution of the input feature.
         """
-
         # calculate attention mask for SW-MSA
         Hp = int(np.ceil(H / self.window_size[0])) * self.window_size[0]
         Wp = int(np.ceil(W / self.window_size[1])) * self.window_size[1]
@@ -408,7 +406,6 @@ class BasicLayer(nn.Module):
             return x, H, W, T, x_down, Wh, Ww, Wt
         else:
             return x, H, W, T, x, H, W, T
-
 
 class PatchEmbed(nn.Module):
     """ Image to Patch Embedding
@@ -450,7 +447,6 @@ class PatchEmbed(nn.Module):
             x = x.flatten(2).transpose(1, 2)
             x = self.norm(x)
             x = x.transpose(1, 2).view(-1, self.embed_dim, Wh, Ww, Wt)
-
         return x
 
 class SinusoidalPositionEmbedding(nn.Module):
@@ -717,7 +713,6 @@ class Conv3dReLU(nn.Sequential):
 
         super(Conv3dReLU, self).__init__(conv, nm, relu)
 
-
 class DecoderBlock(nn.Module):
     def __init__(
             self,
@@ -763,7 +758,6 @@ class SpatialTransformer(nn.Module):
     N-D Spatial Transformer
     Obtained from https://github.com/voxelmorph/voxelmorph
     """
-
     def __init__(self, size, mode='bilinear'):
         super().__init__()
 
