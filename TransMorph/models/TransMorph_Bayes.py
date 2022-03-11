@@ -288,7 +288,7 @@ class PatchMerging(nn.Module):
 
     def forward(self, x, H, W, T):
         """
-        x: B, H*W, C
+        x: B, H*W*T, C
         """
         B, L, C = x.shape
         assert L == H * W * T, "input feature has wrong size"
@@ -359,7 +359,6 @@ class BasicLayer(nn.Module):
         self.use_checkpoint = use_checkpoint
         self.pat_merg_rf = pat_merg_rf
         # build blocks
-
         self.blocks = nn.ModuleList([
             SwinTransformerBlock(
                 dim=dim,
@@ -437,7 +436,6 @@ class PatchEmbed(nn.Module):
         embed_dim (int): Number of linear projection output channels. Default: 96.
         norm_layer (nn.Module, optional): Normalization layer. Default: None
     """
-
     def __init__(self, patch_size=4, in_chans=3, embed_dim=96, norm_layer=None):
         super().__init__()
         patch_size = to_3tuple(patch_size)
