@@ -41,6 +41,17 @@ OASIS/TransMorph/------
             experiments/TransMorph_ncc_1_dsc_1_diffusion_1/
             experiments/TransMorphLarge_ncc_1_dsc_1_diffusion_1/
 ```
+### Step 2
+Change the directories of the validation/test data and the output deformations the [`submit_TransMorph.py`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph/submit_TransMorph.py):
+https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/d5e842ee87def4cef0425fd090ebbc959918abe6/OASIS/TransMorph/submit_TransMorph.py#L15-L16
+
+### Step 3
+Change the folder name and model name in the [`submit_TransMorph.py`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph/submit_TransMorph.py) :
+https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/d5e842ee87def4cef0425fd090ebbc959918abe6/OASIS/TransMorph/submit_TransMorph.py#L19-L22
+
+### Step 4
+Zip the output folder and submit the zip file to [Learn2Reg challenge Task03](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/submissions/create/).
+
 ## Citation
 If you find this code is useful in your research, please consider to cite:
     
