@@ -387,7 +387,7 @@ class BasicLayer(nn.Module):
     def forward(self, x, H, W, T):
         """ Forward function.
         Args:
-            x: Input feature, tensor size (B, H*W, C).
+            x: Input feature, tensor size (B, H*W*T, C).
             H, W: Spatial resolution of the input feature.
         """
 
@@ -515,7 +515,6 @@ class SwinTransformer(nn.Module):
         patch_norm (bool): If True, add normalization after patch embedding. Default: True
         use_checkpoint (bool): Whether to use checkpointing to save memory. Default: False
     """
-
     def __init__(self, pretrain_img_size=224,
                  patch_size=4,
                  in_chans=3,
@@ -699,7 +698,6 @@ class Conv3dReLU(nn.Sequential):
             nm = nn.BatchNorm3d(out_channels)
 
         super(Conv3dReLU, self).__init__(conv, nm, relu)
-
 
 class DecoderBlock(nn.Module):
     def __init__(
