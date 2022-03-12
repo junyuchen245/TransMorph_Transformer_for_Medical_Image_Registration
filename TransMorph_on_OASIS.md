@@ -1,7 +1,7 @@
 # TransMorph on OASIS dataset @ [MICCAI 2021 Learn2Reg Challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)
 
 TransMorph ranked ***1st*** on the validation set of task03 (***Validation dataset was NOT used during training***)
-<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/L2R_task03_TransMorphLarge.jpg" width="600"/>
+<img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/L2R_task03_TransMorphLargeCas.jpg" width="600"/>
 
 - This page provides a brief description of applying TransMorph model on the [OASIS dataset](https://github.com/adalca/medical-datasets/blob/master/neurite-oasis.md) ([MICCAI 2021 Learn2Reg Challenge task03](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)).
 - All training and inference scripts mentioned on this page are in [`OASIS/`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/OASIS).
