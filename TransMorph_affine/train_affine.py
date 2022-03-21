@@ -4,11 +4,11 @@ import sys
 from torch.utils.data import DataLoader
 from data import datasets, trans
 import numpy as np
-import torch, TransMorh_affine
+import torch, TransMorph_affine
 from torchvision import transforms
 from torch import optim
 import matplotlib.pyplot as plt
-from TransMorh_affine import CONFIGS as CONFIGS_TM
+from TransMorph_affine import CONFIGS as CONFIGS_TM
 from natsort import natsorted
 
 class Logger(object):
@@ -45,13 +45,13 @@ def main():
     Initialize model
     '''
     config = CONFIGS_TM['TransMorph-Affine']
-    model = TransMorh_affine.TransMorphAffine(config)
+    model = TransMorph_affine.TransMorphAffine(config)
     model.cuda()
 
     '''
     Initialize affine transformation function
     '''
-    AffInfer = TransMorh_affine.ApplyAffine()
+    AffInfer = TransMorph_affine.ApplyAffine()
     AffInfer.cuda()
 
     '''
@@ -85,9 +85,9 @@ def main():
     val_loader = DataLoader(val_set, batch_size=1, shuffle=False, num_workers=4, pin_memory=True, drop_last=True)
     # Optimizers
     optimizer = optim.AdamW(model.parameters(), lr=updated_lr, amsgrad=True)
-    Sim_loss = losses.NCC_vxm()
+    Sim_loss = losses.MIND_loss()
     best_mse = 1e10
-    writer = SummaryWriter(log_dir=save_dir)
+    writer = SummaryWriter(log_dir='logs/'+save_dir)
     for epoch in range(epoch_start, max_epoch):
         print('Training Starts')
         '''
