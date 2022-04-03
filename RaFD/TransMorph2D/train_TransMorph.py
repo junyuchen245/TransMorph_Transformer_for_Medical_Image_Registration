@@ -10,8 +10,8 @@ from torch import optim
 import torch.nn as nn
 import matplotlib.pyplot as plt
 from natsort import natsorted
-from models.TransMorph_MLP import CONFIGS as CONFIGS_TM
-import models.TransMorph_MLP as TransMorph
+from models.TransMorph import CONFIGS as CONFIGS_TM
+import models.TransMorph as TransMorph
 from pytorch_msssim import ssim, ms_ssim, SSIM, MS_SSIM
 
 class Logger(object):
