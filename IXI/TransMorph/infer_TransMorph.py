@@ -28,7 +28,7 @@ def main():
         line = line + ',' + dict[i]
     csv_writter(line +','+'non_jec', 'Quantitative_Results/' + model_folder[:-1]+'_VAL')
 
-    config = CONFIGS_TM['TransMorph-No-Trans-Skip']
+    config = CONFIGS_TM['TransMorph']
     model = TransMorph.TransMorph(config)
     best_model = torch.load(model_dir + natsorted(os.listdir(model_dir))[model_idx])['state_dict']
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
