@@ -41,8 +41,8 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 |Ranking|Model|Dice|SDlogJ|HdDist95|
 |---|---|---|---|---|
 |1|TransMorph-Large-Cascade|**0.8241 ± 0.1516**|0.0905 ± 0.0054|**1.6329 ± 0.4358**|
-|2|TransMorph-Large|*0.8196 ± 0.0180*|0.1244 ± 0.0148|1.6564 ± 1.7368|
-|3|TransMorph|0.8162 ± 0.0180| 0.1242 ± 0.0136|1.6920 ± 1.7587|
+|2|TransMorph-Large|*0.8196 ± 0.1497*|0.1244 ± 0.0148|1.6564 ± 1.7368|
+|3|TransMorph|0.8162 ± 0.1541| 0.1242 ± 0.0136|1.6920 ± 1.7587|
 |4|[LapIRN](https://github.com/cwmok/LapIRN)|0.82| 0.07 |1.67|
 |5|[ConvexAdam](https://github.com/multimodallearning/convexAdam)|0.81| 0.07 |1.63|
 ...
