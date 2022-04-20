@@ -31,7 +31,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ### Validation set results
 |Ranking|Model|Dice|SDlogJ|HdDist95|Pretrained Weights|Tensorboard Log|
 |---|---|---|---|---|---|---|
-|[1](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)|TrM-L-Cascade*|0.8691 ± 0.0145|0.0945|1.3969|N/A| N/A|
+|[1](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)|[TM-TVF](https://github.com/junyuchen245/TransMorph_TVF)|0.8691 ± 0.0145|0.0945|1.3969|N/A| N/A|
 |[2](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/)|TransMorph-Large|0.8623 ± 0.0144|0.1276|1.4315|[Model Weights (1.69G)](https://drive.google.com/uc?export=download&id=10CnukM9Li5Bh8X5rP_OvfkDio8Mgxj77)| [Tensorboard Training Log (1.52G)](https://drive.google.com/uc?export=download&id=197glDrMjiyhE1AMV3-YKzwlO2CS1UmCC)|
 |3|TransMorph|0.8575 ± 0.0145|0.1253|1.4594|[Model Weights (0.8G)](https://drive.google.com/uc?export=download&id=1FRDmfDreHBsvuYdCeUwauU80CWGsiUb7)| [Tensorboard Training Log (1.52G)](https://drive.google.com/uc?export=download&id=16CF85KNIXOHc27uG4l34dWjfWW8aost-)|
 
@@ -40,7 +40,7 @@ We also provided the Tensorboard training log for each model. To visualize loss 
 ### Test set results (*results obtained from Learn2Reg challenge organizers*)
 |Ranking|Model|Dice|SDlogJ|HdDist95|
 |---|---|---|---|---|
-|1|TransMorph-Large-Cascade|**0.8241 ± 0.1516**|0.0905 ± 0.0054|**1.6329 ± 0.4358**|
+|1|[TM-TVF](https://github.com/junyuchen245/TransMorph_TVF)|**0.8241 ± 0.1516**|0.0905 ± 0.0054|**1.6329 ± 0.4358**|
 |2|TransMorph-Large|*0.8196 ± 0.1497*|0.1244 ± 0.0148|1.6564 ± 1.7368|
 |3|TransMorph|0.8162 ± 0.1541| 0.1242 ± 0.0136|1.6920 ± 1.7587|
 |4|[LapIRN](https://github.com/cwmok/LapIRN)|0.82| 0.07 |1.67|
