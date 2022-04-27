@@ -20,8 +20,8 @@ If you use this dataset please cite the following and refer to the [OASIS Data U
     Journal of Cognitive Neuroscience, 19, 1498-1507.
 
 We converted this dataset into `.pkl` format so that it matches our custom PyTorch [`Dataset`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph/data/datasets.py) function.\
-You can download the data here: [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">](https://drive.google.com/uc?export=download&id=1iwwhjikar_HL2y1C5UXT47wGTu-8NLcv)
-[Download Dataset from Google Drive (1.3G)](https://drive.google.com/uc?export=download&id=1iwwhjikar_HL2y1C5UXT47wGTu-8NLcv)
+You can download the data here: [<img src="https://github.com/junyuchen245/junyuchen245.github.io/blob/master/images/down_arrow.gif" width="30px">](https://drive.google.com/uc?export=download&id=1BdEaylMDpeXtyuX5QH8l_Ut4OgenKss4)
+[Download Dataset from Google Drive (1.3G)](https://drive.google.com/uc?export=download&id=1BdEaylMDpeXtyuX5QH8l_Ut4OgenKss4)
 
 ## Pre-trained Model Weights
 Click on the `Model Weights` to start downloading the pre-trained weights.\
