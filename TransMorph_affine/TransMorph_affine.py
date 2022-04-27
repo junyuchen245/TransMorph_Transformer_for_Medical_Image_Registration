@@ -1,5 +1,5 @@
 '''
-TransMorph-affine for affine transformation
+TransMorph-affine
 
 Swin-Transformer code retrieved from:
 https://github.com/SwinTransformer/Swin-Transformer-Semantic-Segmentation
@@ -19,9 +19,11 @@ import torch
 import torch.nn as nn
 import torch.utils.checkpoint as checkpoint
 from timm.models.layers import DropPath, trunc_normal_, to_3tuple
+from torch.distributions.normal import Normal
 import torch.nn.functional as nnf
 import numpy as np
-import config_affine as configs
+import configs_affine as configs
+import sys
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -697,9 +699,9 @@ def weights_init(m):
     if isinstance(m, nn.Linear):
         nn.init.zeros_(m.weight)
 
-class TransMorphAffine(nn.Module):
+class SwinAffine(nn.Module):
     def __init__(self, config):
-        super(TransMorphAffine, self).__init__()
+        super(SwinAffine, self).__init__()
         if_convskip = config.if_convskip
         self.if_convskip = if_convskip
         if_transskip = config.if_transskip
@@ -717,10 +719,12 @@ class TransMorphAffine(nn.Module):
                                            drop_path_rate=config.drop_path_rate,
                                            ape=config.ape,
                                            spe=config.spe,
+                                           rpe=config.rpe,
                                            patch_norm=config.patch_norm,
                                            use_checkpoint=config.use_checkpoint,
                                            out_indices=config.out_indices,
-                                           pat_merg_rf=config.pat_merg_rf)
+                                           pat_merg_rf=config.pat_merg_rf,
+                                           )
         self.transformer.apply(weights_init)
         self.aff_head = nn.Linear(embed_dim*4 * 1000, 100)
         self.aff_head.weight = nn.Parameter(torch.zeros(self.aff_head.weight.shape))
@@ -754,7 +758,7 @@ class TransMorphAffine(nn.Module):
 
     def forward(self, x):
         source = x[:, 0:1, :, :]
-        out = self.transformer(x)
+        out = self.transformer(x)  # (B, n_patch, hidden)
         x5 = torch.flatten(out[-1], start_dim=1)
         aff = self.aff_head(x5)
         aff = self.relu_aff(aff)
@@ -772,9 +776,81 @@ class TransMorphAffine(nn.Module):
         #aff = torch.tanh(aff) * np.pi
         scl = scl + 1
         scl = torch.clamp(scl, min=0, max=5)
-        shr = torch.clamp(shr, min=-1, max=1) * np.pi
+        shr = torch.clamp(shr, min=-1, max=1) * np.pi#shr = torch.tanh(shr) * np.pi
         out, mat, inv_mat = self.affine_trans(source, aff, scl, trans, shr)
         #out, mat, inv_mat = self.affine_trans(source, aff)
+        return out, mat, inv_mat
+
+class Down(nn.Module):
+    """Downscaling with maxpool then double conv"""
+
+    def __init__(self, in_channels, out_channels):
+        super().__init__()
+        self.maxpool_conv = nn.Sequential(
+            nn.MaxPool3d(2),
+            DoubleConv(in_channels, out_channels)
+        )
+
+    def forward(self, x):
+        return self.maxpool_conv(x)
+
+class DoubleConv(nn.Module):
+    """(convolution => [BN] => ReLU) * 2"""
+
+    def __init__(self, in_channels, out_channels, mid_channels=None):
+        super().__init__()
+        if not mid_channels:
+            mid_channels = out_channels
+        self.conv1_ = nn.Conv3d(in_channels, mid_channels, kernel_size=3, padding=1)
+        self.relu1_ = nn.ReLU(inplace=True)
+        self.conv2_ = nn.Conv3d(mid_channels, out_channels, kernel_size=3, padding=1)
+        self.relu2_ = nn.ReLU(inplace=True)
+
+    def forward(self, x):
+        x = self.conv1_(x)
+        x = self.relu1_(x)
+        x = self.conv2_(x)
+        x = self.relu2_(x)
+        return x
+
+class AffineNet(nn.Module):
+    def __init__(self, encoder_channels=(4,4,8,8,8), n_channels=2):
+        super(AffineNet, self).__init__()
+        self.n_channels = n_channels
+        self.inc = DoubleConv(n_channels, encoder_channels[0])
+        self.down1 = Down(encoder_channels[0], encoder_channels[1])
+        self.down2 = Down(encoder_channels[1], encoder_channels[2])
+        self.down3 = Down(encoder_channels[2], encoder_channels[3])
+        self.down4 = Down(encoder_channels[3], encoder_channels[4])
+        self.aff_head = nn.Linear(encoder_channels[4]*1000, 3)
+        self.aff_head.weight = nn.Parameter(torch.zeros(self.aff_head.weight.shape))
+        self.aff_head.bias = nn.Parameter(torch.zeros(self.aff_head.bias.shape))
+        self.scl_head = nn.Linear(encoder_channels[4] * 1000, 3)
+        self.scl_head.weight = nn.Parameter(torch.zeros(self.scl_head.weight.shape))
+        self.scl_head.bias = nn.Parameter(torch.zeros(self.scl_head.bias.shape))
+        self.trans_head = nn.Linear(encoder_channels[4] * 1000, 3)
+        self.trans_head.weight = nn.Parameter(torch.zeros(self.trans_head.weight.shape))
+        self.trans_head.bias = nn.Parameter(torch.zeros(self.trans_head.bias.shape))
+        self.shear_head = nn.Linear(encoder_channels[4] * 1000, 6)
+        self.shear_head.weight = nn.Parameter(torch.zeros(self.shear_head.weight.shape))
+        self.shear_head.bias = nn.Parameter(torch.zeros(self.shear_head.bias.shape))
+        self.affine_trans = AffineTransformer()
+
+
+    def forward(self, x):
+        source = x[:, 0:1, :, :]
+        x1 = self.inc(x)
+        x2 = self.down1(x1)
+        x3 = self.down2(x2)
+        x4 = self.down3(x3)
+        x5 = self.down4(x4)
+        x5 = torch.flatten(x5, start_dim=1)
+        aff = self.aff_head(x5)
+        scl = self.scl_head(x5)
+        trans = self.trans_head(x5)
+        shr = self.shear_head(x5)
+
+        out, mat, inv_mat = self.affine_trans(source, aff, scl, trans, shr)
         return out, mat, inv_mat
 
 class AffineTransformer(nn.Module):
@@ -822,20 +898,25 @@ class AffineTransformer(nn.Module):
         inv_trans = torch.bmm(-inv_mat, trans)
         inv_mat = torch.cat([inv_mat, inv_trans], dim=-1)
         grid = nnf.affine_grid(mat, [src.shape[0], 3, src.shape[2], src.shape[3], src.shape[4]], align_corners=True)
-        return nnf.grid_sample(src, grid, align_corners=True, mode=self.mode), mat, inv_mat
+        #inv_grid = nnf.affine_grid(inv_mat, [src.shape[0], 3, src.shape[2], src.shape[3], src.shape[4]], align_corners=True)
+        return nnf.grid_sample(src, grid, align_corners=True, mode=self.mode), mat, inv_mat#nnf.grid_sample(src, inv_grid, align_corners=True, mode=self.mode)
 
 class AffineTransform(nn.Module):
     """
     3-D Affine Transformer
     """
+
     def __init__(self, mode='bilinear'):
         super().__init__()
         self.mode = mode
 
     def forward(self, src, affine):
-        mat = affine
+
+        mat = affine#torch.bmm(shear_mat, torch.bmm(scale_mat, torch.bmm(rot_mat_z, torch.matmul(rot_mat_y, rot_mat_x))))
+        inv_mat = mat#torch.inverse(mat)
         grid = nnf.affine_grid(mat, src.size(), align_corners=True)
-        return nnf.grid_sample(src, grid, align_corners=True, mode=self.mode)
+        #inv_grid = nnf.affine_grid(inv_mat, [src.shape[0], 3, src.shape[2], src.shape[3], src.shape[4]], align_corners=True)
+        return nnf.grid_sample(src, grid, align_corners=True, mode=self.mode), mat, inv_mat
 
 class ApplyAffine(nn.Module):
     """
