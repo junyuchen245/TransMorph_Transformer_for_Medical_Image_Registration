@@ -23,7 +23,11 @@ Training and inference scripts are in `TransMorph/`, and the models are containe
 ## TransMorph Affine Model:
 The scripts for ***TransMorph affine*** model are in `TransMorph_affine/` folder.
 
+**04/27/2022** - We provided a Jupyter notebook for training and testing TransMorph-affine [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/TransMorph_affine/Train_TransMorph_affine.py.ipynb). The pre-trained weights can be downloaded [here](https://drive.google.com/uc?export=download&id=1o9_eMfyHm8UsHi5uaWLEKE5CQ8aIJ1Ef) along with two sample data [here](https://drive.google.com/drive/folders/1YoRaMTJTSd8o8RovIHTlNf8wNHjkOI4W?usp=sharing).
+
+
 `train_xxx.py` and `infer_xxx.py` are the training and inference scripts for TransMorph models.
+
 
 ## Loss Functions:
 TransMorph supports both **mono-** and **multi-modal** registration. We provided the following loss functions for **image similarity** measurements (the links will take you directly to the code):
