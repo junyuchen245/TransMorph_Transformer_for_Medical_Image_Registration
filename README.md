@@ -8,7 +8,7 @@ This is a **PyTorch** implementation of my paper:
 <a href="https://arxiv.org/abs/2111.10480">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " arXiv, 2021.</a>
 
 
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30px"> 03/24/2022 - **TransMorph is currently ranked 1st place on the TEST set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/) (results obtained from the Learn2Reg challenge organizers).  The training scripts, dataset, and the pretrained models are available here: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**\
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 03/24/2022 - **TransMorph is currently ranked 1st place on the TEST set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/) (results obtained from the Learn2Reg challenge organizers).  The training scripts, dataset, and the pretrained models are available here: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**\
 02/03/2022 - **TransMorph is currently ranked 1st place on the VALIDATION set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/).**\
 12/29/2021 - **Our preprocessed IXI dataset and the pre-trained models are now publicly available! Check out this page for more information: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
 
@@ -71,7 +71,7 @@ Due to restrictions, we cannot distribute our brain MRI and CT data. However, se
 **You may find our preprocessed IXI dataset in the next section.**
 
 ## Reproducible Results on IXI Dataset:
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30px">**You may find the preprocessed IXI dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for IXI dataset here :point_right: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You may find the preprocessed IXI dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for IXI dataset here :point_right: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
 
 ## Citation:
 If you find this code is useful in your research, please consider to cite:
