@@ -57,10 +57,14 @@ def main():
     eval_det = AverageMeter()
     with torch.no_grad():
         for data in test_loader:
+            x_seg_oh = nn.functional.one_hot(data[2].long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous().float().detach().cpu().numpy()
             x = data[0].squeeze(0).squeeze(0).detach().cpu().numpy()
             y = data[1].squeeze(0).squeeze(0).detach().cpu().numpy()
             x_seg = data[2].squeeze(0).squeeze(0).detach().cpu().numpy()
             y_seg = data[3].squeeze(0).squeeze(0).detach().cpu().numpy()
+
             dx = [1, 1, 1]
             lddmm = torch_lddmm.LDDMM(template=x * 255., target=y * 255., outdir='./', do_affine=0, do_lddmm=1, a=5.,
                                       p=2,
@@ -68,19 +72,24 @@ def main():
                                       gpu_number=0,
                                       minbeta=1e-10)
             lddmm.run()
-            (def_seg, _, _, _) = lddmm.applyThisTransform(x_seg, interpmode='nearest')
+            x_segs = []
+            for i in range(46):
+                (def_seg, _, _, _) = lddmm.applyThisTransform(x_seg_oh[0, i, ...], interpmode='bilinear')
+                x_segs.append(def_seg[-1][None, None, ...])
+            x_segs = torch.cat(x_segs, dim=1)
+            def_seg = torch.argmax(x_segs, dim=1, keepdim=True)
             flow = lddmm.computeThisDisplacement()
             flow = np.stack(flow, axis=0)
-            def_seg = def_seg[-1].cpu().numpy()
-            def_seg = torch.from_numpy(def_seg[None, None, ...])
+            #def_seg = def_seg[-1].cpu().numpy()
+            #def_seg = torch.from_numpy(def_seg[None, None, ...])
             tar_seg = torch.from_numpy(y_seg[None, None, ...])
-            dsc_trans = utils.dice_val(def_seg.long(), tar_seg.long(), 46)
+            dsc_trans = utils.dice_val(def_seg.long().cuda(), tar_seg.long().cuda(), 46)
             eval_dsc_def.update(dsc_trans.item(), 1)
             jac_det = utils.jacobian_determinant_vxm(flow)
             print('det < 0: {}'.format(np.sum(jac_det <= 0) / np.prod(y_seg.shape)))
             line = utils.dice_val_substruct(def_seg.long(), tar_seg.long(), stdy_idx)
             line = line + ',' + str(np.sum(jac_det <= 0) / np.prod(y_seg.shape))
-            csv_writter(line, 'lddmm_IXI')
+            csv_writter(line, file_name)
             print('DSC: {:.4f}'.format(dsc_trans.item()))
             eval_det.update(np.sum(jac_det <= 0) / np.prod(y_seg.shape), 1)
             stdy_idx += 1
