@@ -15,26 +15,30 @@ def main():
     test_dir = 'Path_to_IXI_data/Val/'
     model_idx = -1
     weights = [1, 1]
-    model_folder = 'TransMorph_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
+    model_folder = 'TransMorph_Sin_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
     model_dir = 'experiments/' + model_folder
+    if 'Val' in test_dir:
+        csv_name = model_folder[:-1]+'_Val'
+    else:
+        csv_name = model_folder[:-1]
     dict = utils.process_label()
     if not os.path.exists('Quantitative_Results/'):
         os.makedirs('Quantitative_Results/')
-    if os.path.exists('Quantitative_Results/'+model_folder[:-1]+'_VAL.csv'):
-        os.remove('Quantitative_Results/'+model_folder[:-1]+'_VAL.csv')
-    csv_writter(model_folder[:-1], 'Quantitative_Results/' + model_folder[:-1]+'_VAL')
+    if os.path.exists('Quantitative_Results/'+csv_name+'.csv'):
+        os.remove('Quantitative_Results/'+csv_name+'.csv')
+    csv_writter(model_folder[:-1], 'Quantitative_Results/' + csv_name)
     line = ''
     for i in range(46):
         line = line + ',' + dict[i]
-    csv_writter(line +','+'non_jec', 'Quantitative_Results/' + model_folder[:-1]+'_VAL')
+    csv_writter(line +','+'non_jec', 'Quantitative_Results/' + csv_name)
 
-    config = CONFIGS_TM['TransMorph']
+    config = CONFIGS_TM['TransMorph-Sin']
     model = TransMorph.TransMorph(config)
     best_model = torch.load(model_dir + natsorted(os.listdir(model_dir))[model_idx])['state_dict']
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
     model.load_state_dict(best_model)
     model.cuda()
-    reg_model = utils.register_model(config.img_size, 'nearest')
+    reg_model = utils.register_model(config.img_size, 'bilinear')
     reg_model.cuda()
     test_composed = transforms.Compose([trans.Seg_norm(),
                                         trans.NumpyType((np.float32, np.int16)),
@@ -56,12 +60,23 @@ def main():
 
             x_in = torch.cat((x,y),dim=1)
             x_def, flow = model(x_in)
-            def_out = reg_model([x_seg.cuda().float(), flow.cuda()])
+            x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
+            #x_segs = model.spatial_trans(x_seg.float(), flow.float())
+            x_segs = []
+            for i in range(46):
+                def_seg = reg_model([x_seg_oh[:, i:i + 1, ...].float(), flow.float()])
+                x_segs.append(def_seg)
+            x_segs = torch.cat(x_segs, dim=1)
+            def_out = torch.argmax(x_segs, dim=1, keepdim=True)
+            del x_segs, x_seg_oh
+            #def_out = reg_model([x_seg.cuda().float(), flow.cuda()])
             tar = y.detach().cpu().numpy()[0, 0, :, :, :]
             jac_det = utils.jacobian_determinant_vxm(flow.detach().cpu().numpy()[0, :, :, :, :])
             line = utils.dice_val_substruct(def_out.long(), y_seg.long(), stdy_idx)
             line = line +','+str(np.sum(jac_det <= 0)/np.prod(tar.shape))
-            csv_writter(line, 'Quantitative_Results/' + model_folder[:-1]+'_VAL')
+            csv_writter(line, 'Quantitative_Results/' + csv_name)
             eval_det.update(np.sum(jac_det <= 0) / np.prod(tar.shape), x.size(0))
             print('det < 0: {}'.format(np.sum(jac_det <= 0) / np.prod(tar.shape)))
             dsc_trans = utils.dice_val(def_out.long(), y_seg.long(), 46)
@@ -86,7 +101,7 @@ if __name__ == '__main__':
     '''
     GPU configuration
     '''
-    GPU_iden = 1
+    GPU_iden = 0
     GPU_num = torch.cuda.device_count()
     print('Number of GPU: ' + str(GPU_num))
     for GPU_idx in range(GPU_num):
