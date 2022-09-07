@@ -12,12 +12,6 @@ from natsort import natsorted
 import transformation
 import torch.nn as nn
 
-def plot_grid(gridx,gridy, **kwargs):
-    for i in range(gridx.shape[1]):
-        plt.plot(gridx[i,:], gridy[i,:], linewidth=0.8, **kwargs)
-    for i in range(gridx.shape[0]):
-        plt.plot(gridx[:,i], gridy[:,i], linewidth=0.8, **kwargs)
-
 class AverageMeter(object):
     """Computes and stores the average and current value"""
     def __init__(self):
