@@ -8,7 +8,7 @@ from torchvision import transforms
 import matplotlib.pyplot as plt
 from natsort import natsorted
 from models.CoTr.network_architecture.ResTranUnet import ResTranUnet as CoTr
-
+import torch.nn as nn
 
 def plot_grid(gridx,gridy, **kwargs):
     for i in range(gridx.shape[1]):
