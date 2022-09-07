@@ -8,6 +8,7 @@ import numpy as np
 from torchvision import transforms
 import nibabel as nib
 import torch_lddmm
+import torch.nn as nn
 
 def nib_load(file_name):
     if not os.path.exists(file_name):
