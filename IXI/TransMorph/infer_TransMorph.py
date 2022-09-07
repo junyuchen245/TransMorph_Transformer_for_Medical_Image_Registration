@@ -16,7 +16,7 @@ def main():
     test_dir = 'Path_to_IXI_data/Val/'
     model_idx = -1
     weights = [1, 1]
-    model_folder = 'TransMorph_Sin_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
+    model_folder = 'TransMorph_NoPos_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
     model_dir = 'experiments/' + model_folder
     if 'Val' in test_dir:
         csv_name = model_folder[:-1]+'_Val'
@@ -33,7 +33,7 @@ def main():
         line = line + ',' + dict[i]
     csv_writter(line +','+'non_jec', 'Quantitative_Results/' + csv_name)
 
-    config = CONFIGS_TM['TransMorph-Sin']
+    config = CONFIGS_TM['TransMorph-No-RelPosEmbed']
     model = TransMorph.TransMorph(config)
     best_model = torch.load(model_dir + natsorted(os.listdir(model_dir))[model_idx])['state_dict']
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
