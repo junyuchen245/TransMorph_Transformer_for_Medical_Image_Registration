@@ -32,7 +32,7 @@ def main():
     best_model = torch.load(model_dir + natsorted(os.listdir(model_dir))[model_idx])['state_dict']
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
     model.load_state_dict(best_model)
-    reg_model = utils.register_model(config.img_size, 'nearest')
+    reg_model = utils.register_model(config.img_size, 'bilinear')
     reg_model.cuda()
     test_composed = transforms.Compose([trans.Seg_norm(),
                                         trans.NumpyType((np.float32, np.int16)),
@@ -53,12 +53,19 @@ def main():
             y_seg = data[3]
 
             x_in = torch.cat((x,y),dim=1)
-            #outputs, flows = utils.get_mc_preds(model, x_in)
-            #flow = torch.mean(torch.cat(flows, dim=0)[:], dim=0, keepdim=True)
             outputs, flows, errs = utils.get_mc_preds_w_errors(model, x_in, y)
             min_err_idx = np.argmin(errs)
             flow = flows[min_err_idx]
-            def_out = reg_model([x_seg.cuda().float(), flow.cuda()])
+            x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
+            x_segs = []
+            for i in range(46):
+                def_seg = reg_model([x_seg_oh[:, i:i + 1, ...].float(), flow.float()])
+                x_segs.append(def_seg)
+            x_segs = torch.cat(x_segs, dim=1)
+            def_out = torch.argmax(x_segs, dim=1, keepdim=True)
+            del x_segs, x_seg_oh
             tar = y.detach().cpu().numpy()[0, 0, :, :, :]
             jac_det = utils.jacobian_determinant_vxm(flow.detach().cpu().numpy()[0, :, :, :, :])
             line = utils.dice_val_substruct(def_out.long(), y_seg.long(), stdy_idx)
