@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from natsort import natsorted
 from models.TransMorph_diff import TransMorphDiff, Bilinear
 from models.TransMorph_diff import CONFIGS as CONFIGS_TM
+import torch.nn as nn
 
 def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
