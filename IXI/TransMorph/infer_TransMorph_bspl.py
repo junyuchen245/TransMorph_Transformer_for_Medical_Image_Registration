@@ -9,6 +9,7 @@ from natsort import natsorted
 import models.transformation as transformation
 from models.TransMorph_bspl import CONFIGS as CONFIGS_TM
 import models.TransMorph_bspl as TransMorph_bspl
+import torch.nn as nn
 
 def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
