@@ -15,7 +15,7 @@ def main():
     test_dir = 'Path_to_IXI_data/Val/'
     model_idx = -1
     weights = [1, 1]
-    model_folder = 'TransMorphBSpline_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
+    model_folder = 'TransMorphBSplineJan_ncc_{}_diffusion_{}/'.format(weights[0], weights[1])
     model_dir = 'experiments/' + model_folder
     dict = utils.process_label()
     if not os.path.exists('Quantitative_Results/'):
@@ -53,7 +53,17 @@ def main():
 
             x_def, flow, disp = model((x,y))
             flow = disp
-            def_out = transformation.warp(x_seg.cuda().float(), disp.cuda(), interp_mode='nearest')
+            x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
+            # x_segs = model.spatial_trans(x_seg.float(), flow.float())
+            x_segs = []
+            for i in range(46):
+                def_seg = transformation.warp(x_seg_oh[:, i:i + 1, ...].float(), flow.cuda(), interp_mode='bilinear')
+                x_segs.append(def_seg)
+            x_segs = torch.cat(x_segs, dim=1)
+            def_out = torch.argmax(x_segs, dim=1, keepdim=True)
+            del x_segs, x_seg_oh
             tar = y.detach().cpu().numpy()[0, 0, :, :, :]
             jac_det = utils.jacobian_determinant_vxm(flow.detach().cpu().numpy()[0, :, :, :, :])
             line = utils.dice_val_substruct(def_out.long(), y_seg.long(), stdy_idx)
@@ -83,7 +93,7 @@ if __name__ == '__main__':
     '''
     GPU configuration
     '''
-    GPU_iden = 1
+    GPU_iden = 0
     GPU_num = torch.cuda.device_count()
     print('Number of GPU: ' + str(GPU_num))
     for GPU_idx in range(GPU_num):
