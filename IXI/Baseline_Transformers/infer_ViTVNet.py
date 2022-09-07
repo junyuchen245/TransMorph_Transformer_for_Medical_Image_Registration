@@ -11,12 +11,6 @@ from models.ViTVNet import CONFIGS as CONFIGS_ViT
 from models.ViTVNet import ViTVNet
 import torch.nn as nn
 
-def plot_grid(gridx,gridy, **kwargs):
-    for i in range(gridx.shape[1]):
-        plt.plot(gridx[i,:], gridy[i,:], linewidth=0.8, **kwargs)
-    for i in range(gridx.shape[0]):
-        plt.plot(gridx[:,i], gridy[:,i], linewidth=0.8, **kwargs)
-
 class AverageMeter(object):
     """Computes and stores the average and current value"""
     def __init__(self):
