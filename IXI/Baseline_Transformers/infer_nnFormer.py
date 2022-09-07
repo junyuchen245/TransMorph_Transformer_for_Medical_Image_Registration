@@ -7,6 +7,7 @@ import torch
 from torchvision import transforms
 from natsort import natsorted
 from models.nnFormer.Swin_Unet_l_gelunorm import swintransformer as nnFormer
+import torch.nn as nn
 
 def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
