@@ -7,13 +7,15 @@ import torch
 from torchvision import transforms
 from natsort import natsorted
 from models import VoxelMorphMICCAI2019, Bilinear
+import torch.nn as nn
 
 def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
     test_dir = 'Path_to_IXI_data/Val/'
     model_idx = -1
     img_size = (160, 192, 224)
-    model_folder = 'VxmDiff/'
+    weights = [1, 0.02]
+    model_folder = 'VxmDiff_mse_{}_diffusion_{}/'.format(weights[0], weights[1])
     model_dir = 'experiments/' + model_folder
     dict = utils.process_label()
     if not os.path.exists('Quantitative_Results/'):
@@ -30,8 +32,8 @@ def main():
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
     model.load_state_dict(best_model)
     model.cuda()
-    reg_model_nn = Bilinear(zero_boundary=True, mode='nearest').cuda()
-    for param in reg_model_nn.parameters():
+    reg_model = Bilinear(zero_boundary=True, mode='bilinear').cuda()
+    for param in reg_model.parameters():
         param.requires_grad = False
         param.volatile = True
     test_composed = transforms.Compose([trans.Seg_norm(),
@@ -53,7 +55,17 @@ def main():
             y_seg = data[3]
 
             x_def, flow, disp_field = model((x, y))
-            def_out = reg_model_nn(x_seg.cuda().float(), flow.cuda())
+            x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
+            # x_segs = model.spatial_trans(x_seg.float(), flow.float())
+            x_segs = []
+            for i in range(46):
+                def_seg = reg_model(x_seg_oh[:, i:i + 1, ...].float(), flow.float())
+                x_segs.append(def_seg)
+            x_segs = torch.cat(x_segs, dim=1)
+            def_out = torch.argmax(x_segs, dim=1, keepdim=True)
+            del x_segs, x_seg_oh
             tar = y.detach().cpu().numpy()[0, 0, :, :, :]
             jac_det = utils.jacobian_determinant_vxm(flow.detach().cpu().numpy()[0, :, :, :, :])
             line = utils.dice_val_substruct(def_out.long(), y_seg.long(), stdy_idx)
