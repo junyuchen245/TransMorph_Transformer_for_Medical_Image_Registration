@@ -156,23 +156,23 @@ In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py`. The results (a `.c
 |Model |Dice|% of \|J\|<=0|
 |---|---|---|
 |Affine|0.386±0.195|-|
-|SyN|0.639±0.151|<0.0001|
-|NiftyReg|0.640±0.166|<0.0001|
-|LDDMM|0.675±0.135|<0.0001|
+|SyN|0.645±0.152|<0.0001|
+|NiftyReg|0.645±0.167|0.020±0.046|
+|LDDMM|0.680±0.135|<0.0001|
 |deedsBCV|0.733±0.126|0.147±0.050|
-|VoxelMorph-1|0.723±0.130|1.590±0.339|
-|VoxelMorph-2|0.726±0.123|1.522±0.336|
-|VoxelMorph-diff|0.577±0.165|<0.0001|
-|CycleMorph|0.730±0.124|1.719±0.382|
-|MIDIR|0.736±0.129|<0.0001|
-|ViT-V-Net|0.728±0.124|1.609±0.319|
-|CoTr|0.721±0.128|1.858±0.314|
-|PVT|0.729±0.135|1.292±0.342|
-|nnFormer|0.740±0.134|1.595±0.358|
-|TransMorph|0.746±0.125|1.579±0.328|
-|TransMorph-Bayes|0.746±0.123|1.560±0.333|
-|TransMorph-bspl|0.753±0.122|<0.0001|
-|TransMorph-diff|0.599±0.156|<0.0001|
+|VoxelMorph-1|0.729±0.129|1.590±0.339|
+|VoxelMorph-2|0.732±0.123|1.522±0.336|
+|VoxelMorph-diff|0.580±0.165|<0.0001|
+|CycleMorph|0.737±0.123|1.719±0.382|
+|MIDIR|0.742±0.128|<0.0001|
+|ViT-V-Net|0.734±0.124|1.609±0.319|
+|CoTr|0.735±0.135|1.298±0.343|
+|PVT|0.727±0.128|1.858±0.314|
+|nnFormer|0.747±0.135|1.595±0.358|
+|TransMorph|0.753±0.123|1.579±0.328|
+|TransMorph-Bayes|0.754±0.124|1.560±0.333|
+|TransMorph-bspl|0.761±0.122|<0.0001|
+|TransMorph-diff|0.594±0.163|<0.0001|
 
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dsc_conventional.jpg" width="900"/>
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dsc_transformer.jpg" width="900"/>
