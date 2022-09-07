@@ -5,7 +5,7 @@
 ## IXI Dataset:
 <img src="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/example_imgs/IXI_dataset.jpg" width="1000"/>\
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>\
-:exclamation: 09/07/2022 - All of our inference scripts have been updated so that the interpolation method used to warp image labels is bilinear (or trilinear) rather than nearest neighbor. This results in better Dice scores for nearly all methods (the table below is also updated).
+:exclamation: 09/07/2022 - All of our inference scripts have been updated so that the interpolation method used to warp image labels is bilinear (or trilinear) rather than nearest neighbor. This results in better Dice scores for nearly all methods (the benchmark table below is also updated).\
 :exclamation: 12/29/2021 - Our preprocessed IXI dataset and the pre-trained models are now publicly available!\
 :exclamation: Our preprocessed IXI dataset is made available under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. If you use this dataset, you should acknowledge the TransMorph paper:
 
