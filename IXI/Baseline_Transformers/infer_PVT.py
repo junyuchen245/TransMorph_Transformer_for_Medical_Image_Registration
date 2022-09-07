@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from natsort import natsorted
 from models.PVT import CONFIGS as CONFIGS_pvt
 from models.PVT import PVTVNetSkip
+import torch.nn as nn
 
 def plot_grid(gridx,gridy, **kwargs):
     for i in range(gridx.shape[1]):
