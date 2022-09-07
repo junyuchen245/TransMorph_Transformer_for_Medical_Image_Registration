@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from torchvision import transforms
 import nibabel as nib
+import torch.nn as nn
 
 def nib_load(file_name):
     if not os.path.exists(file_name):
@@ -57,24 +58,33 @@ def main():
         for data in test_loader:
             x = data[0].squeeze(0).squeeze(0).detach().cpu().numpy()
             y = data[1].squeeze(0).squeeze(0).detach().cpu().numpy()
-            x_seg = data[2].squeeze(0).squeeze(0).detach().cpu().numpy()
+            x_seg = data[2]  # .squeeze(0).squeeze(0).detach().cpu().numpy()
+
+            x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
+            x_seg_oh = x_seg_oh.squeeze(0).detach().cpu().numpy()
+
             y_seg = data[3].squeeze(0).squeeze(0).detach().cpu().numpy()
+
             x = ants.from_numpy(x)
             y = ants.from_numpy(y)
 
-            x_ants = ants.from_numpy(x_seg.astype(np.float32))
             y_ants = ants.from_numpy(y_seg.astype(np.float32))
 
             reg12 = ants.registration(y, x, 'SyNOnly', reg_iterations=(160, 80, 40), syn_metric='meansquares')
-            def_seg = ants.apply_transforms(fixed=y_ants,
-                                            moving=x_ants,
-                                            transformlist=reg12['fwdtransforms'],
-                                            interpolator='nearestNeighbor',)
-                                            #whichtoinvert=[True, False, True, False]
-
+            def_segs = []
+            for i in range(x_seg_oh.shape[0]):
+                x_chan = ants.from_numpy(x_seg_oh[i].astype(np.float32))
+                def_seg = ants.apply_transforms(fixed=y_ants,
+                                                moving=x_chan,
+                                                transformlist=reg12['fwdtransforms'], )
+                # whichtoinvert=[True, False, True, False]
+                def_segs.append(def_seg.numpy()[None, ...])
+            def_segs = np.concatenate(def_segs, axis=0)
+            def_seg = np.argmax(def_segs, axis=0)
             flow = np.array(nib_load(reg12['fwdtransforms'][0]), dtype='float32', order='C')
             flow = flow[:,:,:,0,:].transpose(3, 0, 1, 2)
-            def_seg = def_seg.numpy()
             def_seg = torch.from_numpy(def_seg[None, None, ...])
             y_seg = torch.from_numpy(y_seg[None, None, ...])
             dsc_trans = utils.dice_val(def_seg.long(), y_seg.long(), 46)
@@ -83,7 +93,7 @@ def main():
             line = utils.dice_val_substruct(def_seg.long(), y_seg.long(), stdy_idx)
             line = line + ',' + str(np.sum(jac_det <= 0) / np.prod(y_seg.shape))
             print('det < 0: {}'.format(np.sum(jac_det <= 0) / np.prod(y_seg.shape)))
-            csv_writter(line, 'ants_IXI')
+            csv_writter(line, file_name)
             print('DSC: {:.4f}'.format(dsc_trans.item()))
             stdy_idx += 1
         print('Deformed DSC: {:.3f} +- {:.3f}'.format(eval_dsc_def.avg, eval_dsc_def.std))
