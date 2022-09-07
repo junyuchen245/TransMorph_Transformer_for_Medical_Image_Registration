@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from natsort import natsorted
 from models.cycleMorph_model import cycleMorph
 from models.cycleMorph_model import CONFIGS as CONFIGS
-
+import torch.nn as nn
 
 def plot_grid(gridx,gridy, **kwargs):
     for i in range(gridx.shape[1]):
@@ -51,7 +51,7 @@ def main():
     test_dir = 'Path_to_IXI_data/Val/'
     model_idx = -1
     model_folder = 'CycleMorph/'
-    model_dir = 'experiments/' + model_folder
+    model_dir = 'experiements/' + model_folder
     dict = utils.process_label()
     if not os.path.exists('Quantitative_Results/'):
         os.makedirs('Quantitative_Results/')
@@ -62,7 +62,7 @@ def main():
     for i in range(46):
         line = line + ',' + dict[i]
     csv_writter(line + ',' + 'non_jec', 'Quantitative_Results/' + model_folder[:-1])
-    opt = CONFIGS['Cycle-Morph-v0']
+    opt = CONFIGS['Cycle-Morph']
     model = cycleMorph()
     model.initialize(opt)
     model = model.netG_A
@@ -70,7 +70,7 @@ def main():
     print('Best model: {}'.format(natsorted(os.listdir(model_dir))[model_idx]))
     model.load_state_dict(best_model)
     model.cuda()
-    reg_model = utils.register_model((160, 192, 224), 'nearest')
+    reg_model = utils.register_model((160, 192, 224), 'bilinear')
     reg_model.cuda()
     test_composed = transforms.Compose([trans.Seg_norm(),
                                         trans.NumpyType((np.float32, np.int16)),
@@ -92,7 +92,17 @@ def main():
 
             x_in = torch.cat((x,y),dim=1)
             x_def, flow = model(x_in)
-            def_out = reg_model([x_seg.cuda().float(), flow.cuda()])
+            x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
+            x_seg_oh = torch.squeeze(x_seg_oh, 1)
+            x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
+            # x_segs = model.spatial_trans(x_seg.float(), flow.float())
+            x_segs = []
+            for i in range(46):
+                def_seg = reg_model([x_seg_oh[:, i:i + 1, ...].float(), flow.float()])
+                x_segs.append(def_seg)
+            x_segs = torch.cat(x_segs, dim=1)
+            def_out = torch.argmax(x_segs, dim=1, keepdim=True)
+            del x_segs, x_seg_oh
             tar = y.detach().cpu().numpy()[0, 0, :, :, :]
             jac_det = utils.jacobian_determinant_vxm(flow.detach().cpu().numpy()[0, :, :, :, :])
             line = utils.dice_val_substruct(def_out.long(), y_seg.long(), stdy_idx)
