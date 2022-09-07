@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from natsort import natsorted
 from models.TransMorph_Bayes import CONFIGS as CONFIGS_TM
 import models.TransMorph_Bayes as TransMorph_Bayes
+import torch.nn as nn
 
 def main():
     atlas_dir = 'Path_to_IXI_data/atlas.pkl'
