@@ -7,7 +7,7 @@ import torch
 from torchvision import transforms
 import matplotlib.pyplot as plt
 from natsort import natsorted
-from models import VxmDense_1, VxmDense_2, VxmDense_huge, VxmDensex2
+from models import VxmDense_1, VxmDense_2, VxmDense_huge
 import torch.nn as nn
 
 class AverageMeter(object):
@@ -88,7 +88,6 @@ def main():
             x_seg_oh = nn.functional.one_hot(x_seg.long(), num_classes=46)
             x_seg_oh = torch.squeeze(x_seg_oh, 1)
             x_seg_oh = x_seg_oh.permute(0, 4, 1, 2, 3).contiguous()
-            # x_segs = model.spatial_trans(x_seg.float(), flow.float())
             x_segs = []
             for i in range(46):
                 def_seg = reg_model([x_seg_oh[:, i:i + 1, ...].float(), flow.float()])
