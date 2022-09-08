@@ -9,7 +9,7 @@
 :exclamation: 12/29/2021 - Our preprocessed IXI dataset and the pre-trained models are now publicly available!\
 :exclamation: Our preprocessed IXI dataset is made available under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>. If you use this dataset, you should acknowledge the TransMorph paper:
 
-    @article{chen2021transmorph,
+    @article{chen2022transmorph,
     title={TransMorph: Transformer for unsupervised medical image registration},
     author={Chen, Junyu and Frey, Eric C and He, Yufan and Segars, William P and Li, Ye and Du, Yong},
     journal={Medical Image Analysis},
