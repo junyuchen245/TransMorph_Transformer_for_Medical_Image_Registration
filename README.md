@@ -77,7 +77,7 @@ Due to restrictions, we cannot distribute our brain MRI and CT data. However, se
 ## Citation:
 If you find this code is useful in your research, please consider to cite:
     
-    @article{chen2021transmorph,
+    @article{chen2022transmorph,
     title={TransMorph: Transformer for unsupervised medical image registration},
     author={Chen, Junyu and Frey, Eric C and He, Yufan and Segars, William P and Li, Ye and Du, Yong},
     journal={Medical Image Analysis},
