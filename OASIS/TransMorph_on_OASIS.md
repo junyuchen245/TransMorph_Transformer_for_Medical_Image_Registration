@@ -70,9 +70,9 @@ Zip the output folder and submit the zip file to [Learn2Reg challenge Task03](ht
 ## Citation
 If you find this code is useful in your research, please consider to cite:
     
-    @article{chen2021transmorph,
+    @article{chen2022transmorph,
     title={TransMorph: Transformer for unsupervised medical image registration},
     author={Chen, Junyu and Frey, Eric C and He, Yufan and Segars, William P and Li, Ye and Du, Yong},
-    journal={arXiv preprint arXiv:2111.10480},
-    year={2021}
+    journal={Medical Image Analysis},
+    year={2022}
     }
