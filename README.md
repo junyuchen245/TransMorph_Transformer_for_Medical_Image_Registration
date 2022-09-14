@@ -5,7 +5,7 @@ keywords: Vision Transformer, Swin Transformer, convolutional neural networks, i
 
 This is a **PyTorch** implementation of my paper:
 
-<a href="https://arxiv.org/abs/2111.10480">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " Medical Image Analysis, 2022.</a>
+<a href="https://www.sciencedirect.com/science/article/pii/S1361841522002432">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " Transformer for unsupervised medical image registration,” Medical Image Analysis, p. 102615, 2022.</a>
 
 
 <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/03/2022 - **TransMorph paper has been accepted for publication in Medical Image Analysis! Some changes will follow, according to reviewers' comments.** \
@@ -78,10 +78,14 @@ Due to restrictions, we cannot distribute our brain MRI and CT data. However, se
 If you find this code is useful in your research, please consider to cite:
     
     @article{chen2022transmorph,
-    title={TransMorph: Transformer for unsupervised medical image registration},
-    author={Chen, Junyu and Frey, Eric C and He, Yufan and Segars, William P and Li, Ye and Du, Yong},
-    journal={Medical Image Analysis},
-    year={2022}
+    title = {TransMorph: Transformer for unsupervised medical image registration},
+    journal = {Medical Image Analysis},
+    pages = {102615},
+    year = {2022},
+    issn = {1361-8415},
+    doi = {https://doi.org/10.1016/j.media.2022.102615},
+    url = {https://www.sciencedirect.com/science/article/pii/S1361841522002432},
+    author = {Junyu Chen and Eric C. Frey and Yufan He and William P. Segars and Ye Li and Yong Du}
     }
     
 ## TransMorph Architecture:
