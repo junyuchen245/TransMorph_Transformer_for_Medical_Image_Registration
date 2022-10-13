@@ -1,4 +1,6 @@
-Here is a minor typo in the paper, where the number of anatomical structures for evaluation should be **30** (instead of 29). They are:
+Here is a small typo in the paper, where the number of anatomical structures for evaluation should be **30** (instead of 29). 
+The evaluation of the Dice scores can be found in [analysis.py](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/analysis.py) and [analysis_trans.py](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/analysis_trans.py), which should provide results that are compatible with those in our publication.\
+The anatomical structures are:
 |Number | Structures  | Substructures        |
 | ----------- | ----------- | -----------          |
 |1| Brain-Stem  | Brain-Stem           |
@@ -31,5 +33,3 @@ Here is a minor typo in the paper, where the number of anatomical structures for
 |28| CSF|CSF |
 |29| choroid-plexus|Left-choroid-plexus |
 |30| |Right-choroid-plexus |
-
-The evaluation of the Dice scores can be found in [analysis.py](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/analysis.py), which should provide results that are compatible with those in our publication.
