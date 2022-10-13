@@ -158,6 +158,7 @@ In terminal, run: `python -u IXI/Path_to_Model/infer_xxx.py`. The results (a `.c
 - Our results (i.e., the `.csv` files) are provided in `IXI/Results/`. To visualize boxplots, simply run `python -u IXI/analysis.py` and `python -u IXI/analysis_trans.py`.
 - To plot your own results, simply replace the files in `IXI/Results/`. If the file names are different, you will need to modify the names used in [`IXI/analysis.py`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/12ea90a8129fc167af22eafb5c0272bdc4141b41/IXI/analysis.py#L17) and [`IXI/analysis_trans.py`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/12ea90a8129fc167af22eafb5c0272bdc4141b41/IXI/analysis_trans.py#L17).
 ## Quantitative Results
+We evaluated all the models on **30** anatomical labels, see [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/Anatomical_Structures.md).
 |Model |Dice|% of \|J\|<=0|
 |---|---|---|
 |Affine|0.386±0.195|-|
