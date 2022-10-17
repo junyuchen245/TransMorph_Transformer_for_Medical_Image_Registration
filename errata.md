@@ -1,7 +1,7 @@
 Typographical error corrections to the paper:
 
 1. ***Table 3 caption:***\
-  Quantitative evaluation results of the inter-patient (i.e., the JHU dataset) and the atlas-to-patient (i.e., the IXI dataset) brain MRI registration (left table), and XCAT-to-CAT registration (right table). Dice score and percentage of voxels with a non-positive Jacobian determinant (i.e., folded voxels) are evaluated for different methods. The bolded numbers denote the highest scores, while the italicized ones indicate the second highest.\
+  Quantitative evaluation results of the inter-patient (i.e., the JHU dataset) and the atlas-to-patient (i.e., the IXI dataset) brain MRI registration (left table), and XCAT-to-CAT registration (right table). Dice score and percentage of voxels with a non-positive Jacobian determinant (i.e., folded voxels) are evaluated for different methods. The bolded numbers denote the highest scores, while the italicized ones indicate the second highest.
     * *Should be corrected to:*
     Quantitative evaluation results of the inter-patient (i.e., the JHU dataset) and the atlas-to-patient (i.e., the IXI dataset) brain MRI registration <s>(left table), and XCAT-to-CAT registration (right table) </s>. Dice score and percentage of voxels with a non-positive Jacobian determinant (i.e., folded voxels) are evaluated for different methods. The bolded numbers denote the highest scores, while the italicized ones indicate the second highest.
 
