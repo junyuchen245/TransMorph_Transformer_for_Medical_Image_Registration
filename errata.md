@@ -10,7 +10,7 @@ Quantitative evaluation results of the inter-patient (i.e., the JHU dataset) and
 System-level comparison of various TransMorph designs and the customized VoxelMorph on the test datasets of inter-patient MRI and XCAT-to-CT registration tasks. ‘‘Val. DSC’’ denotes the Dice scores on the validation dataset; ‘‘Test DSC’’ denotes the system-level comparison of the Dice scores on the test dataset. The bolded numbers denote the highest scores, while the italicized ones indicate the second highest.
 
 *Should be corrected to:*\
-System-level comparison of various TransMorph designs and the customized VoxelMorph <font color='red'>**on the validation**</font> and test datasets of inter-patient MRI, **atlas-to-patient MRI,** and XCAT-to-CT registration tasks. ‘‘Val. DSC’’ denotes the Dice scores on the validation dataset; ‘‘Test DSC’’ denotes the system-level comparison of the Dice scores on the test dataset. The bolded numbers denote the highest scores, while the italicized ones indicate the second highest.
+System-level comparison of various TransMorph designs and the customized VoxelMorph **on the validation** and test datasets of inter-patient MRI, **atlas-to-patient MRI,** and XCAT-to-CT registration tasks. ‘‘Val. DSC’’ denotes the Dice scores on the validation dataset; ‘‘Test DSC’’ denotes the system-level comparison of the Dice scores on the test dataset. The bolded numbers denote the highest scores, while the italicized ones indicate the second highest.
 
 ***Section 4.1.1 & 4.1.2:***\
 Label maps including 29 anatomical structures were obtained using FreeSurfer for evaluating registration performances.
