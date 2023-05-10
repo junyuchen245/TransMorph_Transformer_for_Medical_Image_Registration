@@ -1,0 +1,7 @@
+pystrum
+torch
+torchvision
+natsort
+numpy
+scikit-image
+timm
