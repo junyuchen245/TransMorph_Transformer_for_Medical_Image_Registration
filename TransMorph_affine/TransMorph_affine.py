@@ -22,7 +22,7 @@ from timm.models.layers import DropPath, trunc_normal_, to_3tuple
 from torch.distributions.normal import Normal
 import torch.nn.functional as nnf
 import numpy as np
-import configs_affine as configs
+import config_affine as configs
 import sys
 
 class Mlp(nn.Module):
