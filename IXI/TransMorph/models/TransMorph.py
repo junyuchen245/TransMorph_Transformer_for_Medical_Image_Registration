@@ -247,7 +247,7 @@ class SwinTransformerBlock(nn.Module):
         else:
             x = shifted_x
 
-        if pad_r > 0 or pad_b > 0:
+        if pad_r > 0 or pad_b > 0 or pad_h > 0:
             x = x[:, :H, :W, :T, :].contiguous()
 
         x = x.view(B, H * W * T, C)
