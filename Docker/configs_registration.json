@@ -1,4 +1,6 @@
 {
+    "n4_bias_correction_moving": false,
+    "n4_bias_correction_fixed": false,
     "affine": true,
     "deformable": true,
     "resample": true,
