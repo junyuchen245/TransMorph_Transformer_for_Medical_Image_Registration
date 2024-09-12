@@ -4,7 +4,10 @@ This repository provides Docker images for different versions of TransMorph, a t
 - ***At the moment, only the non-diffeomorphic variant of TransMorph is available. Additional variants will be uploaded soon, so stay tuned!***
 
 ## Registration Pipeline
-TransMorph is trained on a dataset of brain MRI images, so to use it on new datasets, some preprocessing is necessary to ensure that the intensity ranges and orientations are consistent with the training dataset. The registration pipeline includes the following steps:
+TransMorph is trained on a dataset of brain MRI images, so to use it on new datasets, some preprocessing is necessary to ensure that the intensity ranges and orientations are consistent with the training dataset.\
+***Please note that brain MRI images should be skull-stripped before use. You can accomplish this with various tools, such as [SynthStrip](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/).***
+
+The registration pipeline includes the following steps:
 1. **Reorientation**: Align the input images (moving and fixed) with a standard template image.
 2. **Intensity Normalization**: Scale the intensity values of the input images to the range `[0, 1]`.
 3. **Resampling**: Adjust the voxel sizes of the input images to match the template image's dimensions (`1mm x 1mm x 1mm`).
