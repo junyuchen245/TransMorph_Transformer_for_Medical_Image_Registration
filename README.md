@@ -9,7 +9,7 @@ This is a **PyTorch** implementation of my paper:
 
 **Here's the [errata](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/errata.md) (fixing several typos in paper).**
 
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/12/2024 - **We built a Docker image for brain MRI registration using TransMorph. See details [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/Docker)!** \
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/12/2024 - **We built a Docker image for brain MRI registration with TransMorph. See details [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/Docker)!** \
 09/03/2022 - **TransMorph paper has been accepted for publication in Medical Image Analysis! Some changes will follow, according to reviewers' comments.** \
 03/24/2022 - **TransMorph is currently ranked 1st place on the TEST set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/) (results obtained from the Learn2Reg challenge organizers).  The training scripts, dataset, and the pretrained models are available here: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**\
 02/03/2022 - **TransMorph is currently ranked 1st place on the VALIDATION set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/).**\
