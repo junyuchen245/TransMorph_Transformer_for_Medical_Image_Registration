@@ -9,11 +9,12 @@ TransMorph is trained on a dataset of brain MRI images, so to use it on new data
 
 The registration pipeline includes the following steps:
 1. **Reorientation**: Align the input images (moving and fixed) with a standard template image.
-2. **Intensity Normalization**: Scale the intensity values of the input images to the range `[0, 1]`.
-3. **Resampling**: Adjust the voxel sizes of the input images to match the template image's dimensions (`1mm x 1mm x 1mm`).
-4. **Affine Pre-alignment**: Perform affine alignment of the input images to the template using [ANTsPy](https://github.com/ANTsX/ANTsPy).
-5. **Deformable Registration**: Warp the moving image to the fixed image using [TransMorph](https://www.sciencedirect.com/science/article/pii/S1361841522002432)'s deformable registration.
-6. **Post-processing (Optional)**: Resample and reorient the results back to the original spaces of the moving or fixed images, as needed.
+2. **N4 Bias Field Correction**: Apply N4 bias field correction to the input images using [ANTsPy](https://github.com/ANTsX/ANTsPy).
+3. **Intensity Normalization**: Scale the intensity values of the input images to the range `[0, 1]` using [intensity-normalization](https://github.com/jcreinhold/intensity-normalization/tree/master) tool.
+4. **Resampling**: Adjust the voxel sizes of the input images to match the template image's dimensions (`1mm x 1mm x 1mm`).
+5. **Affine Pre-alignment**: Perform affine alignment of the input images to the template using [ANTsPy](https://github.com/ANTsX/ANTsPy).
+6. **Deformable Registration**: Warp the moving image to the fixed image using [TransMorph](https://www.sciencedirect.com/science/article/pii/S1361841522002432)'s deformable registration.
+7. **Post-processing (Optional)**: Resample and reorient the results back to the original spaces of the moving or fixed images, as needed.
 
 ## Instructions on Running the Docker Image
 To use the TransMorph Docker image, start by pulling it from Docker Hub:
@@ -94,7 +95,7 @@ To customize the registration process, modify the [`configurations.json`](https:
 Example data is available for you to test the Docker image using the provided JSON files. You can access it [here](https://drive.google.com/uc?export=download&id=1hjpXnEFHfyI5nMJie7p0J9f-BYlPQN2c).
 
 ## All Possible Output Files
-- `affine_fwdtransforms.mat`: Affine transformation matrix used by ANTsPy.
+- `affine_fwdtransforms.mat`: Affine transformation matrix used by [ANTsPy](https://github.com/ANTsX/ANTsPy).
 - `deformed_moving_image_original_fixed_space.nii.gz`: Deformed moving image transformed back to the original space of the fixed image.
 - `deformed_moving_image_original_moving_space.nii.gz`: Deformed moving image transformed back to the original space of the moving image.
 - `deformed_moving_image.nii.gz`: Deformed moving image in the template space.
