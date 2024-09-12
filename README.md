@@ -9,7 +9,7 @@ This is a **PyTorch** implementation of my paper:
 
 **Here's the [errata](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/errata.md) (fixing several typos in paper).**
 
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/12/2024 - **We built a Docker image for brain MRI registration using TransMorph. See details here!** \
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/12/2024 - **We built a Docker image for brain MRI registration using TransMorph. See details [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/Docker)!** \
 09/03/2022 - **TransMorph paper has been accepted for publication in Medical Image Analysis! Some changes will follow, according to reviewers' comments.** \
 03/24/2022 - **TransMorph is currently ranked 1st place on the TEST set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/) (results obtained from the Learn2Reg challenge organizers).  The training scripts, dataset, and the pretrained models are available here: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**\
 02/03/2022 - **TransMorph is currently ranked 1st place on the VALIDATION set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/).**\
@@ -73,14 +73,14 @@ Due to restrictions, we cannot distribute our brain MRI and CT data. However, se
 **You can find our preprocessed IXI dataset in the next section.**
 
 ## Reproducible Results on IXI Dataset:
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You can find the preprocessed IXI dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for IXI dataset here :point_right: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
+You can find the preprocessed IXI dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for IXI dataset here :point_right: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)
 
 
 ## Reproducible Results on OASIS Dataset:
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You can find the preprocessed OASIS dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for OASIS dataset here :point_right: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**
+You can find the preprocessed OASIS dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for OASIS dataset here :point_right: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)
 
-## Brain MRI image registration from scratch using Docker image:
-Detailed instructions about how to use TransMorph on your skull-stripped MRI can be found :point_right: [here]().
+## Brain MRI Image Registration from Scratch Using the Docker Image:
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You can find detailed instructions on how to use TransMorph with your skull-stripped MRI images :point_right: [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/Docker).**
 
 ## Citation:
 If you find this code is useful in your research, please consider to cite:
