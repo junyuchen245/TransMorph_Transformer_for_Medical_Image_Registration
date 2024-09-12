@@ -9,7 +9,8 @@ This is a **PyTorch** implementation of my paper:
 
 **Here's the [errata](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/errata.md) (fixing several typos in paper).**
 
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/03/2022 - **TransMorph paper has been accepted for publication in Medical Image Analysis! Some changes will follow, according to reviewers' comments.** \
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30"> 09/12/2024 - **We built a Docker image for brain MRI registration using TransMorph. See details here!** \
+09/03/2022 - **TransMorph paper has been accepted for publication in Medical Image Analysis! Some changes will follow, according to reviewers' comments.** \
 03/24/2022 - **TransMorph is currently ranked 1st place on the TEST set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/) (results obtained from the Learn2Reg challenge organizers).  The training scripts, dataset, and the pretrained models are available here: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**\
 02/03/2022 - **TransMorph is currently ranked 1st place on the VALIDATION set of task03 (brain MR) @ [MICCAI 2021 L2R challenge](https://learn2reg.grand-challenge.org/evaluation/task-3-validation/leaderboard/).**\
 12/29/2021 - **Our preprocessed IXI dataset and the pre-trained models are now publicly available! Check out this page for more information: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
@@ -69,14 +70,17 @@ The links will take you to their official repositories.
 ## JHU Brain MRI & Duke CT Dataset:
 Due to restrictions, we cannot distribute our brain MRI and CT data. However, several brain MRI datasets are publicly available online: ADNI, OASIS, ABIDE, etc. Note that those datasets may not contain labels (segmentation). To generate labels, you can use FreeSurfer, which is an open-source software for normalizing brain MRI images. Here are some useful commands in FreeSurfer: <a href="https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/PreprocessingMRI.md">Brain MRI preprocessing and subcortical segmentation using FreeSurfer</a>.
 
-**You may find our preprocessed IXI dataset in the next section.**
+**You can find our preprocessed IXI dataset in the next section.**
 
 ## Reproducible Results on IXI Dataset:
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You may find the preprocessed IXI dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for IXI dataset here :point_right: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You can find the preprocessed IXI dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for IXI dataset here :point_right: [TransMorph on IXI](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/IXI/TransMorph_on_IXI.md)**
 
 
 ## Reproducible Results on OASIS Dataset:
-<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You may find the preprocessed OASIS dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for OASIS dataset here :point_right: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**
+<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You can find the preprocessed OASIS dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for OASIS dataset here :point_right: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)**
+
+## Brain MRI image registration from scratch using Docker image:
+Detailed instructions about how to use TransMorph on your skull-stripped MRI can be found :point_right: [here]().
 
 ## Citation:
 If you find this code is useful in your research, please consider to cite:
