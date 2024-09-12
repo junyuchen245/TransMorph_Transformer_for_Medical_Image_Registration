@@ -1,7 +1,7 @@
 # Brain MRI Image Registration with TransMorph
 This repository provides Docker images for different versions of TransMorph, a tool for brain MRI image registration tailored to various applications. You can access the Docker images on our [Docker Hub](https://hub.docker.com/repository/docker/jchen245/transmorph_brain_mri_registration/general).
 
-- Currently, only a non-diffeomorphic variant of TransMorph is provided. Other variants will be uploaded soon, stay tuned...
+- ***At the moment, only the non-diffeomorphic variant of TransMorph is available. Additional variants will be uploaded soon, so stay tuned!***
 
 ## Registration Pipeline
 TransMorph is trained on a dataset of brain MRI images, so to use it on new datasets, some preprocessing is necessary to ensure that the intensity ranges and orientations are consistent with the training dataset. The registration pipeline includes the following steps:
