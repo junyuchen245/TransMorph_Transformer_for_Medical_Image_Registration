@@ -77,6 +77,8 @@ To customize the registration process, modify the [`configurations.json`](https:
     "verbose": true
   }
   ```
+- `n4_bias_correction_moving`: Toggle N4 bias field correction for moving image.
+- `n4_bias_correction_fixed`: Toggle N4 bias field correction for fixed image.
 - `affine`: Toggle affine pre-alignment.
 - `deformable`: Toggle deformable registration with TransMorph.
 - `resample`: Enable resampling to match TransMorph conventions (recommended).
