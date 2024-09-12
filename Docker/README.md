@@ -5,7 +5,7 @@ This repository provides Docker images for different versions of TransMorph, a t
 
 ## Registration Pipeline
 TransMorph is trained on a dataset of brain MRI images, so to use it on new datasets, some preprocessing is necessary to ensure that the intensity ranges and orientations are consistent with the training dataset.\
-***Please note that brain MRI images should be skull-stripped and went through bias correction before use. You can accomplish this with various tools, such as [SynthStrip](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/) and [ITK](https://github.com/InsightSoftwareConsortium/ITK).***
+***Please note that brain MRI images should be skull-stripped. You can accomplish this with various tools, such as [SynthStrip](https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/).***
 
 The registration pipeline includes the following steps:
 1. **Reorientation**: Align the input images (moving and fixed) with a standard template image.
