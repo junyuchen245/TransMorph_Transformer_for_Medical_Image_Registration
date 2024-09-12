@@ -54,7 +54,7 @@ The program reads data from the specified [path to input directory] based on the
   }
   ```
 - `"label"`: The label map for the moving image (optional). If provided, the program will save the warped label map. An example `dataset.json` file is available in the [repository](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test_dataset.json).
-### Configuration .json file
+### Configuration JSON file
 To customize the registration process, modify the [`configurations.json`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/configs_registration.json) file as needed:
   ```json
   {
@@ -81,4 +81,5 @@ To customize the registration process, modify the [`configurations.json`](https:
 - `reg_weight`: Weight for deformation regularity in instance optimization (default: 1).
 - `verbose`: Toggle detailed logging output.
 
-
+## Example Data for Testing
+Example data is available for you to test the Docker image using the provided JSON files. You can access it here.
