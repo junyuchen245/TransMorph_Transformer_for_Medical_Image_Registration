@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-bash ./build.sh
-#docker load --input reg_model.tar.gz
+docker load --input reg_model.tar.gz
 
 docker run --rm  \
         --ipc=host \
