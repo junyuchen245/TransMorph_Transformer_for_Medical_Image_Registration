@@ -93,7 +93,7 @@ To customize the registration process, modify the [`configurations.json`](https:
 ## Example Data for Testing
 Example data is available for you to test the Docker image using the provided JSON files. You can access it [here](https://drive.google.com/uc?export=download&id=1hjpXnEFHfyI5nMJie7p0J9f-BYlPQN2c).
 
-## All Possible Outputs
+## All Possible Output Files
 - `affine_fwdtransforms.mat`: Affine transformation matrix used by ANTsPy.
 - `deformed_moving_image_original_fixed_space.nii.gz`: Deformed moving image transformed back to the original space of the fixed image.
 - `deformed_moving_image_original_moving_space.nii.gz`: Deformed moving image transformed back to the original space of the moving image.
