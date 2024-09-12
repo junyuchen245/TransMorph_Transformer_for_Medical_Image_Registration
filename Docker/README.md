@@ -63,6 +63,8 @@ The program reads data from the specified [path to input directory] based on the
 To customize the registration process, modify the [`configurations.json`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/configs_registration.json) file as needed:
   ```json
   {
+    "n4_bias_correction_moving": false,
+    "n4_bias_correction_fixed": false,
     "affine": true,
     "deformable": true,
     "resample": true,
