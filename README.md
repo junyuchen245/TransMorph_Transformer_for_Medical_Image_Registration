@@ -79,7 +79,7 @@ You can find the preprocessed IXI dataset, the pre-trained baseline and TransMor
 ## Reproducible Results on OASIS Dataset:
 You can find the preprocessed OASIS dataset, the pre-trained baseline and TransMorph models, and the training and inference scripts for OASIS dataset here :point_right: [TransMorph on OASIS](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/OASIS/TransMorph_on_OASIS.md)
 
-## Brain MRI Image Registration from Scratch Using the Docker Image:
+## Brain MRI Image Registration from Scratch with Docker:
 <img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30">**You can find detailed instructions on how to use TransMorph with your skull-stripped MRI images :point_right: [here](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/tree/main/Docker).**
 
 ## Citation:
