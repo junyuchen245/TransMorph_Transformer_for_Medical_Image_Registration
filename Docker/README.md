@@ -21,7 +21,7 @@ To use the TransMorph Docker image, start by pulling it from Docker Hub:
   ```bash
   docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v0
   ```
-Next, run the Docker container with the following command, or use the provided [`test.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test.sh`):
+Next, run the Docker image with the following command, or use the provided [`test.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test.sh`):
   ```bash
    docker run --rm  \
         --ipc=host \
@@ -34,7 +34,7 @@ Next, run the Docker container with the following command, or use the provided [
    ```
 
 ### Dataset JSON file
-The program reads data from the specified [path to input directory] based on the dataset.json file, which should follow this format:
+The program reads data from the specified [path to input directory] based on the `dataset.json` file, which should follow this format:
   ```json
   {
     "inputs": [
