@@ -70,7 +70,7 @@ To customize the registration process, modify the [`configurations.json`](https:
     "deformable": true,
     "resample": true,
     "resample_back": true,
-    "instance_optimization": false,
+    "instance_optimization": true,
     "save_registration_inputs": true,
     "IO_iteration": 20,
     "sim_weight": 1,
