@@ -16,6 +16,7 @@ from torch import optim
 import losses
 import shutil
 from intensity_normalization.normalize.kde import KDENormalize
+from intensity_normalization.typing import Modality, TissueType
 
 def reorient_image_to_match(reference_nii, target_nii):
     """
@@ -79,9 +80,9 @@ def resampling(img_npy, img_pixdim, tar_pixdim, order, mode='constant'):
     img_npy = zoom(img_npy, ((img_pixdim[0] / tar_pixdim[0]), (img_pixdim[1] / tar_pixdim[1]), (img_pixdim[2] / tar_pixdim[2])), order=order, prefilter=False, mode=mode)
     return img_npy
 
-def intensity_norm(img_npy):
-    fcm_norm = KDENormalize(norm_value=110)
-    img_npy = fcm_norm(img_npy)
+def intensity_norm(img_npy, mod):
+    kde_norm = KDENormalize(norm_value=110)
+    img_npy = kde_norm(img_npy, modality=mod)
     img_npy[img_npy < 0] = 0
     return img_npy
 
@@ -109,7 +110,7 @@ def main():
     if_affine = config["affine"]
     if_deformable = config["deformable"]
     if_resample = config["resample"]
-    if_resample_back = config["resample_back"] # TO DO...
+    if_resample_back = config["resample_back"]
     if_instance_optimization = config["instance_optimization"]
     if_save_registration_inputs = config["save_registration_inputs"]
     if_n4_bias_correction_mov = config["n4_bias_correction_moving"]
@@ -161,12 +162,47 @@ def main():
     for img_pair in dataset_pairs:
         mov_path = img_pair['moving']
         fix_path = img_pair['fixed']
+        try:
+            mov_mod = img_pair['moving_modality'].strip()
+            fix_mod = img_pair['fixed_modality'].strip()
+        except Exception:
+            mov_mod = 'T1'
+            fix_mod = 'T1'
+            print("Imaging modalities are not provided, therefore assumed to be T1!\n")
+        
+        try:
+            mov_bmask = img_pair['moving_brain_mask']
+            fix_bmask = img_pair['fixed_brain_mask']
+        except Exception:
+            mov_bmask = None
+            fix_bmask = None
+            print("Proceed without brain masks!\n")
+            
+        try:
+            mov_intensity_scaling_fac = img_pair['moving_scaling_factor']
+            fix_intensity_scaling_fac = img_pair['fixed_scaling_factor']
+        except Exception:
+            mov_intensity_scaling_fac = 255
+            fix_intensity_scaling_fac = 255
+        
+        mov_modality = Modality.T1
+        if mov_mod.upper() == "T2":
+            mov_modality = Modality.T2
+        fix_modality = Modality.T1
+        if fix_mod.upper() == "T2":
+            fix_modality = Modality.T2
         mov_nib_ = nib.load(input_dir+mov_path)
         fix_nib_ = nib.load(input_dir+fix_path)
+        if mov_bmask is not None:
+            mov_tmp = mov_nib_.get_fdata()*nib.load(input_dir+mov_bmask).get_fdata()
+            mov_nib_ = nib.Nifti1Image(mov_tmp, mov_nib_.affine, mov_nib_.header)
+        if fix_bmask is not None:
+            fix_tmp = fix_nib_.get_fdata()*nib.load(input_dir+fix_bmask).get_fdata()
+            fix_nib_ = nib.Nifti1Image(fix_tmp, fix_nib_.affine, fix_nib_.header)
         mov_nib = reorient_image_to_match(template_nib, mov_nib_)
         fix_nib = reorient_image_to_match(template_nib, fix_nib_)
 
-        print('moving image: {}, fixed image: {}'.format(mov_path, fix_path))
+        print('moving image: {}, fixed image: {}, moving modality: {}, fixed modality: {}'.format(mov_path, fix_path, mov_mod, fix_mod))
         
         try:
             lbl_path = img_pair['label']
@@ -192,8 +228,8 @@ def main():
                 mov_npy = mov_ants.numpy()
             
             if mov_npy.max()>300:
-                mov_npy = intensity_norm(mov_npy)
-            mov_npy = resampling(mov_npy/255, mov_pixdim, tar_pixdim, order=2)
+                mov_npy = intensity_norm(mov_npy, mov_modality)
+            mov_npy = resampling(mov_npy/mov_intensity_scaling_fac, mov_pixdim, tar_pixdim, order=2)
             fix_pixdim = fix_nib.header.structarr['pixdim'][1:-4]
             fix_npy = fix_nib.get_fdata()
             
@@ -203,8 +239,8 @@ def main():
                 fix_npy = fix_ants.numpy()
             
             if fix_npy.max()>300:
-                fix_npy = intensity_norm(fix_npy)
-            fix_npy = resampling(fix_npy/255, fix_pixdim, tar_pixdim, order=2)
+                fix_npy = intensity_norm(fix_npy, fix_modality)
+            fix_npy = resampling(fix_npy/fix_intensity_scaling_fac, fix_pixdim, tar_pixdim, order=2)
             
             if lbl_nib is not None:
                 lbl_npy = lbl_nib.get_fdata()
@@ -226,9 +262,11 @@ def main():
                 fix_npy = fix_ants.numpy()
             
             if mov_npy.max()>300:
-                mov_npy = intensity_norm(mov_npy)/255
+                mov_npy = intensity_norm(mov_npy, mov_modality)
+            mov_npy = mov_npy/mov_intensity_scaling_fac
             if fix_npy.max()>300:
-                fix_npy = intensity_norm(fix_npy)/255
+                fix_npy = intensity_norm(fix_npy, fix_modality)
+            fix_npy = fix_npy/fix_intensity_scaling_fac
             if lbl_nib is not None:
                 lbl_npy = lbl_nib.get_fdata()
         if verbose: print('----Moving image {}, Fixed image {}'.format(mov_npy.shape, fix_npy.shape))
@@ -323,8 +361,8 @@ def main():
                     def_lbl_fixorg_npy = def_lbl_ants_2fix.numpy()
             
             if if_resample:
-                def_mov_movorg_npy = resampling(def_mov_movorg_npy, tar_pixdim, mov_pixdim, order=2)*255
-                def_mov_fixorg_npy = resampling(def_mov_fixorg_npy, tar_pixdim, fix_pixdim, order=2)*255
+                def_mov_movorg_npy = resampling(def_mov_movorg_npy, tar_pixdim, mov_pixdim, order=2)*mov_intensity_scaling_fac
+                def_mov_fixorg_npy = resampling(def_mov_fixorg_npy, tar_pixdim, fix_pixdim, order=2)*mov_intensity_scaling_fac
                 if lbl_nib is not None:
                     def_lbl_movorg_npy = resampling(def_lbl_movorg_npy, tar_pixdim, mov_pixdim, order=0)
                     def_lbl_fixorg_npy = resampling(def_lbl_fixorg_npy, tar_pixdim, fix_pixdim, order=0)
@@ -342,14 +380,14 @@ def main():
         if not os.path.exists(output_dir+folder_name):
             os.makedirs(output_dir+folder_name)
         
-        save_nii(def_mov_npy, output_dir+folder_name+'deformed_moving_image', tar_pixdim)
+        save_nii(def_mov_npy*mov_intensity_scaling_fac, output_dir+folder_name+'deformed_moving_image', tar_pixdim)
         if if_resample_back:
             save_nii(def_mov_movorg_npy, output_dir+folder_name+'deformed_moving_image_original_moving_space', mov_pixdim, mov_nib, mov_nib_)
             save_nii(def_mov_fixorg_npy, output_dir+folder_name+'deformed_moving_image_original_fixed_space', fix_pixdim, fix_nib, fix_nib_)
             
         if if_save_registration_inputs:
-            save_nii(fix_npy, output_dir+folder_name+'fixed_image_final', tar_pixdim)
-            save_nii(mov_npy, output_dir+folder_name+'moving_image_final', tar_pixdim)
+            save_nii(fix_npy*fix_intensity_scaling_fac, output_dir+folder_name+'fixed_image_final', tar_pixdim)
+            save_nii(mov_npy*mov_intensity_scaling_fac, output_dir+folder_name+'moving_image_final', tar_pixdim)
             mov_nib.to_filename(output_dir+folder_name+'moving_image_reoriented.nii.gz')
             fix_nib.to_filename(output_dir+folder_name+'fixed_image_reoriented.nii.gz')
             if lbl_nib is not None:

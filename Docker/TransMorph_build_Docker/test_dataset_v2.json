@@ -1,0 +1,34 @@
+{
+    "inputs": [
+        {
+            "fixed": "./Example_0_img.nii.gz",
+            "moving": "./I166880_brain.nii"
+        },
+        {
+            "fixed": "./Example_0_img.nii.gz",
+            "moving": "./Example_1_img.nii.gz",
+            "label": "./Example_1_lbl.nii.gz"
+        },
+        {
+            "fixed": "./I166880_brain.nii",
+            "moving": "./Example_0_img.nii.gz",
+            "label": "./Example_0_lbl.nii.gz"
+        },
+        {
+            "fixed": "./sub-001_T1w.nii.gz",
+            "moving": "./Example_1_img.nii.gz",
+            "label": "./Example_1_lbl.nii.gz"
+        },
+        {
+            "fixed": "./IXI107-Guys_T2.nii.gz",
+            "moving": "./IXI128-HH_T2.nii.gz",
+            "label": "./IXI128-HH_label.nii.gz",
+            "fixed_modality": "T2",
+            "moving_modality": "T2",
+            "fixed_brain_mask": "./IXI107-Guys_bmask.nii.gz",
+            "moving_brain_mask": "./IXI128-HH_bmask.nii.gz",
+            "fixed_scaling_factor": 1,
+            "moving_scaling_factor": 1
+        }
+    ]
+}
