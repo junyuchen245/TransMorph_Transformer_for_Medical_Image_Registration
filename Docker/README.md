@@ -19,7 +19,7 @@ The registration pipeline includes the following steps:
 ## Instructions on Running the Docker Image
 To use the TransMorph Docker image, start by pulling it from Docker Hub:
   ```bash
-  docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v0
+  docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v1
   ```
 Next, run the Docker image with the following command, or use the provided [`test.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test.sh`):
   ```bash
@@ -30,7 +30,7 @@ Next, run the Docker image with the following command, or use the provided [`tes
         --mount type=bind,source=[path to config.json file],target=/configs_registration.json \
         --mount type=bind,source=[path to input directory],target=/input \
         --mount type=bind,source=[path to output directory],target=/output \
-        jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v0
+        jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v1
    ```
 
 ### Dataset JSON file
