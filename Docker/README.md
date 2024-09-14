@@ -55,11 +55,30 @@ The program reads data from the specified [path to input directory] based on the
             "fixed": "./Example_3_img.nii.gz",
             "moving": "./Example_4_img.nii.gz",
             "label": "./Example_4_lbl.nii.gz"
+        },
+        {
+            "fixed": "./IXI107-Guys_T2.nii.gz",
+            "moving": "./IXI128-HH_T2.nii.gz",
+            "label": "./IXI128-HH_label.nii.gz",
+            "fixed_modality": "T2",
+            "moving_modality": "T2",
+            "fixed_brain_mask": "./IXI107-Guys_bmask.nii.gz",
+            "moving_brain_mask": "./IXI128-HH_bmask.nii.gz",
+            "fixed_scaling_factor": 1,
+            "moving_scaling_factor": 1
         }
     ]
   }
   ```
 - `"label"`: The label map for the moving image (optional). If provided, the program will save the warped label map. An example `dataset.json` file is available in the [repository](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test_dataset.json).
+- `"fixed_modality"` (optional): The imaging modality of the fixed image. Defaults to "T1" if not specified.
+- `"moving_modality"` (optional): The imaging modality of the moving image. Defaults to "T1" if not specified.
+- `"fixed_brain_mask"` (optional): Brain mask for skull-stripping the fixed image. If not provided, no mask will be used.
+- `"moving_brain_mask"` (optional): Brain mask for skull-stripping the moving image. If not provided, no mask will be used.
+- `"fixed_scaling_factor"` (optional): Scaling factor for adjusting the intensity range of the fixed image (i.e., `img=img/fixed_scaling_factor`). The default is 255, assuming white matter is normalized to 110 (i.e., `img=img/255.`).
+- `"moving_scaling_factor"` (optional): Scaling factor for adjusting the intensity range of the moving image (i.e., `img=img/fixed_scaling_factor`). Defaults to 255 if not set.
+
+**Please note that the current TransMorph Docker image is trained on T1-weighted brain MRI scans. While it has been tested on other modalities such as T2 or PD, optimal performance is not guaranteed. For those cases, instance optimization is recommended.**
 ### Configuration JSON file
 To customize the registration process, modify the [`configurations.json`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/configs_registration.json) file as needed:
   ```json
