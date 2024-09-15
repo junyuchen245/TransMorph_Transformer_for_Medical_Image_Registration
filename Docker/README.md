@@ -35,7 +35,7 @@ Next, run the Docker image with the following command, or use the provided [`tes
    ```
 
 ### Dataset JSON file
-The program reads data from the specified [path to input directory] based on the `dataset.json` file, which should follow this format:
+The program reads data from the specified `[path to input directory]` based on the `dataset.json` file, which should follow this format:
   ```json
   {
     "inputs": [
