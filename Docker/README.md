@@ -71,7 +71,7 @@ The program reads data from the specified [path to input directory] based on the
     ]
   }
   ```
-- `"label"`: The label map for the moving image (optional). If provided, the program will save the warped label map. An example `dataset.json` file is available in the [repository](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test_dataset.json).
+- `"label"` (optional): The label map for the moving image. If provided, the program will save the warped label map. An example `dataset.json` file is available in the [repository](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test_dataset.json).
 - `"fixed_modality"` (optional): The imaging modality of the fixed image. Defaults to "T1" if not specified.
 - `"moving_modality"` (optional): The imaging modality of the moving image. Defaults to "T1" if not specified.
 - `"fixed_brain_mask"` (optional): Brain mask for skull-stripping the fixed image. If not provided, no mask will be used.
