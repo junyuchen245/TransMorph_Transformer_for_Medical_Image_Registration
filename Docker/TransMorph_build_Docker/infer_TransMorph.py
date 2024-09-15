@@ -188,9 +188,19 @@ def main():
         mov_modality = Modality.T1
         if mov_mod.upper() == "T2":
             mov_modality = Modality.T2
+        elif mov_mod.upper() == "PD":
+            mov_modality = Modality.PD
+        elif mov_mod.upper() == "FLAIR":
+            mov_modality = Modality.FLAIR
+            
         fix_modality = Modality.T1
         if fix_mod.upper() == "T2":
             fix_modality = Modality.T2
+        elif fix_mod.upper() == "PD":
+            fix_modality = Modality.PD
+        elif fix_mod.upper() == "FLAIR":
+            fix_modality = Modality.FLAIR
+        
         mov_nib_ = nib.load(input_dir+mov_path)
         fix_nib_ = nib.load(input_dir+fix_path)
         if mov_bmask is not None:
