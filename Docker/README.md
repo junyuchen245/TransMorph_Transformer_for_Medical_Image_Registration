@@ -114,6 +114,7 @@ To customize the registration process, modify the [`configurations.json`](https:
 - `affine_shrink_factor`: Sets the shrink factor for affine registration across different scales (default: [6, 4, 2, 1]).
 - `affine_smoothing_sigmas`: Determines the smoothing factor for affine registration at various scales (default: [3, 2, 1, 0]).
 - `deformable`: Toggle deformable registration with TransMorph.
+- `diffeomorphic`: Toggle diffeomorphic registration. Note that non-diffeomorphic variant may provide better alignment in terms of Dice and TRE.
 - `resample`: Enable resampling to match TransMorph conventions (recommended).
 - `resample_back`: Apply resampling to return the results to the original image space.
 - `instance_optimization`: Enable optimization for each image pair. This provides better results but increases runtime.
