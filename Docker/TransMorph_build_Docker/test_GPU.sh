@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-bash ./build.sh
+bash ./build_GPU.sh
 #jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v0
 #-it --entrypoint "/bin/bash"
 docker run --rm \
