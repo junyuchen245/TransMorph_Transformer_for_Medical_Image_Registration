@@ -107,7 +107,12 @@ To customize the registration process, modify the [`configurations.json`](https:
   ```
 - `n4_bias_correction_moving`: Toggle N4 bias field correction for moving image.
 - `n4_bias_correction_fixed`: Toggle N4 bias field correction for fixed image.
+- `intensity_normalization`: Toggle intensity normalization for both images.
 - `affine`: Toggle affine pre-alignment.
+- "affine_metric": Image similarity metric for affine registration using ANTs package.
+- "affine_iteration": Number of iterations for affine registration at various scales (default: [2100, 1200, 1200, 10]).
+- "affine_shrink_factor": Shrinking factor for affine registration at various scales (default: [6, 4, 2, 1]).
+- "affine_smoothing_sigmas":Smoothing factor for affine registration at various scales (default: [3, 2, 1, 0]).
 - `deformable`: Toggle deformable registration with TransMorph.
 - `resample`: Enable resampling to match TransMorph conventions (recommended).
 - `resample_back`: Apply resampling to return the results to the original image space.
