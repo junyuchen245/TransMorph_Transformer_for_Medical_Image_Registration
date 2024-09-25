@@ -108,6 +108,7 @@ def main():
     with open(config_json) as f:
         config = json.load(f)
     if_affine = config["affine"]
+    if_intensity_norm = config["intensity_normalization"]
     if_deformable = config["deformable"]
     if_resample = config["resample"]
     if_resample_back = config["resample_back"]
@@ -115,9 +116,15 @@ def main():
     if_save_registration_inputs = config["save_registration_inputs"]
     if_n4_bias_correction_mov = config["n4_bias_correction_moving"]
     if_n4_bias_correction_fix = config["n4_bias_correction_fixed"]
+    if_diffeomorphic = config["diffeomorphic"]
     IO_iteration = config["IO_iteration"]
     sim_weight = None
     reg_weight = None
+    affine_type = config["affine_type"]
+    affine_metric = config["affine_metric"]
+    affine_iter = config['affine_iteration']
+    affine_shrink_fac = config['affine_shrink_factor']
+    affine_smoothing_sigmas = config['affine_smoothing_sigmas']
     verbose = config["verbose"]
     with open(data_json) as f:
         dataset_list = json.load(f)
@@ -132,10 +139,16 @@ def main():
         config_TM.img_size = (H//2, W//2, D//2)
         config_TM.window_size = (H // 64, W // 64, D // 64)
         config_TM.out_chan = 3
-        model = TransMorph.TransMorphTVF(config_TM, time_steps=7)
-        pretrained = torch.load(wts_dir + natsorted(os.listdir(wts_dir))[0], map_location=torch.device('cpu'))
-        model.load_state_dict(pretrained['state_dict'])
-        print('model: {} loaded!'.format(natsorted(os.listdir(wts_dir))[0]))
+        if if_diffeomorphic:
+            model = TransMorph.TransMorphTVF(config_TM, time_steps=12, SVF=True)
+            pretrained = torch.load(wts_dir + 'transmorph_diff_wts.pth.tar', map_location=torch.device('cpu'))
+            model.load_state_dict(pretrained['state_dict'])
+            print('Diffeomorphic TransMorph loaded!')
+        else:
+            model = TransMorph.TransMorphTVF(config_TM, time_steps=7)
+            pretrained = torch.load(wts_dir + 'transmorph_wts.pth.tar', map_location=torch.device('cpu'))
+            model.load_state_dict(pretrained['state_dict'])
+            print('TransMorph loaded!')
         
         spatial_trans_tr = TransMorph.SpatialTransformer((H, W, D))
         spatial_trans_nn = TransMorph.SpatialTransformer((H, W, D), mode='nearest')
@@ -149,7 +162,13 @@ def main():
           '"""""""""""""""""""""""""""""""""""""""""""""""""""""""\n'
           'n4 bias field correction for moving image: {}\n'
           'n4 bias field correction for fixed image: {}\n'
+          'intensity normalization: {}\n'
           'affine registration: {}\n'
+          'affine type: {}\n'
+          'affine metric: {}\n'
+          'affine iterations: {}\n'
+          'affine_shrink_fac: {}\n'
+          'affine_smoothing_sigmas: {}\n'
           'deformable (non-linear) registration: {}\n'
           'instance optimization for TransMorph: {}\n'
           'number of IO iteration: {}\n'
@@ -157,7 +176,7 @@ def main():
           'regularization weight: {}\n'
           'resampling input to match with a template: {}\n'
           'resample back to original space of the moving image: {}\n'
-          '"""""""""""""""""""""""""""""""""""""""""""""""""""""""\n'.format(if_n4_bias_correction_mov, if_n4_bias_correction_fix, if_affine, if_deformable, if_instance_optimization, IO_iteration, sim_weight, reg_weight, if_resample, if_resample_back))
+          '"""""""""""""""""""""""""""""""""""""""""""""""""""""""\n'.format(if_n4_bias_correction_mov, if_n4_bias_correction_fix, if_intensity_norm, if_affine, affine_type, affine_metric, affine_iter, affine_shrink_fac, affine_smoothing_sigmas, if_deformable, if_instance_optimization, IO_iteration, sim_weight, reg_weight, if_resample, if_resample_back))
     
     for img_pair in dataset_pairs:
         mov_path = img_pair['moving']
@@ -237,7 +256,7 @@ def main():
                 mov_ants = ants.n4_bias_field_correction(mov_ants)
                 mov_npy = mov_ants.numpy()
             
-            if mov_npy.max()>300:
+            if if_intensity_norm:
                 mov_npy = intensity_norm(mov_npy, mov_modality)
             mov_npy = resampling(mov_npy/mov_intensity_scaling_fac, mov_pixdim, tar_pixdim, order=2)
             fix_pixdim = fix_nib.header.structarr['pixdim'][1:-4]
@@ -248,7 +267,7 @@ def main():
                 fix_ants = ants.n4_bias_field_correction(fix_ants)
                 fix_npy = fix_ants.numpy()
             
-            if fix_npy.max()>300:
+            if if_intensity_norm:
                 fix_npy = intensity_norm(fix_npy, fix_modality)
             fix_npy = resampling(fix_npy/fix_intensity_scaling_fac, fix_pixdim, tar_pixdim, order=2)
             
@@ -271,10 +290,10 @@ def main():
                 fix_ants = ants.n4_bias_field_correction(fix_ants)
                 fix_npy = fix_ants.numpy()
             
-            if mov_npy.max()>300:
+            if if_intensity_norm:
                 mov_npy = intensity_norm(mov_npy, mov_modality)
             mov_npy = mov_npy/mov_intensity_scaling_fac
-            if fix_npy.max()>300:
+            if if_intensity_norm:
                 fix_npy = intensity_norm(fix_npy, fix_modality)
             fix_npy = fix_npy/fix_intensity_scaling_fac
             if lbl_nib is not None:
@@ -290,9 +309,9 @@ def main():
             tmp_ants = ants.from_numpy(tmp_npy)
             mov_ants = ants.from_numpy(mov_npy)
             fix_ants = ants.from_numpy(fix_npy)
-            regMovTmp = ants.registration(fixed=tmp_ants, moving=mov_ants, type_of_transform='Affine', aff_metric='mattes')
+            regMovTmp = ants.registration(fixed=tmp_ants, moving=mov_ants, type_of_transform=affine_type, aff_metric=affine_metric, aff_iterations=tuple(affine_iter), aff_shrink_factors=tuple(affine_shrink_fac), aff_smoothing_sigmas=tuple(affine_smoothing_sigmas))
             mov_ants = ants.apply_transforms(fixed=tmp_ants, moving=mov_ants, transformlist=regMovTmp['fwdtransforms'],)
-            regFixTmp = ants.registration(fixed=tmp_ants, moving=fix_ants, type_of_transform='Affine', aff_metric='mattes')
+            regFixTmp = ants.registration(fixed=tmp_ants, moving=fix_ants, type_of_transform=affine_type, aff_metric=affine_metric, aff_iterations=tuple(affine_iter), aff_shrink_factors=tuple(affine_shrink_fac), aff_smoothing_sigmas=tuple(affine_smoothing_sigmas))
             fix_ants = ants.apply_transforms(fixed=tmp_ants, moving=fix_ants, transformlist=regFixTmp['fwdtransforms'],)
             
             if lbl_nib is not None:
@@ -326,8 +345,13 @@ def main():
                 model.train()
                 optimizer = optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0, amsgrad=True)
                 for iter_ in range(IO_iteration):
-                    flow = model((x_half, y_half))
-                    flow = F.interpolate(flow, scale_factor=2, mode='trilinear', align_corners=False) * 2
+                    if if_diffeomorphic:
+                        flow, flow_inv = model((x_half, y_half))
+                        flow = F.interpolate(flow, scale_factor=2, mode='trilinear', align_corners=False) * 2
+                        flow_inv = F.interpolate(flow_inv, scale_factor=2, mode='trilinear', align_corners=False) * 2
+                    else: 
+                        flow = model((x_half, y_half))
+                        flow = F.interpolate(flow, scale_factor=2, mode='trilinear', align_corners=False) * 2
                     output = spatial_trans_tr(mov_torch, flow)
                     loss_ncc = criterion_sim(output, fix_torch) * sim_weight
                     loss_reg = criterion_reg(flow, fix_torch) * reg_weight
@@ -339,9 +363,16 @@ def main():
                     
             with torch.no_grad():
                 model.eval()
-                flow = model((x_half, y_half))
-                flow = F.interpolate(flow, scale_factor=2, mode='trilinear', align_corners=False) * 2
-             
+                if if_diffeomorphic:
+                    flow, flow_inv = model((x_half, y_half))
+                    flow = F.interpolate(flow, scale_factor=2, mode='trilinear', align_corners=False) * 2
+                    flow_inv = F.interpolate(flow_inv, scale_factor=2, mode='trilinear', align_corners=False) * 2
+                else: 
+                    flow = model((x_half, y_half))
+                    flow = F.interpolate(flow, scale_factor=2, mode='trilinear', align_corners=False) * 2
+                if if_diffeomorphic:
+                    def_fix_torch = spatial_trans_tr(fix_torch, flow_inv)
+                    def_fix_npy = def_fix_torch.detach().cpu().numpy()[0, 0]
                 def_mov_torch = spatial_trans_tr(mov_torch, flow)
                 def_mov_npy = def_mov_torch.detach().cpu().numpy()[0, 0]
                 if lbl_nib is not None:
@@ -389,7 +420,8 @@ def main():
         folder_name = 'mov_{}_fix_{}/'.format(mov_name, fix_name)
         if not os.path.exists(output_dir+folder_name):
             os.makedirs(output_dir+folder_name)
-        
+        if if_diffeomorphic:
+            save_nii(def_fix_npy*fix_intensity_scaling_fac, output_dir+folder_name+'deformed_fixed_image', tar_pixdim)
         save_nii(def_mov_npy*mov_intensity_scaling_fac, output_dir+folder_name+'deformed_moving_image', tar_pixdim)
         if if_resample_back:
             save_nii(def_mov_movorg_npy, output_dir+folder_name+'deformed_moving_image_original_moving_space', mov_pixdim, mov_nib, mov_nib_)
@@ -405,8 +437,14 @@ def main():
                 lbl_nib.to_filename(output_dir+folder_name+'moving_label_reoriented.nii.gz')
             
         if if_deformable:
-            flow = flow.cpu().detach().numpy()[0]
-            save_nii(flow, output_dir+folder_name+'displacement_field', tar_pixdim)
+            if if_diffeomorphic:
+                flow = flow.cpu().detach().numpy()[0]
+                flow_inv = flow_inv.cpu().detach().numpy()[0]
+                save_nii(flow, output_dir+folder_name+'displacement_field', tar_pixdim)
+                save_nii(flow_inv, output_dir+folder_name+'displacement_field_inverse', tar_pixdim)
+            else:
+                flow = flow.cpu().detach().numpy()[0]
+                save_nii(flow, output_dir+folder_name+'displacement_field', tar_pixdim)
         if if_affine:
             shutil.copyfile(regMovTmp['fwdtransforms'][0], output_dir+folder_name+ "affine_fwdtransforms.mat")
         if lbl_nib is not None:
