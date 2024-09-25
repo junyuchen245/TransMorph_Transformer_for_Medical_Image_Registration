@@ -46,7 +46,7 @@ For the GPU-based version, use this command or run the provided [`test_GPU.sh`](
         --mount type=bind,source=[path to config.json file],target=/app/configs_registration.json \
         --mount type=bind,source=[path to input directory],target=/app/input \
         --mount type=bind,source=[path to output directory],target=/app/output \
-        transmorph_brain_mri_t1_gpu
+        jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v2_gpu
    ```
 
 ### Dataset JSON file
