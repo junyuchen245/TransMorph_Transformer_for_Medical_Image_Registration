@@ -1,0 +1,23 @@
+FROM anibali/pytorch:2.0.1-cuda11.8-ubuntu22.04
+
+USER root
+
+RUN mkdir -p /app/input /app/output
+
+# Set up time zone.
+ENV TZ=UTC
+RUN sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+
+COPY ./pretrained_weights /app/pretrained_weights/
+COPY ./requirements.txt .
+COPY ./infer_TransMorph_GPU.py .
+COPY ./TransMorph.py .
+COPY ./configs_TransMorph.py .
+COPY ./losses.py .
+COPY ./template.nii.gz .
+
+RUN python3 -m pip install --user -r requirements.txt
+RUN pip install antspyx
+RUN pip install intensity-normalization
+
+CMD ["python3","-u","./infer_TransMorph_GPU.py"]
