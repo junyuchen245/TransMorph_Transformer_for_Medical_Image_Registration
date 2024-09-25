@@ -905,6 +905,8 @@ class TransMorphTVF(nn.Module):
         if self.SVF:
             flow = self.vec_int(flow)
             flow = torch.clamp(flow, -100, 100)
+            flow_inv = self.vec_int(flow*-1.0)
+            return flow, flow_inv
         return flow
 
 class VecInt(nn.Module):
