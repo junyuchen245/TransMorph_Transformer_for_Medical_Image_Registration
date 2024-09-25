@@ -1,7 +1,6 @@
 # Brain MRI Image Registration with TransMorph
 This repository provides Docker images for different variants of TransMorph, a tool for brain MRI image registration for various applications. You can access the Docker images on our [Docker Hub](https://hub.docker.com/repository/docker/jchen245/transmorph_brain_mri_registration/general).
 
-- ***At the moment, the Docker image is CPU-based. GPU-enabled containers will be added soon, so stay tuned!***
 - ***This TransMorph Docker image currently only supports mono-modality registration.***
 
 ## Registration Pipeline
@@ -18,11 +17,15 @@ The registration pipeline includes the following steps:
 7. **Post-processing (Optional)**: Resample and reorient the results back to the original spaces of the moving or fixed images, as needed.
 
 ## Instructions on Running the Docker Image
-To use the TransMorph Docker image, start by pulling it from Docker Hub:
+To use the CPU-based TransMorph Docker image, start by pulling it from Docker Hub:
   ```bash
   docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v2
   ```
-Next, run the Docker image with the following command, or use the provided [`test.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test.sh`):
+For the GPU-based Docker image, use:
+```bash
+  docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v2_gpu
+  ```
+Next, run the CPU-based Docker image with the following command, or use the provided [`test.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test.sh`):
   ```bash
    docker run --rm  \
         --ipc=host \
@@ -32,6 +35,18 @@ Next, run the Docker image with the following command, or use the provided [`tes
         --mount type=bind,source=[path to input directory],target=/input \
         --mount type=bind,source=[path to output directory],target=/output \
         jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v2
+   ```
+For the GPU-based version, use this command or run the provided [`test_GPU.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test_GPU.sh`):
+  ```bash
+   docker run --rm \
+        --ipc=host \
+        --memory 256g \
+        --gpus "device=0"\
+        --mount type=bind,source=[path to dataset.json file],target=/app/input_dataset.json \
+        --mount type=bind,source=[path to config.json file],target=/app/configs_registration.json \
+        --mount type=bind,source=[path to input directory],target=/app/input \
+        --mount type=bind,source=[path to output directory],target=/app/output \
+        transmorph_brain_mri_t1_gpu
    ```
 
 ### Dataset JSON file
