@@ -22,7 +22,7 @@ To use the CPU-based TransMorph Docker image, start by pulling it from Docker Hu
   docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v2
   ```
 For the GPU-based Docker image, use:
-```bash
+  ```bash
   docker pull jchen245/transmorph_brain_mri_registration:transmorph_brain_mri_t1_v2_gpu
   ```
 Next, run the CPU-based Docker image with the following command, or use the provided [`test.sh`](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/Docker/test.sh) script (`bash test.sh`):
