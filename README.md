@@ -5,7 +5,7 @@ keywords: Vision Transformer, Swin Transformer, convolutional neural networks, i
 
 This is a **PyTorch** implementation of my paper:
 
-<a href="https://www.sciencedirect.com/science/article/pii/S1361841522002432">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " Transformer for unsupervised medical image registration,” Medical Image Analysis, p. 102615, 2022.</a>
+<a href="https://www.sciencedirect.com/science/article/pii/S1361841522002432">Chen, Junyu, et al. "TransMorph: Transformer for Unsupervised Medical Image Registration. " Medical Image Analysis, p. 102615, 2022.</a>
 
 **Here's the [errata](https://github.com/junyuchen245/TransMorph_Transformer_for_Medical_Image_Registration/blob/main/errata.md) (fixing several typos in paper).**
 
